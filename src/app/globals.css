@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Accessibility: Font Size Controls */
+html.font-size-normal {
+  font-size: 16px;
+}
+
+html.font-size-large {
+  font-size: 20px;
+}
+
+html.font-size-extra-large {
+  font-size: 24px;
+}
+
+/* Accessibility: High Contrast Modes (WCAG AA Compliant) */
+
+/* Yellow on Black Mode */
+html.contrast-high-yellow,
+html.contrast-high-yellow body {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #ffff00 !important;
+}
+
+html.contrast-high-yellow *:not(svg):not(path) {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: #ffff00 !important;
+  border-color: #ffff00 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+html.contrast-high-yellow svg,
+html.contrast-high-yellow svg * {
+  fill: #ffff00 !important;
+  stroke: #ffff00 !important;
+  color: #ffff00 !important;
+}
+
+/* White on Black Mode */
+html.contrast-high-white,
+html.contrast-high-white body {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+}
+
+html.contrast-high-white *:not(svg):not(path) {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+html.contrast-high-white svg,
+html.contrast-high-white svg * {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Keep form inputs and buttons visible */
+html.contrast-high-yellow input,
+html.contrast-high-yellow textarea,
+html.contrast-high-yellow button:not([aria-label*="accessibility"]),
+html.contrast-high-yellow select {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+  border: 2px solid #ffff00 !important;
+}
+
+html.contrast-high-white input,
+html.contrast-high-white textarea,
+html.contrast-high-white button:not([aria-label*="accessibility"]),
+html.contrast-high-white select {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* Keep accessibility widget button visible and recognizable */
+html.contrast-high-yellow button[aria-label*="accessibility"],
+html.contrast-high-white button[aria-label*="accessibility"] {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+}
+
+/* Images - make them slightly visible */
+html.contrast-high-yellow img,
+html.contrast-high-white img {
+  opacity: 0.7;
+  filter: grayscale(100%) contrast(1.2);
+}
+
+/* Accessibility: Reduce Motion */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Focus Visible for Keyboard Navigation (WCAG AA Compliance) */
+*:focus-visible {
+  outline: 4px solid #2563eb;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  border-radius: 2px;
+}
+
+/* Extra visible focus for high contrast modes */
+html.contrast-high-yellow *:focus-visible {
+  outline: 4px solid #ffff00 !important;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 0, 0.3) !important;
+}
+
+html.contrast-high-white *:focus-visible {
+  outline: 4px solid #ffffff !important;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Custom Animations */
+@keyframes gradient-x {
+  0%,
+  100% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-10px);
+  }
+}
+
+@keyframes float-delayed {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(15px) translateX(-15px);
+  }
+  66% {
+    transform: translateY(-10px) translateX(15px);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 25px rgba(37, 99, 235, 0.3),
+      0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 15px 35px rgba(37, 99, 235, 0.4),
+      0 0 0 10px rgba(37, 99, 235, 0);
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 15s ease infinite;
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 25s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
