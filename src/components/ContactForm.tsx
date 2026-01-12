@@ -60,7 +60,7 @@ export function ContactForm() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_NEW_WEB3FORMS_KEY_HERE", // TODO: Get new key from web3forms.com with danielvershkov8@gmail.com
+          access_key: "9a8b5e75-bce6-4ac8-b645-11287c479595",
           subject: `New Consultation Request - ${sanitizedData.name}`,
           from_name: "Dr. Daniel Clinic Website",
           name: sanitizedData.name,
