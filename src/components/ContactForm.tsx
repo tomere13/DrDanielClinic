@@ -60,7 +60,7 @@ export function ContactForm() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "9a8b5e75-bce6-4ac8-b645-11287c479595",
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY!,
           subject: `New Consultation Request - ${sanitizedData.name}`,
           from_name: "Dr. Daniel Clinic Website",
           name: sanitizedData.name,
