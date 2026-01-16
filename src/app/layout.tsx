@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/botox-cover.jpeg",
+        url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "קליניקת ד״ר דניאל - טיפולים אסתטיים",
+        alt: "קליניקת ד״ר דניאל - לוגו",
       },
     ],
   },
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ד״ר דניאל ורשקוב - בוטוקס וטיפולים אסתטיים בבאר שבע",
     description: "מומחה לטיפולי בוטוקס, חומרי מילוי ורפואה אסתטית בבאר שבע",
-    images: ["/botox-cover.jpeg"],
+    images: ["/logo.png"],
   },
   robots: {
     index: true,
