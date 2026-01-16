@@ -8,4 +8,11 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/" />
   </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/accessibility</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/accessibility" />
+  </url>
 </urlset>

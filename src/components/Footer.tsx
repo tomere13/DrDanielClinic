@@ -1,4 +1,5 @@
 import { Sparkles } from "lucide-react"; // החלפתי את ה-import
+import Link from "next/link";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -23,6 +24,14 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+          <div className="mb-3">
+            <Link
+              href="/accessibility"
+              className="text-[#b7748d] hover:text-[#a0647a] hover:underline transition-colors"
+            >
+              הצהרת נגישות
+            </Link>
+          </div>
           <p>&copy; {currentYear} קליניקת ד&quot;ר דניאל. כל הזכויות שמורות.</p>
         </div>
       </div>
