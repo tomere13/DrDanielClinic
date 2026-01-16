@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container mx-auto max-w-6xl">
         <div className="mb-8 flex items-center justify-center gap-2">
           {/* שימוש באייקון Sparkles במקום Scale */}
-          <Sparkles className="h-8 w-8 text-blue-400" aria-hidden="true" />
+          <Sparkles className="h-8 w-8 text-[#b7748d]" aria-hidden="true" />
           <span className="text-xl font-bold">קליניקת ד&quot;ר דניאל</span>
         </div>
 

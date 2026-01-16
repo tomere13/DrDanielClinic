@@ -78,7 +78,7 @@ export function Header() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={cn(
             "flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 md:hidden",
-            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#b7748d]"
           )}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileMenuOpen}
@@ -92,7 +92,7 @@ export function Header() {
             <button
               onClick={() => scrollToSection("about")}
               className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-blue-600",
+                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
                 "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
               )}
             >
@@ -103,7 +103,7 @@ export function Header() {
             <button
               onClick={() => scrollToSection("services")}
               className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-blue-600",
+                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
                 "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
               )}
             >
@@ -114,7 +114,7 @@ export function Header() {
             <button
               onClick={() => scrollToSection("contact")}
               className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-blue-600",
+                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
                 "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
               )}
             >
@@ -154,7 +154,7 @@ export function Header() {
               <li>
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 active:bg-blue-50"
+                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10"
                   type="button"
                 >
                   אודות
@@ -163,7 +163,7 @@ export function Header() {
               <li>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 active:bg-blue-50"
+                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10"
                   type="button"
                 >
                   טיפולים
@@ -172,7 +172,7 @@ export function Header() {
               <li>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 active:bg-blue-50"
+                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10"
                   type="button"
                 >
                   צור קשר

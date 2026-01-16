@@ -86,15 +86,15 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
           whileHover={{
             scale: 1.05,
-            boxShadow: "0 20px 40px rgba(255, 255, 255, 0.3)",
+            boxShadow: "0 20px 40px rgba(183, 116, 141, 0.4)",
           }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToContact}
           className={cn(
             "inline-block rounded-lg bg-white px-8 py-4 text-lg font-semibold text-slate-900",
-            "shadow-lg shadow-white/30 transition-all hover:bg-white/90",
+            "shadow-lg shadow-[#b7748d]/30 transition-all hover:text-[#b7748d]",
             "animate-pulse-slow",
-            "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-white"
+            "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
           )}
         >
           קביעת תור

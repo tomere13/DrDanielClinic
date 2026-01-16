@@ -99,7 +99,7 @@ export function ContactForm() {
       <div className="container mx-auto max-w-4xl">
         <h2
           id="contact-heading"
-          className="mb-4 text-center text-4xl font-bold text-gray-900"
+          className="mb-4 text-center text-4xl font-bold text-[#b7748d]"
         >
           צרו קשר
         </h2>
@@ -112,7 +112,7 @@ export function ContactForm() {
           {/* פרטי התקשרות */}
           <div className="space-y-6">
             <div>
-              <h3 className="mb-4 text-xl font-semibold text-gray-900">
+              <h3 className="mb-4 text-xl font-semibold text-[#b7748d]">
                 דרכי התקשרות
               </h3>
               <p className="mb-6 text-gray-600">
@@ -123,7 +123,7 @@ export function ContactForm() {
 
             <div className="flex items-start gap-3">
               <Phone
-                className="mt-1 h-5 w-5 text-blue-600 ml-3" // הוספתי מרווח מותאם ל-RTL אם צריך, או להסתמך על gap
+                className="mt-1 h-5 w-5 text-[#b7748d] ml-3" // הוספתי מרווח מותאם ל-RTL אם צריך, או להסתמך על gap
                 aria-hidden="true"
               />
               <div>
@@ -131,19 +131,19 @@ export function ContactForm() {
                 <a
                   href="tel:+972548185506"
                   className={cn(
-                    "text-blue-600 hover:underline",
-                    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                    "text-[#b7748d] hover:underline",
+                    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]"
                   )}
                   dir="ltr" // המספר עצמו ישאר משמאל לימין לקריאות
                 >
-                  +972-54-818-5506
+                  054-818-5506
                 </a>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
               <svg
-                className="mt-1 h-5 w-5 text-green-600"
+                className="mt-1 h-5 w-5 text-[#b7748d]"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -157,12 +157,12 @@ export function ContactForm() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    "inline-flex items-center gap-1 text-green-600 hover:underline",
+                    "inline-flex items-center gap-1 text-[#b7748d] hover:underline",
                     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                   )}
                   dir="ltr"
                 >
-                  +972-54-818-5506
+                  054-818-5506
                 </a>
                 <p className="mt-1 text-sm text-gray-500">
                   מענה מהיר לקביעת תורים
@@ -171,14 +171,17 @@ export function ContactForm() {
             </div>
 
             <div className="flex items-start gap-3">
-              <Mail className="mt-1 h-5 w-5 text-blue-600" aria-hidden="true" />
+              <Mail
+                className="mt-1 h-5 w-5 text-[#b7748d]"
+                aria-hidden="true"
+              />
               <div>
                 <p className="font-medium text-gray-900">אימייל</p>
                 <a
                   href="mailto:danielvershkov8@gmail.com"
                   className={cn(
-                    "text-blue-600 hover:underline",
-                    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                    "text-[#b7748d] hover:underline",
+                    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]"
                   )}
                 >
                   danielvershkov8@gmail.com
@@ -188,14 +191,14 @@ export function ContactForm() {
 
             <div className="flex items-start gap-3">
               <MessageSquare
-                className="mt-1 h-5 w-5 text-blue-600"
+                className="mt-1 h-5 w-5 text-[#b7748d]"
                 aria-hidden="true"
               />
               <div>
                 <p className="font-medium text-gray-900">שעות פעילות</p>
                 <p className="text-gray-600">ראשון - חמישי: 9:00 - 19:00</p>
                 <p className="text-gray-600">שישי: 9:00 - 14:00</p>
-                <p className="mt-2 text-sm text-blue-600">
+                <p className="mt-2 text-sm text-[#b7748d]">
                   הגעה בתיאום מראש בלבד
                 </p>
               </div>
@@ -237,7 +240,7 @@ export function ContactForm() {
                   "w-full rounded-md border px-4 py-2",
                   errors.name
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:border-blue-500 focus:ring-blue-500",
+                    : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
                   "focus:outline-none focus:ring-2"
                 )}
                 aria-invalid={errors.name ? "true" : "false"}
@@ -272,7 +275,7 @@ export function ContactForm() {
                   "w-full rounded-md border px-4 py-2 text-right", // text-right כדי שהמספר ייכתב נכון
                   errors.phone
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:border-blue-500 focus:ring-blue-500",
+                    : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
                   "focus:outline-none focus:ring-2"
                 )}
                 dir="ltr" // שדה הטלפון עצמו LTR כדי שהספרות לא יתהפכו
@@ -308,7 +311,7 @@ export function ContactForm() {
                   "w-full rounded-md border px-4 py-2",
                   errors.email
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:border-blue-500 focus:ring-blue-500",
+                    : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
                   "focus:outline-none focus:ring-2"
                 )}
                 dir="ltr" // אימייל תמיד LTR
@@ -344,7 +347,7 @@ export function ContactForm() {
                   "w-full rounded-md border px-4 py-2",
                   errors.message
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:border-blue-500 focus:ring-blue-500",
+                    : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
                   "focus:outline-none focus:ring-2"
                 )}
                 aria-invalid={errors.message ? "true" : "false"}
@@ -365,9 +368,9 @@ export function ContactForm() {
               type="submit"
               disabled={isSubmitting}
               className={cn(
-                "w-full rounded-md bg-blue-600 px-6 py-3 font-semibold text-white",
-                "transition-colors hover:bg-blue-700",
-                "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+                "w-full rounded-md bg-[#b7748d] px-6 py-3 font-semibold text-white",
+                "transition-colors hover:bg-[#a0647a]",
+                "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]",
                 "disabled:cursor-not-allowed disabled:opacity-50"
               )}
             >
@@ -399,7 +402,7 @@ export function ContactForm() {
             <div className="flex flex-col justify-center space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin
-                  className="mt-1 h-6 w-6 text-blue-600"
+                  className="mt-1 h-6 w-6 text-[#b7748d]"
                   aria-hidden="true"
                 />
                 <div>
@@ -417,8 +420,8 @@ export function ContactForm() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
-                      "mt-3 inline-block text-blue-600 hover:underline",
-                      "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                      "mt-3 inline-block text-[#b7748d] hover:underline",
+                      "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]"
                     )}
                   >
                     פתח במפות Google →
@@ -426,11 +429,11 @@ export function ContactForm() {
                 </div>
               </div>
 
-              <div className="rounded-lg bg-blue-50 p-4">
-                <p className="text-sm font-medium text-blue-900">
+              <div className="rounded-lg bg-[#b7748d]/10 p-4">
+                <p className="text-sm font-medium text-[#8b5669]">
                   מידע על חניה
                 </p>
-                <p className="mt-1 text-sm text-blue-700">
+                <p className="mt-1 text-sm text-[#a0647a]">
                   חניה חינם זמינה במקום
                 </p>
               </div>

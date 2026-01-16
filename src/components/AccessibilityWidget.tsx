@@ -23,8 +23,8 @@ export function AccessibilityWidget() {
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "fixed bottom-4 left-4 z-50 flex h-12 w-12 items-center justify-center rounded-full sm:bottom-6 sm:left-6 sm:h-14 sm:w-14",
-          "bg-blue-600 text-white shadow-lg transition-all hover:bg-blue-700",
-          "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          "bg-[#b7748d] text-white shadow-lg transition-all hover:bg-[#a0647a]",
+          "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]"
         )}
         aria-label={
           isOpen ? "Close accessibility menu" : "Open accessibility menu"
@@ -73,7 +73,7 @@ export function AccessibilityWidget() {
                 className={cn(
                   "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors",
                   fontSize === "normal"
-                    ? "border-blue-600 bg-blue-50 text-blue-700"
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
                     : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
                 )}
                 aria-pressed={fontSize === "normal"}
@@ -85,7 +85,7 @@ export function AccessibilityWidget() {
                 className={cn(
                   "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors",
                   fontSize === "large"
-                    ? "border-blue-600 bg-blue-50 text-blue-700"
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
                     : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
                 )}
                 aria-pressed={fontSize === "large"}
@@ -97,7 +97,7 @@ export function AccessibilityWidget() {
                 className={cn(
                   "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors",
                   fontSize === "extra-large"
-                    ? "border-blue-600 bg-blue-50 text-blue-700"
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
                     : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
                 )}
                 aria-pressed={fontSize === "extra-large"}
@@ -119,7 +119,7 @@ export function AccessibilityWidget() {
                 className={cn(
                   "w-full rounded-md border px-3 py-2 text-left text-sm font-medium transition-colors",
                   contrastMode === "normal"
-                    ? "border-blue-600 bg-blue-50 text-blue-700"
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
                     : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
                 )}
                 aria-pressed={contrastMode === "normal"}
@@ -131,7 +131,7 @@ export function AccessibilityWidget() {
                 className={cn(
                   "w-full rounded-md border px-3 py-2 text-left text-sm font-medium transition-colors",
                   contrastMode === "high-contrast-yellow"
-                    ? "border-blue-600 bg-blue-50 text-blue-700"
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
                     : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
                 )}
                 aria-pressed={contrastMode === "high-contrast-yellow"}
@@ -143,7 +143,7 @@ export function AccessibilityWidget() {
                 className={cn(
                   "w-full rounded-md border px-3 py-2 text-left text-sm font-medium transition-colors",
                   contrastMode === "high-contrast-white"
-                    ? "border-blue-600 bg-blue-50 text-blue-700"
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
                     : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
                 )}
                 aria-pressed={contrastMode === "high-contrast-white"}
@@ -164,7 +164,7 @@ export function AccessibilityWidget() {
               className={cn(
                 "w-full rounded-md border px-3 py-2 text-left text-sm font-medium transition-colors",
                 reduceMotion
-                  ? "border-blue-600 bg-blue-50 text-blue-700"
+                  ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
                   : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
               )}
               role="switch"

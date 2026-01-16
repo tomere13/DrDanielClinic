@@ -40,7 +40,7 @@ export function About() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-4xl font-bold text-gray-900"
+          className="mb-12 text-center text-4xl font-bold text-[#b7748d]"
         >
           אודות קליניקת ד&quot;ר דניאל
         </motion.h2>
@@ -77,11 +77,11 @@ export function About() {
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 shadow-lg"
+                  className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#b7748d]/20 shadow-lg"
                 >
-                  <Icon className="h-8 w-8 text-blue-600" aria-hidden="true" />
+                  <Icon className="h-8 w-8 text-[#b7748d]" aria-hidden="true" />
                 </motion.div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                <h3 className="mb-2 text-xl font-semibold text-[#b7748d]">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600">{feature.description}</p>

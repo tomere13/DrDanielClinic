@@ -48,7 +48,7 @@ export function Services() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-4xl font-bold text-gray-900"
+          className="mb-12 text-center text-4xl font-bold text-[#b7748d]"
         >
           הטיפולים שלנו
         </motion.h2>
@@ -71,11 +71,11 @@ export function Services() {
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="mb-4 mr-auto flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 transition-colors group-hover:bg-blue-200"
+                  className="mb-4 mr-auto flex h-12 w-12 items-center justify-center rounded-lg bg-[#b7748d]/20 transition-colors group-hover:bg-[#b7748d]/30"
                 >
-                  <Icon className="h-6 w-6 text-blue-600" aria-hidden="true" />
+                  <Icon className="h-6 w-6 text-[#b7748d]" aria-hidden="true" />
                 </motion.div>
-                <h3 className="mb-3 text-xl font-semibold text-gray-900 text-right">
+                <h3 className="mb-3 text-xl font-semibold text-[#b7748d] text-right">
                   {service.title}
                 </h3>
                 <p className="text-gray-600 text-right">
