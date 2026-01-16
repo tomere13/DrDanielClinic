@@ -237,7 +237,7 @@ export function ContactForm() {
                 type="text"
                 {...register("name")}
                 className={cn(
-                  "w-full rounded-md border px-4 py-2",
+                  "w-full rounded-md border px-4 py-2 text-gray-900",
                   errors.name
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
@@ -272,7 +272,7 @@ export function ContactForm() {
                 type="tel"
                 {...register("phone")}
                 className={cn(
-                  "w-full rounded-md border px-4 py-2 text-right", // text-right כדי שהמספר ייכתב נכון
+                  "w-full rounded-md border px-4 py-2 text-right text-gray-900", // text-right כדי שהמספר ייכתב נכון
                   errors.phone
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
@@ -308,7 +308,7 @@ export function ContactForm() {
                 type="email"
                 {...register("email")}
                 className={cn(
-                  "w-full rounded-md border px-4 py-2",
+                  "w-full rounded-md border px-4 py-2 text-gray-900",
                   errors.email
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
@@ -344,7 +344,7 @@ export function ContactForm() {
                 rows={4}
                 {...register("message")}
                 className={cn(
-                  "w-full rounded-md border px-4 py-2",
+                  "w-full rounded-md border px-4 py-2 text-gray-900",
                   errors.message
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
