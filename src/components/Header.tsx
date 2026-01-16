@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(true);
@@ -78,7 +79,7 @@ export function Header() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={cn(
             "flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 md:hidden",
-            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#b7748d]"
+            "focus-visible:outline-2 focus-visible:outline-[#b7748d]"
           )}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileMenuOpen}
@@ -93,7 +94,7 @@ export function Header() {
               onClick={() => scrollToSection("about")}
               className={cn(
                 "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
-                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+                "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
               אודות
@@ -104,7 +105,7 @@ export function Header() {
               onClick={() => scrollToSection("services")}
               className={cn(
                 "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
-                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+                "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
               טיפולים
@@ -115,7 +116,7 @@ export function Header() {
               onClick={() => scrollToSection("contact")}
               className={cn(
                 "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
-                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+                "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
               צור קשר
@@ -124,9 +125,9 @@ export function Header() {
         </ul>
 
         {/* Logo - Always on right */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+        <Link
+          href="/"
+          className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[#b7748d]"
         >
           <Image
             src="/logo.png"
@@ -137,7 +138,7 @@ export function Header() {
             quality={100}
             priority
           />
-        </button>
+        </Link>
       </nav>
 
       {/* Mobile Menu */}
