@@ -134,7 +134,7 @@ export function Header() {
             alt="Dr. Daniel Clinic Logo"
             width={1100}
             height={400}
-            className="h-14 w-auto sm:h-20"
+            className="h-14 w-auto sm:h-18"
             quality={100}
             priority
           />

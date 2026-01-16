@@ -2,7 +2,7 @@
 
 ## ✅ What Was Done
 
-Your site is now configured to show the **logo** when you share links on:
+Your site is now configured to show your **custom "Dr. Daniel" signature image** when you share links on:
 
 - 📘 Facebook
 - 💬 WhatsApp
@@ -11,6 +11,8 @@ Your site is now configured to show the **logo** when you share links on:
 - 📱 iMessage
 - 📧 Email clients
 - And other platforms that support Open Graph metadata
+
+**Active Image:** `/social.png` - Your elegant signature on white background
 
 ## 🔍 How to Test
 
@@ -56,39 +58,29 @@ Your metadata now includes:
 openGraph: {
   images: [
     {
-      url: "/logo.png",
+      url: "/social.png",
       width: 1200,
       height: 630,
-      alt: "קליניקת ד״ר דניאל - לוגו",
+      alt: "קליניקת ד״ר דניאל - Dr. Daniel Clinic",
     },
   ];
 }
 ```
 
+✅ **Using custom social media image: `/social.png`**
+
 ---
 
-## 🚀 Optimal Social Media Image
+## 🚀 Social Media Image Status
 
 ### Current Status:
 
-- ✅ Logo is set as the preview image
-- ⚠️ Logo might not be perfectly sized for social media
+- ✅ Custom social image created and configured!
+- ✅ Perfect dimensions: 1200×630 pixels
+- ✅ Clean, professional "Dr. Daniel" signature
+- ✅ Ready to share on all platforms
 
-### Recommended: Create an Optimized OG Image
-
-**Ideal dimensions:** 1200px × 630px
-
-#### Option 1: Simple Logo on Background (Recommended)
-
-Create a 1200×630 image with:
-
-- Your rose color background (`#b7748d` or gradient)
-- Your logo centered
-- Optional: Add text like "קליניקת ד״ר דניאל"
-
-#### Option 2: Use Existing Logo
-
-Your current `logo.png` will work, but might have white space or not fill the preview box perfectly.
+**Your image:** `/social.png` - Elegant signature design that represents your brand perfectly!
 
 ---
 
@@ -271,14 +263,14 @@ Accent: Rose border or frame
 
 ```
 ✅ /public/logo.png          - Your main logo
+✅ /public/social.png        - 1200×630 social media preview (ACTIVE)
 ✅ /public/botox-cover.jpeg  - Alternative background
 ✅ /public/favicon.svg       - Icon (too small for OG)
 ```
 
-### Recommended to Add:
+### Optional to Add:
 
 ```
-📸 /public/og-image.png      - 1200×630 optimized social preview
 📸 /public/og-logo-square.png - 500×500 for platforms that prefer square
 ```
 
@@ -307,11 +299,12 @@ Accent: Rose border or frame
 
 ## ✅ Checklist
 
-- [x] Logo set as Open Graph image
+- [x] Custom social image created (`social.png`)
+- [x] Open Graph image configured
 - [x] Twitter Card configured
 - [x] Image dimensions specified (1200×630)
 - [x] Alt text added for accessibility
-- [ ] (Optional) Create optimized 1200×630 OG image
+- [x] Optimized 1200×630 social image created
 - [ ] Test on Facebook Debugger
 - [ ] Test on Twitter Card Validator
 - [ ] Test by sharing in WhatsApp
@@ -347,21 +340,23 @@ Accent: Rose border or frame
 
 ## 🎉 You're All Set!
 
-Your logo will now appear when you share your website link on social media!
+Your custom **Dr. Daniel** signature image will now appear when you share your website link on social media!
 
 **Test it:**
 
 1. Share your link in WhatsApp to a friend
-2. See your beautiful logo appear! ✨
+2. See your beautiful custom social image appear! ✨
+3. Use Facebook Debugger to verify: https://developers.facebook.com/tools/debug/
 
 **Remember:**
 
 - Social media platforms cache images for 24-48 hours
 - Use the debugger tools to force refresh
-- Create a 1200×630 version for best results
+- Your image is already optimized at 1200×630! ✅
 
 ---
 
 **Last Updated:** January 2026
-**Status:** ✅ Logo configured as social preview
-**Next Step:** (Optional) Create optimized 1200×630 OG image
+**Status:** ✅ Custom social image configured (`/social.png`)
+**Image:** Dr. Daniel signature on white background
+**Next Step:** Test on all platforms and clear cache if needed

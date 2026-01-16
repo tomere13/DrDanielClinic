@@ -46,7 +46,10 @@ export function Hero() {
       />
 
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-slate-900/80" />
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-slate-900/80"
+        style={{ left: "-1px", top: "1px" }}
+      />
 
       {/* Animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 animate-gradient-x" />

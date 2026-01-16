@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Arimo } from "next/font/google";
+import { Assistant } from "next/font/google";
 import "./globals.css";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 
-const arimo = Arimo({
+const arimo = Assistant({
   variable: "--font-arimo",
   subsets: ["latin", "hebrew"],
   weight: ["400", "500", "600", "700"],
@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.png",
+        url: "/social.png",
         width: 1200,
         height: 630,
-        alt: "קליניקת ד״ר דניאל - לוגו",
+        alt: "קליניקת ד״ר דניאל - Dr. Daniel Clinic",
       },
     ],
   },
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ד״ר דניאל ורשקוב - בוטוקס וטיפולים אסתטיים בבאר שבע",
     description: "מומחה לטיפולי בוטוקס, חומרי מילוי ורפואה אסתטית בבאר שבע",
-    images: ["/logo.png"],
+    images: ["/social.png"],
   },
   robots: {
     index: true,
