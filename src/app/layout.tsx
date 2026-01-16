@@ -3,8 +3,8 @@ import { Assistant } from "next/font/google";
 import "./globals.css";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 
-const arimo = Assistant({
-  variable: "--font-arimo",
+const assistant = Assistant({
+  variable: "--font-assistant",
   subsets: ["latin", "hebrew"],
   weight: ["400", "500", "600", "700"],
 });
@@ -90,7 +90,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="he">
-      <body className={`${arimo.variable} font-sans antialiased`}>
+      <body className={`${assistant.variable} font-sans antialiased`}>
         <AccessibilityProvider>{children}</AccessibilityProvider>
       </body>
     </html>
