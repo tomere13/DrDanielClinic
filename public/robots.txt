@@ -1,0 +1,11 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://drdaniel-clinic.com/sitemap.xml
+
+# Disallow crawling of admin pages (if you add any in the future)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/

@@ -10,20 +10,77 @@ const arimo = Arimo({
 });
 
 export const metadata: Metadata = {
-  title: "Dr. Daniel Clinic - Expert Botox & Aesthetic Treatments | Beer Sheva",
+  title:
+    "ד״ר דניאל ורשקוב - בוטוקס וטיפולים אסתטיים בבאר שבע | קליניקת ד״ר דניאל",
   description:
-    "Professional botox and aesthetic treatments by Dr. Daniel Vershkov. Expert injections, dermal fillers, and cosmetic procedures in Beer Sheva.",
+    "קליניקת ד״ר דניאל - טיפולי בוטוקס, חומרי מילוי והזרקות אסתטיות בבאר שבע. ד״ר דניאל ורשקוב - מומחה לרפואה אסתטית עם תוצאות טבעיות ומקצועיות. קביעת תור: 054-818-5506",
   keywords: [
-    "botox",
-    "dermal fillers",
-    "aesthetic treatments",
-    "cosmetic injections",
-    "Dr. Daniel",
-    "Beer Sheva",
-    "anti-aging",
-    "facial aesthetics",
-    "cosmetic treatments",
+    "בוטוקס באר שבע",
+    "חומרי מילוי באר שבע",
+    "ד״ר דניאל ורשקוב",
+    "רפואה אסתטית באר שבע",
+    "הזרקות בוטוקס",
+    "חומצה היאלורונית",
+    "פיסול פנים",
+    "טיפולים אסתטיים",
+    "קליניקת אסתטיקה באר שבע",
+    "אנטי אייג׳ינג",
+    "botox beer sheva",
+    "Dr Daniel Vershkov",
+    "aesthetic clinic",
   ],
+  authors: [{ name: "Dr. Daniel Vershkov" }],
+  creator: "Dr. Daniel Vershkov",
+  publisher: "Dr. Daniel Clinic",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: "ד״ר דניאל ורשקוב - בוטוקס וטיפולים אסתטיים בבאר שבע",
+    description:
+      "קליניקת ד״ר דניאל - מומחה לטיפולי בוטוקס, חומרי מילוי ורפואה אסתטית בבאר שבע. תוצאות טבעיות ומקצועיות.",
+    url: "https://drdaniel-clinic.com",
+    siteName: "קליניקת ד״ר דניאל",
+    locale: "he_IL",
+    type: "website",
+    images: [
+      {
+        url: "/botox-cover.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "קליניקת ד״ר דניאל - טיפולים אסתטיים",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ד״ר דניאל ורשקוב - בוטוקס וטיפולים אסתטיים בבאר שבע",
+    description: "מומחה לטיפולי בוטוקס, חומרי מילוי ורפואה אסתטית בבאר שבע",
+    images: ["/botox-cover.jpeg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "j54EhQJ8xIut6CY_rIpYtkEfNkxW7jwGa9A37j0SbNo",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
