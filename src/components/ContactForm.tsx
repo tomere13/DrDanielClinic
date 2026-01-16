@@ -7,14 +7,15 @@ import { cn } from "@/lib/utils";
 import { Phone, Mail, MessageSquare, MapPin } from "lucide-react";
 import { useState } from "react";
 
+// סכימת אימות בעברית
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
+  name: z.string().min(2, "השם חייב להכיל לפחות 2 תווים"),
   phone: z
     .string()
-    .min(9, "Please enter a valid phone number")
-    .regex(/^[0-9\s\-+()]+$/, "Please enter a valid phone number"),
-  email: z.string().email("Please enter a valid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+    .min(9, "נא להזין מספר טלפון תקין")
+    .regex(/^[0-9\s\-+()]+$/, "נא להזין מספר טלפון תקין (ספרות בלבד)"),
+  email: z.string().email("נא להזין כתובת אימייל תקינה"),
+  message: z.string().min(10, "ההודעה חייבת להכיל לפחות 10 תווים"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -36,15 +37,15 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      // Security: Honeypot check - if filled, it's a bot
+      // אבטחה: בדיקת מלכודת דבש לבוטים
       if (honeypot) {
         console.warn("Bot detected via honeypot");
-        setSubmitStatus("success"); // Fake success to fool bots
+        setSubmitStatus("success");
         reset();
         return;
       }
 
-      // Security: Sanitize inputs to prevent XSS
+      // אבטחה: ניקוי קלט
       const sanitizedData = {
         name: data.name.trim().slice(0, 100),
         email: data.email.trim().toLowerCase().slice(0, 100),
@@ -52,7 +53,7 @@ export function ContactForm() {
         message: data.message.trim().slice(0, 2000),
       };
 
-      // Submit directly to Web3Forms (client-side)
+      // שליחה ל-Web3Forms
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -61,15 +62,13 @@ export function ContactForm() {
         },
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY!,
-          subject: `New Consultation Request - ${sanitizedData.name}`,
+          subject: `פנייה חדשה מהאתר - ${sanitizedData.name}`,
           from_name: "Dr. Daniel Clinic Website",
           name: sanitizedData.name,
           email: sanitizedData.email,
           phone: sanitizedData.phone,
           message: sanitizedData.message,
-          // Security: Web3Forms built-in spam protection
-          botcheck: false, // Built-in bot detection
-          // Add reCAPTCHA score if needed (Web3Forms supports it)
+          botcheck: false,
         }),
       });
 
@@ -81,7 +80,7 @@ export function ContactForm() {
 
       setSubmitStatus("success");
       reset();
-      setHoneypot(""); // Reset honeypot
+      setHoneypot("");
       setTimeout(() => setSubmitStatus("idle"), 5000);
     } catch (error) {
       console.error("Form submission error:", error);
@@ -95,45 +94,47 @@ export function ContactForm() {
       id="contact"
       className="bg-white px-6 py-20"
       aria-labelledby="contact-heading"
+      dir="rtl" // הוספת כיוון מימין לשמאל לכל הסקשן
     >
       <div className="container mx-auto max-w-4xl">
         <h2
           id="contact-heading"
           className="mb-4 text-center text-4xl font-bold text-gray-900"
         >
-          Contact Us
+          צרו קשר
         </h2>
         <p className="mb-12 text-center text-lg text-gray-600">
-          Book a consultation to discuss your aesthetic goals. We&apos;re here to
-          help you look and feel your best.
+          מוזמנים לקבוע פגישת ייעוץ ולשוחח על המטרות האסתטיות שלכם. אנחנו כאן
+          כדי לעזור לכם להיראות ולהרגיש הכי טוב שאפשר.
         </p>
 
         <div className="grid gap-8 md:grid-cols-2">
-          {/* Contact Information */}
+          {/* פרטי התקשרות */}
           <div className="space-y-6">
             <div>
               <h3 className="mb-4 text-xl font-semibold text-gray-900">
-                Get In Touch
+                דרכי התקשרות
               </h3>
               <p className="mb-6 text-gray-600">
-                Reach out via phone, email, or the contact form. We respond to
-                all inquiries promptly and offer free consultations.
+                ניתן לפנות אלינו בטלפון, בוואטסאפ או באמצעות הטופס. אנו משתדלים
+                לענות לכל הפניות בהקדם האפשרי.
               </p>
             </div>
 
             <div className="flex items-start gap-3">
               <Phone
-                className="mt-1 h-5 w-5 text-blue-600"
+                className="mt-1 h-5 w-5 text-blue-600 ml-3" // הוספתי מרווח מותאם ל-RTL אם צריך, או להסתמך על gap
                 aria-hidden="true"
               />
               <div>
-                <p className="font-medium text-gray-900">Phone</p>
+                <p className="font-medium text-gray-900">טלפון</p>
                 <a
                   href="tel:+972548185506"
                   className={cn(
                     "text-blue-600 hover:underline",
                     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                   )}
+                  dir="ltr" // המספר עצמו ישאר משמאל לימין לקריאות
                 >
                   +972-54-818-5506
                 </a>
@@ -159,11 +160,12 @@ export function ContactForm() {
                     "inline-flex items-center gap-1 text-green-600 hover:underline",
                     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                   )}
+                  dir="ltr"
                 >
                   +972-54-818-5506
                 </a>
                 <p className="mt-1 text-sm text-gray-500">
-                  Quick responses for appointment booking
+                  מענה מהיר לקביעת תורים
                 </p>
               </div>
             </div>
@@ -171,7 +173,7 @@ export function ContactForm() {
             <div className="flex items-start gap-3">
               <Mail className="mt-1 h-5 w-5 text-blue-600" aria-hidden="true" />
               <div>
-                <p className="font-medium text-gray-900">Email</p>
+                <p className="font-medium text-gray-900">אימייל</p>
                 <a
                   href="mailto:danielvershkov8@gmail.com"
                   className={cn(
@@ -190,21 +192,23 @@ export function ContactForm() {
                 aria-hidden="true"
               />
               <div>
-                <p className="font-medium text-gray-900">Clinic Hours</p>
-                <p className="text-gray-600">Sunday - Thursday: 9:00 - 19:00</p>
-                <p className="text-gray-600">Friday: 9:00 - 14:00</p>
-                <p className="mt-2 text-sm text-blue-600">Appointments by reservation</p>
+                <p className="font-medium text-gray-900">שעות פעילות</p>
+                <p className="text-gray-600">ראשון - חמישי: 9:00 - 19:00</p>
+                <p className="text-gray-600">שישי: 9:00 - 14:00</p>
+                <p className="mt-2 text-sm text-blue-600">
+                  הגעה בתיאום מראש בלבד
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* טופס יצירת קשר */}
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="space-y-4"
             noValidate
           >
-            {/* Honeypot field - hidden from users, catches bots */}
+            {/* שדה דבש מוסתר לבוטים */}
             <input
               type="text"
               name="website"
@@ -220,8 +224,8 @@ export function ContactForm() {
                 htmlFor="name"
                 className="mb-1 block text-sm font-medium text-gray-700"
               >
-                Full Name{" "}
-                <span className="text-red-600" aria-label="required">
+                שם מלא{" "}
+                <span className="text-red-600" aria-label="חובה">
                   *
                 </span>
               </label>
@@ -255,8 +259,8 @@ export function ContactForm() {
                 htmlFor="phone"
                 className="mb-1 block text-sm font-medium text-gray-700"
               >
-                Phone Number{" "}
-                <span className="text-red-600" aria-label="required">
+                מספר טלפון{" "}
+                <span className="text-red-600" aria-label="חובה">
                   *
                 </span>
               </label>
@@ -265,12 +269,13 @@ export function ContactForm() {
                 type="tel"
                 {...register("phone")}
                 className={cn(
-                  "w-full rounded-md border px-4 py-2",
+                  "w-full rounded-md border px-4 py-2 text-right", // text-right כדי שהמספר ייכתב נכון
                   errors.phone
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-gray-300 focus:border-blue-500 focus:ring-blue-500",
                   "focus:outline-none focus:ring-2"
                 )}
+                dir="ltr" // שדה הטלפון עצמו LTR כדי שהספרות לא יתהפכו
                 aria-invalid={errors.phone ? "true" : "false"}
                 aria-describedby={errors.phone ? "phone-error" : undefined}
               />
@@ -290,8 +295,8 @@ export function ContactForm() {
                 htmlFor="email"
                 className="mb-1 block text-sm font-medium text-gray-700"
               >
-                Email Address{" "}
-                <span className="text-red-600" aria-label="required">
+                כתובת אימייל{" "}
+                <span className="text-red-600" aria-label="חובה">
                   *
                 </span>
               </label>
@@ -306,6 +311,7 @@ export function ContactForm() {
                     : "border-gray-300 focus:border-blue-500 focus:ring-blue-500",
                   "focus:outline-none focus:ring-2"
                 )}
+                dir="ltr" // אימייל תמיד LTR
                 aria-invalid={errors.email ? "true" : "false"}
                 aria-describedby={errors.email ? "email-error" : undefined}
               />
@@ -325,8 +331,8 @@ export function ContactForm() {
                 htmlFor="message"
                 className="mb-1 block text-sm font-medium text-gray-700"
               >
-                Message{" "}
-                <span className="text-red-600" aria-label="required">
+                הודעה{" "}
+                <span className="text-red-600" aria-label="חובה">
                   *
                 </span>
               </label>
@@ -365,31 +371,31 @@ export function ContactForm() {
                 "disabled:cursor-not-allowed disabled:opacity-50"
               )}
             >
-              {isSubmitting ? "Sending..." : "Send Message"}
+              {isSubmitting ? "שולח..." : "שלח הודעה"}
             </button>
 
             {submitStatus === "success" && (
               <p className="text-center text-sm text-green-600" role="status">
-                Message sent successfully! We&apos;ll get back to you soon.
+                ההודעה נשלחה בהצלחה! נחזור אליכם בהקדם.
               </p>
             )}
 
             {submitStatus === "error" && (
               <p className="text-center text-sm text-red-600" role="alert">
-                There was an error sending your message. Please try again.
+                אירעה שגיאה בשליחת ההודעה. אנא נסו שנית.
               </p>
             )}
           </form>
         </div>
 
-        {/* Clinic Location */}
+        {/* מיקום הקליניקה */}
         <div className="mt-16">
           <h3 className="mb-6 text-center text-2xl font-semibold text-gray-900">
-            Clinic Location
+            מיקום הקליניקה
           </h3>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {/* Address Details */}
+            {/* פרטי כתובת */}
             <div className="flex flex-col justify-center space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin
@@ -397,7 +403,7 @@ export function ContactForm() {
                   aria-hidden="true"
                 />
                 <div>
-                  <p className="font-medium text-gray-900">Clinic Address</p>
+                  <p className="font-medium text-gray-900">כתובת</p>
                   <address
                     className="mt-2 not-italic text-gray-700"
                     dir="rtl"
@@ -407,7 +413,7 @@ export function ContactForm() {
                     באר שבע
                   </address>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=ז׳קלין+כהנוב+7+באר+שבע"
+                    href="https://www.google.com/maps/search/?api=1&query=ז׳קלין+כהנוב+7+באר+שבע" // שים לב: זה הלינק המקורי שנתת, לוודא שהוא תקין
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
@@ -415,42 +421,42 @@ export function ContactForm() {
                       "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     )}
                   >
-                    Open in Google Maps →
+                    פתח במפות Google →
                   </a>
                 </div>
               </div>
 
               <div className="rounded-lg bg-blue-50 p-4">
                 <p className="text-sm font-medium text-blue-900">
-                  Parking Information
+                  מידע על חניה
                 </p>
                 <p className="mt-1 text-sm text-blue-700">
-                  Free parking available on-site
+                  חניה חינם זמינה במקום
                 </p>
               </div>
 
               <div className="rounded-lg bg-gray-50 p-4">
                 <p className="text-sm font-medium text-gray-900">
-                  Public Transportation
+                  תחבורה ציבורית
                 </p>
                 <p className="mt-1 text-sm text-gray-700">
-                  Accessible by bus lines to Beer Sheva city center
+                  נגיש באמצעות קווי אוטובוס למרכז באר שבע
                 </p>
               </div>
             </div>
 
-            {/* Google Maps Embed */}
+            {/* מפה מוטמעת */}
             <div className="h-[400px] overflow-hidden rounded-lg border border-gray-200 shadow-sm">
               <iframe
-                src="https://www.google.com/maps?q=ז׳קלין+כהנוב+7+באר+שבע&output=embed"
+                src="https://www.google.com/maps?q=ז׳קלין+כהנוב+7+באר+שבע&output=embed" // שים לב: זה הלינק המקורי, יש להחליף במידת הצורך
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Clinic Location: Jacqueline Kahanoff 7, Beer Sheva"
-                aria-label="Map showing clinic location at Jacqueline Kahanoff 7, Beer Sheva"
+                title="מיקום הקליניקה: ז׳קלין כהנוב 7, באר שבע"
+                aria-label="מפה המציגה את מיקום הקליניקה בז׳קלין כהנוב 7, באר שבע"
               />
             </div>
           </div>

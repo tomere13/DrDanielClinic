@@ -7,27 +7,27 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const services = [
   {
     icon: Syringe,
-    title: "Botox Injections",
+    title: "הזרקות בוטוקס",
     description:
-      "FDA-approved botox treatments for wrinkles, fine lines, and facial rejuvenation with natural-looking results.",
+      "טיפולי בוטוקס (מאושרי FDA) להחלקת קמטים וקמטוטים והצערת מראה הפנים, עם דגש על תוצאות במראה טבעי.",
   },
   {
     icon: Sparkles,
-    title: "Dermal Fillers",
+    title: "חומרי מילוי (חומצה היאלורונית)",
     description:
-      "Volume restoration, lip enhancement, and facial contouring using premium hyaluronic acid fillers.",
+      "השבת נפחים, עיצוב שפתיים ופיסול פנים באמצעות חומרי מילוי איכותיים (Premium) מבוססי חומצה היאלורונית.",
   },
   {
     icon: Heart,
-    title: "Facial Aesthetics",
+    title: "אסתטיקת הפנים",
     description:
-      "Complete facial rejuvenation treatments including skin tightening, lifting, and anti-aging procedures.",
+      "טיפולים מקיפים להצערת הפנים (Rejuvenation), כולל מיצוק העור, אפקט הרמה (Lifting) וטיפולי אנטי-אייג'ינג.",
   },
   {
     icon: Shield,
-    title: "Medical-Grade Treatments",
+    title: "טיפולים רפואיים מתקדמים",
     description:
-      "Advanced aesthetic procedures including PRP therapy, chemical peels, and laser treatments.",
+      "פרוצדורות אסתטיות מתקדמות, כולל טיפולי PRP וטיפולי Lipolytics.",
   },
 ];
 
@@ -40,6 +40,7 @@ export function Services() {
       ref={ref}
       className="bg-gray-50 px-6 py-20"
       aria-labelledby="services-heading"
+      dir="rtl"
     >
       <div className="container mx-auto max-w-6xl">
         <motion.h2
@@ -49,7 +50,7 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center text-4xl font-bold text-gray-900"
         >
-          Our Treatments
+          הטיפולים שלנו
         </motion.h2>
 
         <div className="grid gap-8 md:grid-cols-2">
@@ -65,19 +66,21 @@ export function Services() {
                   y: -8,
                   boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                 }}
-                className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all"
+                className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all text-right"
               >
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 transition-colors group-hover:bg-blue-200"
+                  className="mb-4 mr-auto flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 transition-colors group-hover:bg-blue-200"
                 >
                   <Icon className="h-6 w-6 text-blue-600" aria-hidden="true" />
                 </motion.div>
-                <h3 className="mb-3 text-xl font-semibold text-gray-900">
+                <h3 className="mb-3 text-xl font-semibold text-gray-900 text-right">
                   {service.title}
                 </h3>
-                <p className="text-gray-600">{service.description}</p>
+                <p className="text-gray-600 text-right">
+                  {service.description}
+                </p>
               </motion.article>
             );
           })}

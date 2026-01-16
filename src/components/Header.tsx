@@ -1,9 +1,10 @@
 "use client";
 
-import { Scale, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(true);
@@ -70,60 +71,9 @@ export function Header() {
       <nav
         className="container mx-auto flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4"
         aria-label="Main navigation"
+        dir="rtl"
       >
-        {/* Logo */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
-        >
-          <Scale
-            className="h-6 w-6 text-blue-600 sm:h-8 sm:w-8"
-            aria-hidden="true"
-          />
-          <span className="text-base font-bold text-gray-900 sm:text-xl">
-            <span className="hidden sm:inline">Dr. Daniel Clinic</span>
-            <span className="sm:hidden">Dr. Daniel</span>
-          </span>
-        </button>
-
-        {/* Desktop Navigation */}
-        <ul className="hidden gap-4 md:flex md:gap-8">
-          <li>
-            <button
-              onClick={() => scrollToSection("about")}
-              className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-blue-600",
-                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
-              )}
-            >
-              About
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => scrollToSection("services")}
-              className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-blue-600",
-                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
-              )}
-            >
-              Services
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-blue-600",
-                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
-              )}
-            >
-              Contact
-            </button>
-          </li>
-        </ul>
-
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Shows on left on mobile */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={cn(
@@ -134,6 +84,59 @@ export function Header() {
           aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Desktop Navigation - Shows on left on desktop */}
+        <ul className="hidden gap-4 md:flex md:gap-8">
+          <li>
+            <button
+              onClick={() => scrollToSection("about")}
+              className={cn(
+                "text-sm font-medium text-gray-700 transition-colors hover:text-blue-600",
+                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+              )}
+            >
+              אודות
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => scrollToSection("services")}
+              className={cn(
+                "text-sm font-medium text-gray-700 transition-colors hover:text-blue-600",
+                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+              )}
+            >
+              טיפולים
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className={cn(
+                "text-sm font-medium text-gray-700 transition-colors hover:text-blue-600",
+                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+              )}
+            >
+              צור קשר
+            </button>
+          </li>
+        </ul>
+
+        {/* Logo - Always on right */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+        >
+          <Image
+            src="/logo.png"
+            alt="Dr. Daniel Clinic Logo"
+            width={1100}
+            height={400}
+            className="h-14 w-auto sm:h-20"
+            quality={100}
+            priority
+          />
         </button>
       </nav>
 
@@ -147,32 +150,32 @@ export function Header() {
             transition={{ duration: 0.2 }}
             className="border-t border-gray-200 bg-white md:hidden"
           >
-            <ul className="flex flex-col px-4 py-4">
+            <ul className="flex flex-col px-4 py-4" dir="rtl">
               <li>
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="w-full rounded-lg px-4 py-3 text-left text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 active:bg-blue-50"
+                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 active:bg-blue-50"
                   type="button"
                 >
-                  About
+                  אודות
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="w-full rounded-lg px-4 py-3 text-left text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 active:bg-blue-50"
+                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 active:bg-blue-50"
                   type="button"
                 >
-                  Services
+                  טיפולים
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="w-full rounded-lg px-4 py-3 text-left text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 active:bg-blue-50"
+                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 active:bg-blue-50"
                   type="button"
                 >
-                  Contact
+                  צור קשר
                 </button>
               </li>
             </ul>

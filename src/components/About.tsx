@@ -7,21 +7,20 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const features = [
   {
     icon: Award,
-    title: "Medical Expertise",
+    title: "מומחיות רפואית",
     description:
-      "Licensed physician specializing in aesthetic treatments and cosmetic procedures.",
+      "רופאה מוסמכת המתמחה בטיפולים אסתטיים ופרוצדורות קוסמטיות מתקדמות",
   },
   {
     icon: Scale,
-    title: "Natural Results",
+    title: "תוצאות טבעיות",
     description:
-      "Focus on subtle enhancements that preserve your unique features and natural beauty.",
+      "דגש על שיפורים עדינים המדגישים את היופי הטבעי תוך שמירה על תווי הפנים הייחודיים שלך",
   },
   {
     icon: Users,
-    title: "Patient-Centered",
-    description:
-      "Personalized consultations and transparent communication throughout your treatment.",
+    title: "יחס אישי ושקיפות",
+    description: "ייעוץ מותאם אישית ותקשורת פתוחה ושקופה לכל אורך תהליך הטיפול",
   },
 ];
 
@@ -43,7 +42,7 @@ export function About() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center text-4xl font-bold text-gray-900"
         >
-          About Dr. Daniel Clinic
+          אודות קליניקת ד&quot;ר דניאל
         </motion.h2>
 
         <motion.div
@@ -53,15 +52,14 @@ export function About() {
           className="mb-12 text-center"
         >
           <p className="mx-auto mb-6 max-w-3xl text-lg leading-relaxed text-gray-700">
-            As a licensed aesthetic physician with extensive experience in
-            cosmetic procedures, Dr. Daniel Vershkov brings a combination of
-            medical expertise, artistic vision, and dedication to natural-looking
-            results.
+            כרופא העוסק ברפואה אסתטית ובעל ניסיון נרחב בטיפולים קוסמטיים,
+            ד&quot;ר דניאל ורשקוב מביא עמו שילוב ייחודי של מומחיות רפואית, ראייה
+            אומנותית ומחויבות לתוצאות במראה טבעי
           </p>
           <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700">
-            With a track record of satisfied patients and beautiful outcomes, Dr.
-            Daniel provides personalized treatment plans tailored to your unique
-            features, ensuring safe and effective aesthetic enhancements.
+            עם ניסיון מוכח של מטופלים ומטופלות מרוצים ותוצאות יפהפיות, ד&quot;ר
+            דניאל מתאים תוכניות טיפול אישיות לפי תווי הפנים הייחודיים שלך,
+            ומבטיח טיפולים אסתטיים בטוחים ואפקטיביים
           </p>
         </motion.div>
 
