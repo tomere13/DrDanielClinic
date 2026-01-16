@@ -5,15 +5,15 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 px-6 py-12 text-white" dir="rtl">
+    <footer className="bg-[#3b2330] px-6 py-12 text-white" dir="rtl">
       <div className="container mx-auto max-w-6xl">
         <div className="mb-8 flex items-center justify-center gap-2">
           {/* שימוש באייקון Sparkles במקום Scale */}
-          <Sparkles className="h-8 w-8 text-[#b7748d]" aria-hidden="true" />
+          <Sparkles className="h-8 w-8 text-[#d4a5b8]" aria-hidden="true" />
           <span className="text-xl font-bold">קליניקת ד&quot;ר דניאל</span>
         </div>
 
-        <div className="mb-6 text-center text-gray-400">
+        <div className="mb-6 text-center text-gray-300">
           <p className="mb-2 font-medium">
             רפואה אסתטית | רופאה מוסמכת באסתטיקה רפואית
           </p>
@@ -23,11 +23,11 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+        <div className="border-t border-[#6b4259] pt-6 text-center text-sm text-gray-300">
           <div className="mb-3">
             <Link
               href="/accessibility"
-              className="text-[#b7748d] hover:text-[#a0647a] hover:underline transition-colors"
+              className="text-[#d4a5b8] hover:text-[#e5c4d3] hover:underline transition-colors"
             >
               הצהרת נגישות
             </Link>
