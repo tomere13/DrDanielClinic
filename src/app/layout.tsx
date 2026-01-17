@@ -10,6 +10,7 @@ const assistant = Assistant({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://drdaniel-clinic.com"),
   title:
     "ד״ר דניאל ורשקוב - בוטוקס וטיפולים אסתטיים בבאר שבע | קליניקת ד״ר דניאל",
   description:
