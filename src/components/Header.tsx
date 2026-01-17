@@ -70,7 +70,7 @@ export function Header() {
       className="fixed left-0 right-0 top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm shadow-sm"
     >
       <nav
-        className="container mx-auto flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4"
+        className="container relative mx-auto flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4"
         aria-label="Main navigation"
         dir="rtl"
       >
@@ -127,14 +127,14 @@ export function Header() {
         {/* Logo - Always on right */}
         <Link
           href="/"
-          className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[#b7748d]"
+          className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 focus-visible:outline-2 focus-visible:outline-[#b7748d] md:static md:translate-x-0"
         >
           <Image
             src="/logo.png"
             alt="Dr. Daniel Clinic Logo"
             width={1100}
             height={400}
-            className="h-14 w-auto sm:h-18"
+            className="h-10 w-auto sm:h-18"
             quality={100}
             priority
           />
