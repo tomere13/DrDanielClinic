@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import { Assistant } from "next/font/google";
 import "./globals.css";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const assistant = Assistant({
   variable: "--font-assistant",
   subsets: ["latin", "hebrew"],
   weight: ["400", "500", "600", "700"],
 });
+
+import { CookieConsent } from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://drdaniel-clinic.com"),
@@ -92,7 +95,12 @@ export default function RootLayout({
   return (
     <html lang="he">
       <body className={`${assistant.variable} font-sans antialiased`}>
-        <AccessibilityProvider>{children}</AccessibilityProvider>
+        <LanguageProvider>
+          <AccessibilityProvider>
+            {children}
+            <CookieConsent />
+          </AccessibilityProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

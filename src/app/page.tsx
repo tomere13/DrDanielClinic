@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Services } from "@/components/Services";
+import { Articles } from "@/components/Articles";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { AccessibilityWidget } from "@/components/AccessibilityWidget";
@@ -106,6 +107,7 @@ export default function HomePage() {
         <Hero />
         <About />
         <Services />
+        <Articles />
         <ContactForm />
       </main>
       <Footer />

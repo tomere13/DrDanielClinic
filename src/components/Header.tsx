@@ -6,11 +6,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const { language, dir } = useLanguage();
+  const { header } = language.site_content;
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -72,9 +77,9 @@ export function Header() {
       <nav
         className="container relative mx-auto flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4"
         aria-label="Main navigation"
-        dir="rtl"
+        dir={dir}
       >
-        {/* Mobile Menu Button - Shows on left on mobile */}
+        {/* Mobile Menu Button - Start side */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={cn(
@@ -87,8 +92,8 @@ export function Header() {
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Desktop Navigation - Shows on left on desktop */}
-        <ul className="hidden gap-4 md:flex md:gap-8">
+        {/* Desktop Navigation - Start side */}
+        <ul className="hidden gap-4 md:flex md:gap-8 items-center">
           <li>
             <button
               onClick={() => scrollToSection("about")}
@@ -97,7 +102,7 @@ export function Header() {
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
-              אודות
+              {header.about}
             </button>
           </li>
           <li>
@@ -108,8 +113,20 @@ export function Header() {
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
-              טיפולים
+              {header.services}
             </button>
+          </li>
+          {/* Articles Link - New */}
+          <li>
+            <Link
+              href="/articles"
+              className={cn(
+                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
+                "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
+              )}
+            >
+              {header.articles}
+            </Link>
           </li>
           <li>
             <button
@@ -119,12 +136,12 @@ export function Header() {
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
-              צור קשר
+              {header.contact}
             </button>
           </li>
         </ul>
 
-        {/* Logo - Always on right */}
+        {/* Logo - Center/End */}
         <Link
           href="/"
           className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 focus-visible:outline-2 focus-visible:outline-[#b7748d] md:static md:translate-x-0"
@@ -139,6 +156,11 @@ export function Header() {
             priority
           />
         </Link>
+
+        {/* Language Switcher - End side (desktop) */}
+        <div className="hidden md:block">
+          <LanguageSwitcher />
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -151,33 +173,49 @@ export function Header() {
             transition={{ duration: 0.2 }}
             className="border-t border-gray-200 bg-white md:hidden"
           >
-            <ul className="flex flex-col px-4 py-4" dir="rtl">
+            <ul className="flex flex-col px-4 py-4 gap-2" dir={dir}>
               <li>
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10"
+                  className={`w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 ${dir === "rtl" ? "text-right" : "text-left"}`}
                   type="button"
                 >
-                  אודות
+                  {header.about}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10"
+                  className={`w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 ${dir === "rtl" ? "text-right" : "text-left"}`}
                   type="button"
                 >
-                  טיפולים
+                  {header.services}
                 </button>
+              </li>
+              <li>
+                <Link
+                  href="/articles"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 ${dir === "rtl" ? "text-right" : "text-left"}`}
+                >
+                  {header.articles}
+                </Link>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="w-full rounded-lg px-4 py-3 text-right text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10"
+                  className={`w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 ${dir === "rtl" ? "text-right" : "text-left"}`}
                   type="button"
                 >
-                  צור קשר
+                  {header.contact}
                 </button>
+              </li>
+              <li className="px-4 py-2 border-t border-gray-100 mt-2">
+                <div className="flex justify-start">
+                  {" "}
+                  {/* Align start regardless of direction for now, or maybe center */}
+                  <LanguageSwitcher />
+                </div>
               </li>
             </ul>
           </motion.div>

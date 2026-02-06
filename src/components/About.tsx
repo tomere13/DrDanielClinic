@@ -3,29 +3,30 @@
 import { Scale, Award, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-const features = [
-  {
-    icon: Award,
-    title: "מומחיות רפואית",
-    description:
-      "רופאה מוסמכת המתמחה בטיפולים אסתטיים ופרוצדורות קוסמטיות מתקדמות",
-  },
-  {
-    icon: Scale,
-    title: "תוצאות טבעיות",
-    description:
-      "דגש על שיפורים עדינים המדגישים את היופי הטבעי תוך שמירה על תווי הפנים הייחודיים שלך",
-  },
-  {
-    icon: Users,
-    title: "יחס אישי ושקיפות",
-    description: "ייעוץ מותאם אישית ותקשורת פתוחה ושקופה לכל אורך תהליך הטיפול",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export function About() {
   const { ref, isVisible } = useScrollAnimation();
+  const { language } = useLanguage();
+  const { about_section } = language.site_content;
+
+  const features = [
+    {
+      icon: Award,
+      title: about_section.features[0].title,
+      description: about_section.features[0].description,
+    },
+    {
+      icon: Scale,
+      title: about_section.features[1].title,
+      description: about_section.features[1].description,
+    },
+    {
+      icon: Users,
+      title: about_section.features[2].title,
+      description: about_section.features[2].description,
+    },
+  ];
 
   return (
     <section
@@ -42,7 +43,7 @@ export function About() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center text-4xl font-bold text-[#b7748d]"
         >
-          אודות קליניקת ד&quot;ר דניאל
+          {about_section.heading}
         </motion.h2>
 
         <motion.div
@@ -52,14 +53,10 @@ export function About() {
           className="mb-12 text-center"
         >
           <p className="mx-auto mb-6 max-w-3xl text-lg leading-relaxed text-gray-700">
-            כרופאה העוסקת ברפואה אסתטית ובעלת ניסיון נרחב בטיפולים קוסמטיים,
-            ד&quot;ר דניאל ורשקוב מביאה עמה שילוב ייחודי של מומחיות רפואית,
-            ראייה אומנותית ומחויבות לתוצאות במראה טבעי
+            {about_section.paragraph1}
           </p>
           <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700">
-            עם ניסיון מוכח של מטופלים ומטופלות מרוצים ותוצאות יפהפיות, ד&quot;ר
-            דניאל מתאימה תוכניות טיפול אישיות לפי תווי הפנים הייחודיים שלך,
-            ומבטיח טיפולים אסתטיים בטוחים ואפקטיביים
+            {about_section.paragraph2}
           </p>
         </motion.div>
 

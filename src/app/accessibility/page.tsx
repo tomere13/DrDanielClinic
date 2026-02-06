@@ -1,308 +1,251 @@
-import { Metadata } from "next";
+"use client";
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AccessibilityWidget } from "@/components/AccessibilityWidget";
 import { FloatingActions } from "@/components/FloatingActions";
 import { ScrollProgress } from "@/components/ScrollProgress";
-
-export const metadata: Metadata = {
-  title: 'הצהרת נגישות | קליניקת ד"ר דניאל',
-  description:
-    'הצהרת הנגישות של אתר קליניקת ד"ר דניאל ופרטים על הסדרי הנגישות בקליניקה.',
-};
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function AccessibilityPage() {
+  const { language, dir } = useLanguage();
+  const { accessibility_page } = language.site_content;
+
+  // Wait for hydration or content availability if needed, but since language is loaded in context, it should be fine.
+  // Standard keys
+  const {
+    heading,
+    intro_section,
+    commitment_section,
+    website_adaptations_section,
+    known_limitations_section,
+    physical_accessibility_section,
+    accessibility_coordinator_section,
+    alternative_contact_section,
+    ongoing_commitment_section,
+    legal_notes_section,
+  } = accessibility_page;
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white" dir={dir}>
       <ScrollProgress />
       <Header />
-      <main
-        className="container mx-auto max-w-4xl px-6 pt-40 pb-12 md:pt-32 md:pb-12"
-        dir="rtl"
-      >
-        <h1 className="mb-8 text-3xl font-bold text-gray-900">הצהרת נגישות</h1>
+      <main className="container mx-auto max-w-4xl px-6 pt-40 pb-12 md:pt-32 md:pb-12">
+        <h1 className="mb-8 text-3xl font-bold text-gray-900">{heading}</h1>
 
         <div className="space-y-6 text-gray-700">
-          <section className="rounded-lg bg-[#b7748d]/10 p-6 border-r-4 border-[#b7748d]">
+          <section
+            className={`rounded-lg bg-[#b7748d]/10 p-6 ${dir === "rtl" ? "border-r-4" : "border-l-4"} border-[#b7748d]`}
+          >
             <p className="font-semibold text-[#8b5669]">
-              הצהרת נגישות זו מעודכנת לתאריך:{" "}
-              {new Date().toLocaleDateString("he-IL")}
+              {intro_section.updated_date_prefix}{" "}
+              {new Date().toLocaleDateString(dir === "rtl" ? "he-IL" : "en-US")}
             </p>
-            <p className="mt-2 text-gray-800">
-              קליניקת ד&quot;ר דניאל מחויבת לאפשר לאנשים עם מוגבלות להשתמש
-              בשירותים שהיא מספקת באופן עצמאי, שוויוני, מכבד ונוח ככל הניתן.
-            </p>
+            <p className="mt-2 text-gray-800">{intro_section.paragraph1}</p>
           </section>
 
           <section>
             <h2 className="mb-3 text-xl font-semibold text-gray-900">
-              מחויבות לנגישות
+              {commitment_section.heading}
             </h2>
-            <p className="mb-2">
-              קליניקת ד&quot;ר דניאל רואה חשיבות עליונה בהנגשת השירותים לאנשים
-              עם מוגבלות ומשקיעה מאמצים משמעותיים להנגשת האתר והמרפאה.
-            </p>
-            <p className="mb-2">
-              אנו פועלים בהתאם לחוק שוויון זכויות לאנשים עם מוגבלות,
-              התשנ&quot;ח-1998, ולתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות
-              נגישות לשירות), התשע&quot;ג-2013.
-            </p>
-            <p>
-              הנגשת האתר בוצעה על ידי צוות מקצועי תוך התחשבות בהנחיות התקן
-              הישראלי (ת&quot;י 5568) ברמת AA ובהתאם לכללי WCAG 2.1.
-            </p>
+            <p className="mb-2">{commitment_section.paragraph1}</p>
+            <p className="mb-2">{commitment_section.paragraph2}</p>
+            <p>{commitment_section.paragraph3}</p>
           </section>
 
           <section>
             <h2 className="mb-3 text-xl font-semibold text-gray-900">
-              התאמות נגישות באתר האינטרנט
+              {website_adaptations_section.heading}
             </h2>
             <p className="mb-2 font-medium">
-              אתר זה עומד בדרישות חוק שוויון זכויות לאנשים עם מוגבלות ובתקנות
-              שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות),
-              התשע&quot;ג-2013.
+              {website_adaptations_section.paragraph1}
             </p>
-            <p className="mb-4">
-              האתר עוצב והותאם בהתאם להמלצות התקן הישראלי (ת&quot;י 5568)
-              לנגישות תכנים באינטרנט ברמת AA ולמסמך WCAG 2.1 הבינלאומי.
-            </p>
+            <p className="mb-4">{website_adaptations_section.paragraph2}</p>
 
             <h3 className="mb-2 font-semibold text-gray-900">
-              התאמות נגישות שבוצעו באתר:
+              {website_adaptations_section.subheading}
             </h3>
             <ul className="list-inside list-disc space-y-2 mb-4">
-              <li>
-                <strong>ניווט באמצעות מקלדת:</strong> האתר מאפשר ניווט מלא
-                באמצעות מקלדת בלבד, ללא צורך בעכבר.
-              </li>
-              <li>
-                <strong>תוכנות קריאת מסך:</strong> האתר תומך בתוכנות קריאת מסך
-                נפוצות (NVDA, JAWS, VoiceOver).
-              </li>
-              <li>
-                <strong>סימון תוכן באמצעות HTML סמנטי:</strong> השימוש בתגיות
-                HTML תקניות מאפשר הבנה נכונה של המבנה.
-              </li>
-              <li>
-                <strong>טקסט חלופי לתמונות:</strong> כל התמונות והאייקונים
-                כוללים תיאור טקסטואלי (Alt Text).
-              </li>
-              <li>
-                <strong>ניגודיות צבעים:</strong> האתר עומד בדרישות ניגודיות
-                מינימלית של 4.5:1.
-              </li>
-              <li>
-                <strong>גודל גופן מתכוונן:</strong> ניתן להגדיל ולהקטין את גודל
-                הגופן באתר.
-              </li>
-              <li>
-                <strong>מבנה היררכי ברור:</strong> כותרות מסודרות בצורה לוגית
-                (H1, H2, H3).
-              </li>
-              <li>
-                <strong>פוקוס ברור:</strong> סימון ברור של האלמנט הפעיל בעת
-                ניווט במקלדת.
-              </li>
-              <li>
-                <strong>רכיב נגישות ייעודי:</strong> כפתור נגישות קבוע המאפשר:
-                <ul className="list-inside list-circle mr-6 mt-1 space-y-1">
-                  <li>הגדלה והקטנה של גודל הגופן</li>
-                  <li>מעבר בין מצבי ניגודיות (רגיל, שחור-צהוב, שחור-לבן)</li>
-                  <li>הפחתת אנימציות ותנועות באתר</li>
-                </ul>
-              </li>
-              <li>
-                <strong>תאימות למכשירים ניידים:</strong> האתר מותאם לשימוש
-                בטלפונים חכמים וטאבלטים.
-              </li>
-              <li>
-                <strong>תאימות לדפדפנים:</strong> האתר נבדק ועובד בדפדפנים
-                הנפוצים (Chrome, Firefox, Safari, Edge).
-              </li>
+              {website_adaptations_section.list_items.map((item, index) => (
+                <li key={index} dangerouslySetInnerHTML={{ __html: item }} />
+              ))}
             </ul>
 
             <div className="rounded-lg bg-[#b7748d]/5 p-4 border border-[#b7748d]/30">
               <h3 className="mb-2 font-semibold text-[#8b5669]">
-                טכנולוגיות נגישות בהן נעשה שימוש:
+                {website_adaptations_section.technologies_used_title}
               </h3>
               <ul className="list-inside list-disc space-y-1 text-sm text-gray-700">
-                <li>HTML5 סמנטי</li>
-                <li>ARIA (Accessible Rich Internet Applications) attributes</li>
-                <li>CSS3 לעיצוב רספונסיבי</li>
-                <li>JavaScript נגיש</li>
-                <li>Next.js 16 - פרימוורק מתקדם לנגישות</li>
+                {website_adaptations_section.technologies_list.map(
+                  (tech, index) => (
+                    <li key={index}>{tech}</li>
+                  )
+                )}
               </ul>
             </div>
           </section>
 
           <section>
             <h2 className="mb-3 text-xl font-semibold text-gray-900">
-              מגבלות נגישות ידועות
+              {known_limitations_section.heading}
             </h2>
-            <p className="mb-2">
-              למרות מאמצינו להנגיש את כלל דפי האתר, ייתכן ויתגלו חלקים באתר
-              שאינם נגישים במלואם. אנו פועלים באופן שוטף לשיפור נגישות האתר
-              ונשמח לקבל כל משוב בנושא.
-            </p>
+            <p className="mb-2">{known_limitations_section.paragraph1}</p>
             <p className="font-medium text-gray-900">
-              במידה ונתקלתם בבעיית נגישות באתר, אנא פנו אלינו ונפעל לתקן זאת
-              בהקדם האפשרי.
+              {known_limitations_section.paragraph2}
             </p>
           </section>
 
           <section>
             <h2 className="mb-3 text-xl font-semibold text-gray-900">
-              נגישות פיזית במרפאה - גילוי מלא
+              {physical_accessibility_section.heading}
             </h2>
             <p className="mb-4">
-              <strong>כתובת המרפאה:</strong> רחוב ז&apos;קלין כהנוב 7, באר שבע
+              <strong>{physical_accessibility_section.address}</strong>
             </p>
 
-            <div className="mb-6 rounded-lg bg-yellow-50 p-6 border-r-4 border-yellow-600">
+            <div
+              className={`mb-6 rounded-lg bg-yellow-50 p-6 ${dir === "rtl" ? "border-r-4" : "border-l-4"} border-yellow-600`}
+            >
               <h3 className="font-semibold text-yellow-900 mb-2">
-                ⚠️ הודעה חשובה על מגבלות נגישות פיזית
+                {physical_accessibility_section.important_note.title}
               </h3>
               <p className="text-yellow-800 mb-3">
                 <strong>
-                  קליניקת ד&quot;ר דניאל ממוקמת בבניין שאינו מאפשר כרגע גישה
-                  מלאה לכיסאות גלגלים.
+                  {physical_accessibility_section.important_note.bold_text}
                 </strong>
               </p>
               <p className="text-sm text-yellow-800 mb-2">
-                אנו מודעים לכך שמצב זה מהווה מגבלה משמעותית, ולמרות מאמצינו
-                להנגיש את המרפאה, קיימים אילוצים מבניים בבניין שאינם בשליטתנו
-                המלאה.
+                {physical_accessibility_section.important_note.paragraph1}
               </p>
               <p className="text-sm text-yellow-800 font-medium">
-                אנו פועלים באופן שוטף מול בעלי הבניין וגורמים רלוונטיים לשיפור
-                הנגישות הפיזית, ומתחייבים לעדכן הצהרה זו כאשר יחולו שינויים.
+                {physical_accessibility_section.important_note.paragraph2}
               </p>
             </div>
 
             <h3 className="mb-3 font-semibold text-gray-900">
-              פתרונות ודרכי התאמה לאנשים עם מוגבלות ניידות:
+              {physical_accessibility_section.adaptations_solutions_heading}
             </h3>
 
             <div className="space-y-4 mb-6">
-              <div className="rounded-lg bg-[#b7748d]/10 p-4 border-r-4 border-[#b7748d]">
+              <div
+                className={`rounded-lg bg-[#b7748d]/10 p-4 ${dir === "rtl" ? "border-r-4" : "border-l-4"} border-[#b7748d]`}
+              >
                 <h4 className="font-semibold text-[#8b5669] mb-2">
-                  🏠 טיפול ביתי / נייד
+                  {physical_accessibility_section.home_treatment.title}
                 </h4>
                 <p className="text-sm text-gray-700 mb-2">
-                  <strong>אנו מציעים שירות טיפולים ביתיים</strong> לאנשים עם
-                  מוגבלות ניידות שאינם יכולים להגיע למרפאה.
+                  <strong>
+                    {physical_accessibility_section.home_treatment.paragraph1}
+                  </strong>
                 </p>
                 <p className="text-sm text-gray-700">
-                  ניתן לתאם ביקור בית לביצוע טיפולי בוטוקס וחומרי מילוי בתנאים
-                  סטריליים ומקצועיים.
+                  {physical_accessibility_section.home_treatment.paragraph2}
                   <strong className="block mt-1">
-                    לתיאום טיפול ביתי: 054-818-5506
+                    {
+                      physical_accessibility_section.home_treatment
+                        .contact_phone
+                    }
                   </strong>
                 </p>
               </div>
 
-              <div className="rounded-lg bg-[#b7748d]/10 p-4 border-r-4 border-[#b7748d]">
+              <div
+                className={`rounded-lg bg-[#b7748d]/10 p-4 ${dir === "rtl" ? "border-r-4" : "border-l-4"} border-[#b7748d]`}
+              >
                 <h4 className="font-semibold text-[#8b5669] mb-2">
-                  🤝 סיוע אישי והכנת תנאים
+                  {physical_accessibility_section.personal_assistance.title}
                 </h4>
                 <p className="text-sm text-gray-700 mb-2">
-                  למי שמסוגל להגיע למרפאה עם סיוע, אנו מציעים:
+                  {
+                    physical_accessibility_section.personal_assistance
+                      .paragraph1
+                  }
                 </p>
                 <ul className="list-inside list-disc space-y-1 text-sm text-gray-700">
-                  <li>סיוע אישי בכניסה למרפאה (ליווי של חבר צוות)</li>
-                  <li>הכנת התנאים מראש לקראת ההגעה</li>
-                  <li>תיאום זמן טיפול שקט ללא ממתינים אחרים</li>
-                  <li>אפשרות להיכנס דרך כניסה חלופית (אם קיימת)</li>
-                  <li>סיוע בהעברה מהרכב למרפאה</li>
+                  {physical_accessibility_section.personal_assistance.list_items.map(
+                    (item, index) => (
+                      <li key={index}>{item}</li>
+                    )
+                  )}
                 </ul>
                 <p className="text-sm text-gray-700 mt-2 font-medium">
-                  <strong>חשוב:</strong> יש ליצור קשר מראש (לפחות 24 שעות)
-                  לתיאום הסיוע.
+                  <strong>
+                    {
+                      physical_accessibility_section.personal_assistance
+                        .important_note
+                    }
+                  </strong>
                 </p>
               </div>
 
-              <div className="rounded-lg bg-[#b7748d]/10 p-4 border-r-4 border-[#b7748d]">
+              <div
+                className={`rounded-lg bg-[#b7748d]/10 p-4 ${dir === "rtl" ? "border-r-4" : "border-l-4"} border-[#b7748d]`}
+              >
                 <h4 className="font-semibold text-[#8b5669] mb-2">
-                  💬 יעוץ טלפוני ווידאו
+                  {
+                    physical_accessibility_section.phone_video_consultation
+                      .title
+                  }
                 </h4>
                 <p className="text-sm text-gray-700">
-                  ניתן לקבל ייעוץ ראשוני בטלפון או בשיחת וידאו (Zoom/WhatsApp
-                  Video) להערכת התאמת הטיפול ותכנון הטיפול המתאים.
+                  {
+                    physical_accessibility_section.phone_video_consultation
+                      .paragraph
+                  }
                 </p>
               </div>
             </div>
 
             <h3 className="mb-3 font-semibold text-gray-900">
-              הסדרי נגישות שכן קיימים במרפאה:
+              {physical_accessibility_section.existing_arrangements_heading}
             </h3>
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-lg bg-green-50 p-4 border border-green-200">
-                <h4 className="font-semibold text-green-900 mb-2">
-                  ✓ חניה סמוכה
-                </h4>
-                <p className="text-sm text-green-800">
-                  קיימת חניה ציבורית בסמוך לבניין, כולל מקומות עם תו נכה.
-                </p>
-              </div>
-
-              <div className="rounded-lg bg-green-50 p-4 border border-green-200">
-                <h4 className="font-semibold text-green-900 mb-2">
-                  ✓ שירות אישי ומסור
-                </h4>
-                <p className="text-sm text-green-800">
-                  הצוות מיומן ומחויב לסייע בכל דרך אפשרית להנגשת השירות.
-                </p>
-              </div>
-
-              <div className="rounded-lg bg-green-50 p-4 border border-green-200">
-                <h4 className="font-semibold text-green-900 mb-2">
-                  ✓ גמישות בתיאום
-                </h4>
-                <p className="text-sm text-green-800">
-                  אנו מתאימים את זמני הטיפול והתנאים לצרכים המיוחדים של כל
-                  מטופל.
-                </p>
-              </div>
-
-              <div className="rounded-lg bg-green-50 p-4 border border-green-200">
-                <h4 className="font-semibold text-green-900 mb-2">
-                  ✓ תקשורת נגישה
-                </h4>
-                <p className="text-sm text-green-800">
-                  מידע רפואי זמין במספר פורמטים (טלפוני, מייל, WhatsApp, בכתב).
-                </p>
-              </div>
+              {physical_accessibility_section.existing_arrangements_list.map(
+                (item, index) => (
+                  <div
+                    key={index}
+                    className="rounded-lg bg-green-50 p-4 border border-green-200"
+                  >
+                    <h4 className="font-semibold text-green-900 mb-2">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-green-800">{item.description}</p>
+                  </div>
+                )
+              )}
             </div>
 
-            <div className="mt-6 rounded-lg bg-[#b7748d]/10 p-6 border-r-4 border-[#b7748d]">
+            <div
+              className={`mt-6 rounded-lg bg-[#b7748d]/10 p-6 ${dir === "rtl" ? "border-r-4" : "border-l-4"} border-[#b7748d]`}
+            >
               <h4 className="font-semibold text-[#8b5669] mb-3">
-                📞 תיאום מראש - חובה ומומלץ
+                {physical_accessibility_section.pre_booking_heading}
               </h4>
               <p className="text-sm text-gray-800 mb-3">
-                <strong>לאנשים עם מוגבלות ניידות חובה לתאם מראש</strong> (לפחות
-                24 שעות לפני הביקור) על מנת שנוכל להכין את התנאים המתאימים ולתאם
-                את דרך המתן הטוב ביותר לשירות.
+                <strong>
+                  {physical_accessibility_section.pre_booking_paragraph}
+                </strong>
               </p>
               <div className="bg-white p-4 rounded border border-[#b7748d]">
                 <p className="font-semibold text-gray-900 mb-2">
-                  יצירת קשר לתיאום נגישות:
+                  {physical_accessibility_section.contact_details_title}
                 </p>
                 <p className="text-sm">
                   📞{" "}
                   <a
-                    href="tel:054-818-5506"
+                    href={`tel:${physical_accessibility_section.contact_phone}`}
                     className="text-[#b7748d] hover:underline font-medium"
                   >
-                    054-818-5506
+                    {physical_accessibility_section.contact_phone}
                   </a>
                 </p>
                 <p className="text-sm">
                   📧{" "}
                   <a
-                    href="mailto:danielvershkov8@gmail.com"
+                    href={`mailto:${physical_accessibility_section.contact_email}`}
                     className="text-[#b7748d] hover:underline font-medium"
                   >
-                    danielvershkov8@gmail.com
+                    {physical_accessibility_section.contact_email}
                   </a>
                 </p>
                 <p className="text-sm">
@@ -311,7 +254,7 @@ export default function AccessibilityPage() {
                     href="https://wa.me/972548185506"
                     className="text-[#b7748d] hover:underline font-medium"
                   >
-                    054-818-5506
+                    {physical_accessibility_section.contact_whatsapp}
                   </a>
                 </p>
               </div>
@@ -319,153 +262,114 @@ export default function AccessibilityPage() {
 
             <div className="mt-6 rounded-lg bg-gray-50 p-4 border border-gray-300">
               <h4 className="font-semibold text-gray-900 mb-2">
-                💡 מדיניות ללא אפליה
+                {physical_accessibility_section.non_discrimination_policy_title}
               </h4>
               <p className="text-sm text-gray-700">
-                קליניקת ד&quot;ר דניאל מתחייבת שלא לסרב למתן שירות לאדם עם
-                מוגבלות ולעשות כל מאמץ סביר להנגיש את השירות בדרכים חלופיות. אנו
-                רואים בכל מטופל חשיבות שווה ומתחייבים למתן שירות מכבד ומקצועי
-                ללא הבדל.
+                {
+                  physical_accessibility_section.non_discrimination_policy_paragraph
+                }
               </p>
             </div>
 
             <p className="mt-4 text-sm font-medium text-gray-900">
-              <strong>הערה חשובה:</strong> אנו פועלים באופן שוטף לשיפור הנגישות
-              הפיזית של המרפאה ובוחנים אפשרויות למעבר למיקום נגיש יותר בעתיד.
-              עדכונים על שיפורים בנגישות יפורסמו בהצהרה זו.
+              <strong>
+                {
+                  physical_accessibility_section.important_note_future_improvements
+                }
+              </strong>
             </p>
           </section>
 
           <section>
             <h2 className="mb-3 text-xl font-semibold text-gray-900">
-              פנייה לרכז הנגישות
+              {accessibility_coordinator_section.heading}
             </h2>
             <p className="mb-2">
-              בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות
-              לשירות), התשע&quot;ג-2013, מונה ברשות ד&quot;ר דניאל ורשקוב כרכז
-              נגישות.
+              {accessibility_coordinator_section.paragraph1}
             </p>
             <p className="mb-4">
-              אם נתקלתם בבעיית נגישות באתר או במתן השירות, יש לכם הצעה לשיפור
-              הנגישות או שאתם זקוקים לקבלת מידע בפורמט נגיש - אנא פנו אלינו ואנו
-              נעשה כמיטב יכולתנו לטפל בפנייתכם בהקדם האפשרי.
+              {accessibility_coordinator_section.paragraph2}
             </p>
 
-            <div className="rounded-lg bg-[#b7748d]/10 p-6 border-r-4 border-[#b7748d]">
+            <div
+              className={`rounded-lg bg-[#b7748d]/10 p-6 ${dir === "rtl" ? "border-r-4" : "border-l-4"} border-[#b7748d]`}
+            >
               <h3 className="mb-3 text-lg font-semibold text-gray-900">
-                פרטי רכז הנגישות:
+                {accessibility_coordinator_section.coordinator_details_title}
               </h3>
               <div className="space-y-2">
                 <p>
-                  <strong>שם:</strong> ד&quot;ר דניאל ורשקוב
+                  <strong>{accessibility_coordinator_section.name}</strong>
                 </p>
                 <p>
-                  <strong>תפקיד:</strong> רכז נגישות ומנהל הקליניקה
+                  <strong>{accessibility_coordinator_section.role}</strong>
                 </p>
                 <p>
-                  <strong>טלפון:</strong>{" "}
-                  <a
-                    href="tel:054-818-5506"
-                    className="text-[#b7748d] hover:underline"
-                  >
-                    054-818-5506
-                  </a>
+                  <strong>{accessibility_coordinator_section.phone}</strong>
                 </p>
                 <p>
-                  <strong>אימייל:</strong>{" "}
-                  <a
-                    href="mailto:danielvershkov8@gmail.com"
-                    className="text-[#b7748d] hover:underline"
-                  >
-                    danielvershkov8@gmail.com
-                  </a>
+                  <strong>{accessibility_coordinator_section.email}</strong>
                 </p>
                 <p>
-                  <strong>כתובת:</strong> רחוב ז&apos;קלין כהנוב 7, באר שבע
+                  <strong>{accessibility_coordinator_section.address}</strong>
                 </p>
                 <p>
-                  <strong>שעות פעילות:</strong> ראשון-חמישי 09:00-19:00, שישי
-                  09:00-14:00
+                  <strong>{accessibility_coordinator_section.hours}</strong>
                 </p>
               </div>
             </div>
 
             <div className="mt-6 rounded-lg bg-[#b7748d]/10 p-4 border border-[#b7748d]/30">
               <h3 className="mb-2 font-semibold text-[#8b5669]">
-                מחויבות לטיפול בפניות:
+                {accessibility_coordinator_section.commitment_title}
               </h3>
               <ul className="list-inside list-disc space-y-1 text-gray-800 text-sm">
-                <li>כל פנייה בנושא נגישות תטופל ברצינות ובמקצועיות</li>
-                <li>אנו מתחייבים להשיב לפניות בנושא נגישות תוך 5 ימי עסקים</li>
-                <li>בפניות דחופות נעשה מאמץ להשיב תוך 48 שעות</li>
-                <li>במידה ונדרשת התאמה פיזית - נעדכן בזמני הביצוע הצפויים</li>
+                {accessibility_coordinator_section.commitment_list.map(
+                  (item, index) => (
+                    <li key={index}>{item}</li>
+                  )
+                )}
               </ul>
             </div>
           </section>
 
           <section>
             <h2 className="mb-3 text-xl font-semibold text-gray-900">
-              דרכים חלופיות לקבלת שירות
+              {alternative_contact_section.heading}
             </h2>
-            <p className="mb-2">
-              במידה ואינכם יכולים להשתמש באתר מסיבה כלשהי, אנו מציעים דרכים
-              חלופיות לקבלת שירות:
-            </p>
+            <p className="mb-2">{alternative_contact_section.paragraph}</p>
             <ul className="list-inside list-disc space-y-1">
-              <li>
-                <strong>שירות טלפוני:</strong> ניתן לקבוע תור ולקבל מידע בטלפון
-                054-818-5506
-              </li>
-              <li>
-                <strong>שירות במייל:</strong> ניתן לשלוח שאלות ובקשות למייל
-                danielvershkov8@gmail.com
-              </li>
-              <li>
-                <strong>שירות באמצעות WhatsApp:</strong> ניתן לפנות דרך WhatsApp
-                למספר 054-818-5506
-              </li>
-              <li>
-                <strong>פגישה אישית:</strong> ניתן להגיע ישירות לקליניקה בתיאום
-                מראש
-              </li>
+              {alternative_contact_section.list_items.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
           </section>
 
-          <section className="rounded-lg bg-[#b7748d]/10 p-6 border-r-4 border-[#b7748d]">
+          <section
+            className={`rounded-lg bg-[#b7748d]/10 p-6 ${dir === "rtl" ? "border-r-4" : "border-l-4"} border-[#b7748d]`}
+          >
             <h2 className="mb-3 text-xl font-semibold text-[#8b5669]">
-              התחייבות מתמשכת לנגישות
+              {ongoing_commitment_section.heading}
             </h2>
-            <p className="mb-2">
-              אנו ב-קליניקת ד&quot;ר דניאל רואים בנגישות ערך מרכזי ומתחייבים
-              להמשיך ולפעול לשיפור הנגישות בכל ערוצי השירות.
-            </p>
-            <p className="mb-2">
-              הנגישות באתר נבדקת באופן תקופתי, והאתר מתעדכן בהתאם להנחיות
-              ולתקנות המעודכנות.
-            </p>
+            <p className="mb-2">{ongoing_commitment_section.paragraph1}</p>
+            <p className="mb-2">{ongoing_commitment_section.paragraph2}</p>
             <p className="font-medium">
-              עדכון זה הינו מהלך מתמשך, ובמידה ותמצאו אי-התאמה כלשהי - אנו
-              מבקשים שתעדכנו אותנו על כך.
+              {ongoing_commitment_section.paragraph3}
             </p>
           </section>
 
           <section className="text-sm text-gray-600 border-t pt-6">
-            <h3 className="mb-2 font-semibold text-gray-900">הערות משפטיות:</h3>
-            <p className="mb-2">
-              הצהרת נגישות זו הינה חלק ממחויבותנו לעמוד בחוק ובתקנות הנגישות
-              בישראל. היא מתייחסת לאתר האינטרנט ולהסדרי הנגישות הפיזיים במרפאה.
-            </p>
-            <p className="mb-2">
-              במידה וקיימת סתירה או אי-בהירות בהצהרה זו, יש לפנות לרכז הנגישות
-              לקבלת הבהרה.
-            </p>
+            <h3 className="mb-2 font-semibold text-gray-900">
+              {legal_notes_section.heading}
+            </h3>
+            <p className="mb-2">{legal_notes_section.paragraph1}</p>
+            <p className="mb-2">{legal_notes_section.paragraph2}</p>
             <p className="font-medium">
-              תאריך עדכון אחרון של הצהרת נגישות זו:{" "}
-              {new Date().toLocaleDateString("he-IL")}
+              {legal_notes_section.updated_date_prefix}{" "}
+              {new Date().toLocaleDateString(dir === "rtl" ? "he-IL" : "en-US")}
             </p>
             <p className="mt-2 text-xs text-gray-500">
-              הצהרה זו מבוססת על תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות
-              נגישות לשירות), התשע&quot;ג-2013 ועל התקן הישראלי ת&quot;י 5568.
+              {legal_notes_section.footnote}
             </p>
           </section>
         </div>

@@ -4,10 +4,13 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Hero() {
   const [typedText, setTypedText] = useState("");
-  const fullText = "Expert Botox & Aesthetic Treatments";
+  const { language } = useLanguage();
+  const { hero } = language.site_content;
+  const fullText = hero.subtitle;
 
   useEffect(() => {
     let currentIndex = 0;
@@ -66,7 +69,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-6 text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl"
         >
-          Dr. Daniel Clinic
+          {hero.title}
           <span className="mt-2 block text-3xl text-white/90 md:text-4xl lg:text-5xl">
             {typedText}
             <span className="animate-blink">|</span>
@@ -79,8 +82,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           className="mx-auto mb-8 max-w-2xl text-lg text-gray-300 md:text-xl"
         >
-          טיפולים אסתטיים מקצועיים בדיוק מירבי, יחס אישי ותוצאות במראה טבעי.
-          למטרות היופי שלך מגיעה מומחיות אמיתית
+          {hero.description}
         </motion.p>
 
         <motion.button
@@ -100,7 +102,7 @@ export function Hero() {
             "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
           )}
         >
-          קביעת תור
+          {hero.button}
         </motion.button>
       </div>
     </section>

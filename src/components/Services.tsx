@@ -3,36 +3,35 @@
 import { Syringe, Sparkles, Heart, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-const services = [
-  {
-    icon: Syringe,
-    title: "הזרקות בוטוקס",
-    description:
-      "טיפולי בוטוקס (מאושרי FDA) להחלקת קמטים וקמטוטים והצערת מראה הפנים, עם דגש על תוצאות במראה טבעי.",
-  },
-  {
-    icon: Sparkles,
-    title: "חומרי מילוי (חומצה היאלורונית)",
-    description:
-      "השבת נפחים, עיצוב שפתיים ופיסול פנים באמצעות חומרי מילוי איכותיים (Premium) מבוססי חומצה היאלורונית.",
-  },
-  {
-    icon: Heart,
-    title: "אסתטיקת הפנים",
-    description:
-      "טיפולים מקיפים להצערת הפנים (Rejuvenation), כולל מיצוק העור, אפקט הרמה (Lifting) וטיפולי אנטי-אייג'ינג.",
-  },
-  {
-    icon: Shield,
-    title: "טיפולים רפואיים מתקדמים",
-    description:
-      "פרוצדורות אסתטיות מתקדמות, כולל טיפולי PRP וטיפולי Lipolytics.",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Services() {
   const { ref, isVisible } = useScrollAnimation();
+  const { language, dir } = useLanguage();
+  const { services_section } = language.site_content;
+
+  const servicesList = [
+    {
+      icon: Syringe,
+      title: services_section.services[0].title,
+      description: services_section.services[0].description,
+    },
+    {
+      icon: Sparkles,
+      title: services_section.services[1].title,
+      description: services_section.services[1].description,
+    },
+    {
+      icon: Heart,
+      title: services_section.services[2].title,
+      description: services_section.services[2].description,
+    },
+    {
+      icon: Shield,
+      title: services_section.services[3].title,
+      description: services_section.services[3].description,
+    },
+  ];
 
   return (
     <section
@@ -40,7 +39,7 @@ export function Services() {
       ref={ref}
       className="bg-gray-50 px-6 py-20"
       aria-labelledby="services-heading"
-      dir="rtl"
+      dir={dir}
     >
       <div className="container mx-auto max-w-6xl">
         <motion.h2
@@ -50,11 +49,11 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center text-4xl font-bold text-[#b7748d]"
         >
-          הטיפולים שלנו
+          {services_section.heading}
         </motion.h2>
 
         <div className="grid gap-8 md:grid-cols-2">
-          {services.map((service, index) => {
+          {servicesList.map((service, index) => {
             const Icon = service.icon;
             return (
               <motion.article
@@ -66,19 +65,21 @@ export function Services() {
                   y: -8,
                   boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                 }}
-                className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all text-right"
+                className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all text-start"
               >
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="mb-4 mr-auto flex h-12 w-12 items-center justify-center rounded-lg bg-[#b7748d]/20 transition-colors group-hover:bg-[#b7748d]/30"
+                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#b7748d]/20 transition-colors group-hover:bg-[#b7748d]/30 ${
+                    dir === "rtl" ? "mr-auto" : "ml-auto"
+                  }`}
                 >
                   <Icon className="h-6 w-6 text-[#b7748d]" aria-hidden="true" />
                 </motion.div>
-                <h3 className="mb-3 text-xl font-semibold text-[#b7748d] text-right">
+                <h3 className="mb-3 text-xl font-semibold text-[#b7748d] text-start">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 text-right">
+                <p className="text-gray-600 text-start">
                   {service.description}
                 </p>
               </motion.article>

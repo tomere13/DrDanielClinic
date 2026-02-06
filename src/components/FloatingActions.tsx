@@ -1,10 +1,14 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
 import { MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 export function FloatingActions() {
+  const { language } = useLanguage();
+  const { floating_actions } = language.site_content;
+
   const openWhatsApp = () => {
     window.open("https://wa.me/972548185506", "_blank", "noopener,noreferrer");
   };
@@ -33,8 +37,8 @@ export function FloatingActions() {
           "hover:shadow-xl hover:shadow-green-500/50 animate-bounce-slow",
           "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-green-500"
         )}
-        aria-label="Open WhatsApp to contact us at +972-54-818-5506"
-        title="WhatsApp Us"
+        aria-label={floating_actions?.whatsapp_aria || "Open WhatsApp"}
+        title={floating_actions?.whatsapp_label || "WhatsApp Us"}
       >
         {/* WhatsApp Official Icon */}
         <svg
@@ -52,7 +56,7 @@ export function FloatingActions() {
             "group-hover:opacity-100"
           )}
         >
-          WhatsApp: +972-54-818-5506
+          {floating_actions?.whatsapp_label || "WhatsApp: +972-54-818-5506"}
         </span>
         {/* Pulse ring */}
         <span className="absolute inset-0 animate-ping-slow rounded-full bg-[#25D366] opacity-20" />
@@ -72,8 +76,8 @@ export function FloatingActions() {
           "hover:shadow-xl hover:shadow-red-500/50",
           "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-red-500"
         )}
-        aria-label="Open clinic location in Google Maps"
-        title="Clinic Location"
+        aria-label={floating_actions?.location_aria || "Open clinic location"}
+        title={floating_actions?.location_label || "Clinic Location"}
       >
         <MapPin size={20} className="sm:h-6 sm:w-6" />
         {/* Tooltip - Hidden on mobile */}
@@ -83,7 +87,7 @@ export function FloatingActions() {
             "group-hover:opacity-100"
           )}
         >
-          Clinic Location
+          {floating_actions?.location_label || "Clinic Location"}
         </span>
       </motion.button>
     </div>

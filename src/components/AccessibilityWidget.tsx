@@ -1,6 +1,7 @@
 "use client";
 
 import { useAccessibility } from "@/contexts/AccessibilityContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { Accessibility, X, Type, Contrast, Move } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,9 @@ export function AccessibilityWidget() {
     setReduceMotion,
   } = useAccessibility();
 
+  const { language, dir } = useLanguage();
+  const { accessibility_widget } = language.site_content;
+
   return (
     <>
       {/* כפתור צף - ממוקם בצד שמאל (left-4) */}
@@ -26,7 +30,11 @@ export function AccessibilityWidget() {
           "bg-[#b7748d] text-white shadow-lg transition-all hover:bg-[#a0647a]",
           "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]"
         )}
-        aria-label={isOpen ? "סגור תפריט נגישות" : "פתח תפריט נגישות"}
+        aria-label={
+          isOpen
+            ? accessibility_widget.toggle_close_label
+            : accessibility_widget.toggle_open_label
+        }
         aria-expanded={isOpen}
         aria-controls="accessibility-menu"
       >
@@ -43,7 +51,7 @@ export function AccessibilityWidget() {
           id="accessibility-menu"
           role="dialog"
           aria-labelledby="a11y-menu-title"
-          dir="rtl" // התוכן עצמו מימין לשמאל
+          dir={dir}
           className={cn(
             "fixed bottom-20 left-4 z-50 w-[calc(100vw-2rem)] max-w-sm rounded-lg bg-white p-4 shadow-2xl sm:bottom-24 sm:left-6 sm:w-80 sm:p-6",
             "border border-gray-200"
@@ -53,19 +61,19 @@ export function AccessibilityWidget() {
             id="a11y-menu-title"
             className="mb-4 text-xl font-bold text-gray-900"
           >
-            אפשרויות נגישות
+            {accessibility_widget.title}
           </h2>
 
           {/* גודל טקסט */}
           <section className="mb-6">
             <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
               <Type size={18} aria-hidden="true" />
-              גודל טקסט
+              {accessibility_widget.text_size_title}
             </h3>
             <div
               className="flex gap-2"
               role="group"
-              aria-label="אפשרויות גודל טקסט"
+              aria-label={accessibility_widget.text_size_options_label}
             >
               <button
                 onClick={() => setFontSize("normal")}
@@ -77,7 +85,7 @@ export function AccessibilityWidget() {
                 )}
                 aria-pressed={fontSize === "normal"}
               >
-                רגיל
+                {accessibility_widget.text_size_normal}
               </button>
               <button
                 onClick={() => setFontSize("large")}
@@ -89,7 +97,7 @@ export function AccessibilityWidget() {
                 )}
                 aria-pressed={fontSize === "large"}
               >
-                גדול
+                {accessibility_widget.text_size_large}
               </button>
               <button
                 onClick={() => setFontSize("extra-large")}
@@ -101,7 +109,7 @@ export function AccessibilityWidget() {
                 )}
                 aria-pressed={fontSize === "extra-large"}
               >
-                ענק
+                {accessibility_widget.text_size_huge}
               </button>
             </div>
           </section>
@@ -110,7 +118,7 @@ export function AccessibilityWidget() {
           <section className="mb-6">
             <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
               <Contrast size={18} aria-hidden="true" />
-              ניגודיות
+              {accessibility_widget.contrast_title}
             </h3>
             <div className="space-y-2">
               <button
@@ -119,11 +127,12 @@ export function AccessibilityWidget() {
                   "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
                   contrastMode === "normal"
                     ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+                  dir === "ltr" && "text-left"
                 )}
                 aria-pressed={contrastMode === "normal"}
               >
-                ניגודיות רגילה
+                {accessibility_widget.contrast_normal}
               </button>
               <button
                 onClick={() => setContrastMode("high-contrast-yellow")}
@@ -131,11 +140,12 @@ export function AccessibilityWidget() {
                   "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
                   contrastMode === "high-contrast-yellow"
                     ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+                  dir === "ltr" && "text-left"
                 )}
                 aria-pressed={contrastMode === "high-contrast-yellow"}
               >
-                ניגודיות גבוהה (צהוב על שחור)
+                {accessibility_widget.contrast_high_yellow}
               </button>
               <button
                 onClick={() => setContrastMode("high-contrast-white")}
@@ -143,11 +153,12 @@ export function AccessibilityWidget() {
                   "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
                   contrastMode === "high-contrast-white"
                     ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+                  dir === "ltr" && "text-left"
                 )}
                 aria-pressed={contrastMode === "high-contrast-white"}
               >
-                ניגודיות גבוהה (לבן על שחור)
+                {accessibility_widget.contrast_high_white}
               </button>
             </div>
           </section>
@@ -156,7 +167,7 @@ export function AccessibilityWidget() {
           <section>
             <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
               <Move size={18} aria-hidden="true" />
-              העדפות תנועה
+              {accessibility_widget.motion_title}
             </h3>
             <button
               onClick={() => setReduceMotion(!reduceMotion)}
@@ -164,12 +175,15 @@ export function AccessibilityWidget() {
                 "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
                 reduceMotion
                   ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                  : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                  : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+                dir === "ltr" && "text-left"
               )}
               role="switch"
               aria-checked={reduceMotion}
             >
-              {reduceMotion ? "הפחתת תנועה: פעיל" : "הפחתת תנועה"}
+              {reduceMotion
+                ? accessibility_widget.motion_reduce_active
+                : accessibility_widget.motion_reduce}
             </button>
           </section>
         </div>
