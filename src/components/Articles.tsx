@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
+import { useAccessibility } from "@/context/AccessibilityContext";
 import Link from "next/link";
 import { ScrollReveal } from "./ScrollReveal";
 import { LuxuryBloom } from "./LuxuryBloom";
@@ -16,6 +17,7 @@ interface Article {
 
 export function Articles() {
   const { language, dir } = useLanguage();
+  const { animationsEnabled } = useAccessibility();
   const { articles_section } = language.site_content;
   const articles = (language.articles || []) as Article[];
 
@@ -70,10 +72,22 @@ export function Articles() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={articles[index]?.id}
-                initial={{ opacity: 0, x: dir === "rtl" ? -30 : 30 }}
+                initial={
+                  animationsEnabled
+                    ? { opacity: 0, x: dir === "rtl" ? -30 : 30 }
+                    : { opacity: 1, x: 0 }
+                }
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: dir === "rtl" ? 30 : -30 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                exit={
+                  animationsEnabled
+                    ? { opacity: 0, x: dir === "rtl" ? 30 : -30 }
+                    : { opacity: 1, x: 0 }
+                }
+                transition={
+                  animationsEnabled
+                    ? { duration: 0.4, ease: "easeInOut" }
+                    : { duration: 0 }
+                }
                 className="w-full"
               >
                 <Link

@@ -112,12 +112,20 @@
       "read_more_articles": "Читать другие статьи"
     },
     "floating_actions": {
-      "whatsapp_label": "WhatsApp: +972-54-818-5506",
-      "whatsapp_aria": "Открыть WhatsApp для связи по номеру +972-54-818-5506",
+      "whatsapp_label": "WhatsApp: 054-818-5506",
+      "whatsapp_aria": "Открыть WhatsApp для связи по номеру 054-818-5506",
       "instagram_label": "Instagram",
       "instagram_aria": "Открыть нашу страницу в Instagram",
-      "location_label": "Расположение клиники",
-      "location_aria": "Открыть местоположение клиники на Google Maps"
+      "location_label": "Местоположение клиники",
+      "location_aria": "Открыть местоположение клиники в Google Maps"
+    },
+    "side_contact": {
+      "button_label": "Связаться с нами",
+      "title": "Как вы хотите связаться с нами?",
+      "whatsapp": "WhatsApp",
+      "phone": "Позвонить",
+      "location": "Местоположение",
+      "close": "Закрыть"
     },
     "contact_section": {
       "heading": "Свяжитесь с нами",

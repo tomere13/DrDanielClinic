@@ -113,11 +113,19 @@
     },
     "floating_actions": {
       "whatsapp_label": "واتساب: 054-818-5506",
-      "whatsapp_aria": "فتح واتساب للتواصل معنا على 054-818-5506",
+      "whatsapp_aria": "افتح واتساب للتواصل معنا على 054-818-5506",
       "instagram_label": "إنستغرام",
       "instagram_aria": "افتح صفحتنا على إنستغرام",
       "location_label": "موقع العيادة",
-      "location_aria": "فتح موقع العيادة في خرائط جوجل"
+      "location_aria": "افتح موقع العيادة في خرائط جوجل"
+    },
+    "side_contact": {
+      "button_label": "اتصل بنا",
+      "title": "كيف تود التواصل معنا؟",
+      "whatsapp": "واتساب",
+      "phone": "اتصال",
+      "location": "الموقع",
+      "close": "إغلاق"
     },
     "contact_section": {
       "heading": "اتصل بنا",

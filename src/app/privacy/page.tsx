@@ -3,7 +3,6 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AccessibilityWidget } from "@/components/AccessibilityWidget";
-import { FloatingActions } from "@/components/FloatingActions";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -143,7 +142,6 @@ export default function PrivacyPage() {
       </main>
       <Footer />
       <AccessibilityWidget />
-      <FloatingActions />
     </div>
   );
 }

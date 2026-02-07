@@ -3,11 +3,13 @@
 import { Syringe, Sparkles, Heart, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import { useAccessibility } from "@/context/AccessibilityContext";
 import { ScrollReveal, ScrollRevealItem } from "./ScrollReveal";
 import { LuxuryBloom } from "./LuxuryBloom";
 
 export function Services() {
   const { language, dir } = useLanguage();
+  const { animationsEnabled } = useAccessibility();
   const { services_section } = language.site_content;
 
   const servicesList = [
@@ -65,14 +67,20 @@ export function Services() {
                 distance={40}
               >
                 <motion.article
-                  whileHover={{
-                    y: -8,
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                  }}
+                  whileHover={
+                    animationsEnabled
+                      ? {
+                          y: -8,
+                          boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                        }
+                      : {}
+                  }
                   className="group h-full rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all text-start dark:bg-gray-800 dark:border-gray-700"
                 >
                   <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileHover={
+                      animationsEnabled ? { scale: 1.1, rotate: 5 } : {}
+                    }
                     transition={{ type: "spring", stiffness: 300 }}
                     className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#b7748d]/20 transition-colors group-hover:bg-[#b7748d]/30 ${
                       dir === "rtl" ? "ml-auto" : "mr-auto"

@@ -12,6 +12,8 @@ const assistant = Assistant({
 });
 
 import { CookieConsent } from "@/components/CookieConsent";
+import { FloatingActions } from "@/components/FloatingActions";
+import { SideContact } from "@/components/SideContact";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://drdaniel-clinic.com"),
@@ -104,6 +106,8 @@ export default function RootLayout({
             <AccessibilityProvider>
               {children}
               <CookieConsent />
+              <FloatingActions />
+              <SideContact />
             </AccessibilityProvider>
           </ThemeProvider>
         </LanguageProvider>

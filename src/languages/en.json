@@ -119,6 +119,14 @@
       "location_label": "Clinic Location",
       "location_aria": "Open clinic location in Google Maps"
     },
+    "side_contact": {
+      "button_label": "Contact Us",
+      "title": "How would you like to contact us?",
+      "whatsapp": "WhatsApp",
+      "phone": "Call",
+      "location": "Location",
+      "close": "Close"
+    },
     "contact_section": {
       "heading": "Contact Us",
       "subheading": "You are invited to book a consultation and discuss your aesthetic goals. We are here to help you look and feel your best.",

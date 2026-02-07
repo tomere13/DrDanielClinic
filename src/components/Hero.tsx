@@ -42,7 +42,11 @@ export function Hero() {
       {/* --- BACKGROUND LAYER --- */}
       <motion.div
         className="absolute inset-0 z-0 h-full w-full"
-        initial={{ scale: 1.1, opacity: 0 }}
+        initial={
+          animationsEnabled
+            ? { scale: 1.1, opacity: 0 }
+            : { scale: 1, opacity: 1 }
+        }
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.5, ease: [0.21, 0.47, 0.32, 0.98] }}
       >
@@ -96,61 +100,95 @@ export function Hero() {
         <ScrollReveal animation="fade" staggerChildren={0.2} threshold={0.1}>
           <motion.div style={animationsEnabled ? { y, opacity } : {}}>
             {/* Main Title */}
-            <ScrollRevealItem animation="blur-in" distance={0}>
+            {!animationsEnabled ? (
               <h1
                 id="hero-heading"
-                className="mb-6 font-bold leading-tight text-white"
+                className="mb-8 font-bold leading-tight text-white"
               >
                 <span className="block text-4xl md:text-5xl lg:text-7xl">
                   {hero.title}
                 </span>
-
                 <span className="mt-4 block bg-gradient-to-r from-white via-white/90 to-white/60 bg-clip-text text-2xl font-light text-transparent md:text-3xl lg:text-4xl">
                   {hero.subtitle}
                 </span>
               </h1>
-            </ScrollRevealItem>
+            ) : (
+              <ScrollRevealItem animation="blur-in" distance={0}>
+                <h1
+                  id="hero-heading"
+                  className="mb-6 font-bold leading-tight text-white"
+                >
+                  <span className="block text-4xl md:text-5xl lg:text-7xl">
+                    {hero.title}
+                  </span>
+
+                  <span className="mt-4 block bg-gradient-to-r from-white via-white/90 to-white/60 bg-clip-text text-2xl font-light text-transparent md:text-3xl lg:text-4xl">
+                    {hero.subtitle}
+                  </span>
+                </h1>
+              </ScrollRevealItem>
+            )}
 
             {/* Description */}
-            <ScrollRevealItem animation="slide-up" distance={20}>
+            {!animationsEnabled ? (
               <p className="mx-auto mb-10 max-w-2xl text-lg font-medium leading-relaxed text-white md:text-xl">
                 {hero.description}
               </p>
-            </ScrollRevealItem>
+            ) : (
+              <ScrollRevealItem animation="slide-up" distance={20}>
+                <p className="mx-auto mb-10 max-w-2xl text-lg font-medium leading-relaxed text-white md:text-xl">
+                  {hero.description}
+                </p>
+              </ScrollRevealItem>
+            )}
 
             {/* CTA Button */}
-            <ScrollRevealItem animation="slide-up" distance={20}>
+            {!animationsEnabled ? (
               <button
                 onClick={scrollToContact}
                 className={cn(
                   "group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-white px-8 py-4 text-lg font-medium text-slate-900 shadow-2xl transition-all duration-300",
-                  "hover:bg-[#f8f8f8] hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.6)]",
-                  "focus:outline-none focus:ring-2 focus:ring-[#b7748d] focus:ring-offset-2 focus:ring-offset-slate-900"
+                  "hover:bg-[#f8f8f8] hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.6)]"
                 )}
               >
                 <span className="relative z-10 flex items-center gap-2">
                   {hero.button}
-                  <svg
-                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
                 </span>
-
-                {/* Shimmer Effect */}
-                {animationsEnabled && (
-                  <div className="absolute inset-0 -translate-x-[100%] bg-gradient-to-r from-transparent via-slate-200/50 to-transparent transition-transform duration-1000 group-hover:translate-x-[100%]" />
-                )}
               </button>
-            </ScrollRevealItem>
+            ) : (
+              <ScrollRevealItem animation="slide-up" distance={20}>
+                <button
+                  onClick={scrollToContact}
+                  className={cn(
+                    "group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-white px-8 py-4 text-lg font-medium text-slate-900 shadow-2xl transition-all duration-300",
+                    "hover:bg-[#f8f8f8] hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.6)]",
+                    "focus:outline-none focus:ring-2 focus:ring-[#b7748d] focus:ring-offset-2 focus:ring-offset-slate-900"
+                  )}
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    {hero.button}
+                    <svg
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </span>
+
+                  {/* Shimmer Effect */}
+                  {animationsEnabled && (
+                    <div className="absolute inset-0 -translate-x-[100%] bg-gradient-to-r from-transparent via-slate-200/50 to-transparent transition-transform duration-1000 group-hover:translate-x-[100%]" />
+                  )}
+                </button>
+              </ScrollRevealItem>
+            )}
           </motion.div>
         </ScrollReveal>
       </div>

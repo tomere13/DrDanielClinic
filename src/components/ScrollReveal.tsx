@@ -40,22 +40,11 @@ export function ScrollReveal({
   // Disable animations if user turned them off in widget or system settings
   const shouldAnimate = animationsEnabled && !prefersReducedMotion;
 
-  const getVariants = (): Variants => {
-    if (!shouldAnimate) {
-      const flat: Variant = {
-        opacity: 1,
-        filter: "none",
-        transform: "none",
-        scale: 1,
-        x: 0,
-        y: 0,
-      };
-      return {
-        hidden: flat,
-        visible: flat,
-      };
-    }
+  if (!shouldAnimate) {
+    return <div className={className}>{children}</div>;
+  }
 
+  const getVariants = (): Variants => {
     const hidden: Variant = { opacity: 0 };
     const visible: Variant = {
       opacity: 1,
@@ -135,6 +124,10 @@ export function ScrollRevealItem({
   const prefersReducedMotion = useReducedMotion();
   const shouldAnimate = animationsEnabled && !prefersReducedMotion;
 
+  if (!shouldAnimate) {
+    return <div className={className}>{children}</div>;
+  }
+
   const hidden: Variant = { opacity: 0 };
   const visible: Variant = {
     opacity: 1,
@@ -144,47 +137,31 @@ export function ScrollRevealItem({
     },
   };
 
-  if (shouldAnimate) {
-    switch (animation) {
-      case "slide-up":
-        hidden.y = distance;
-        visible.y = 0;
-        break;
-      case "slide-down":
-        hidden.y = -distance;
-        visible.y = 0;
-        break;
-      case "slide-left":
-        hidden.x = distance;
-        visible.x = 0;
-        break;
-      case "slide-right":
-        hidden.x = -distance;
-        visible.x = 0;
-        break;
-      case "scale-in":
-        hidden.scale = 0.95;
-        visible.scale = 1;
-        break;
-      case "blur-in":
-        hidden.filter = "blur(8px)";
-        visible.filter = "none";
-        break;
-    }
-  } else {
-    const flat: Variant = {
-      opacity: 1,
-      filter: "none",
-      transform: "none",
-      scale: 1,
-      x: 0,
-      y: 0,
-    };
-    return (
-      <motion.div initial={flat} animate={flat} className={className}>
-        {children}
-      </motion.div>
-    );
+  switch (animation) {
+    case "slide-up":
+      hidden.y = distance;
+      visible.y = 0;
+      break;
+    case "slide-down":
+      hidden.y = -distance;
+      visible.y = 0;
+      break;
+    case "slide-left":
+      hidden.x = distance;
+      visible.x = 0;
+      break;
+    case "slide-right":
+      hidden.x = -distance;
+      visible.x = 0;
+      break;
+    case "scale-in":
+      hidden.scale = 0.95;
+      visible.scale = 1;
+      break;
+    case "blur-in":
+      hidden.filter = "blur(8px)";
+      visible.filter = "none";
+      break;
   }
 
   return (

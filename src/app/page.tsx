@@ -6,7 +6,6 @@ import { Articles } from "@/components/Articles";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { AccessibilityWidget } from "@/components/AccessibilityWidget";
-import { FloatingActions } from "@/components/FloatingActions";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
 export default function HomePage() {
@@ -112,7 +111,6 @@ export default function HomePage() {
       </main>
       <Footer />
       <AccessibilityWidget />
-      <FloatingActions />
     </>
   );
 }

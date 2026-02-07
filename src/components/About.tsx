@@ -3,11 +3,13 @@
 import { Scale, Award, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import { useAccessibility } from "@/context/AccessibilityContext";
 import { ScrollReveal, ScrollRevealItem } from "./ScrollReveal";
 import { LuxuryBloom } from "./LuxuryBloom";
 
 export function About() {
   const { language, dir } = useLanguage();
+  const { animationsEnabled } = useAccessibility();
   const { about_section } = language.site_content;
 
   const features = [
@@ -73,7 +75,9 @@ export function About() {
                 className="flex flex-col items-center text-center"
               >
                 <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileHover={
+                    animationsEnabled ? { scale: 1.1, rotate: 5 } : {}
+                  }
                   transition={{ type: "spring", stiffness: 300 }}
                   className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#b7748d]/20 shadow-lg"
                 >
