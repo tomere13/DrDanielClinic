@@ -11,6 +11,7 @@ export function ScrollProgress() {
       style={{
         width: `${scrollProgress}%`,
         transition: "width 0.1s ease-out",
+        willChange: "transform",
       }}
       role="progressbar"
       aria-valuenow={Math.round(scrollProgress)}

@@ -116,15 +116,16 @@
       "whatsapp_aria": "פתיחת וואטסאפ ליצירת קשר ב-054-818-5506",
       "instagram_label": "אינסטגרם",
       "instagram_aria": "פתיחת עמוד האינסטגרם שלנו",
-      "location_label": "מיקום הקליניקה",
-      "location_aria": "פתיחת מיקום הקליניקה בגוגל מפות"
+      "location_label": "יצירת קשר",
+      "location_aria": "מעבר לטופס יצירת קשר"
     },
     "side_contact": {
       "button_label": "צרו קשר",
       "title": "איך תרצו ליצור קשר?",
       "whatsapp": "וואטסאפ",
       "phone": "שיחה",
-      "location": "מיקום",
+      "contact": "טופס יצירת קשר",
+      "contact_value": "השאירו הודעה",
       "close": "סגור"
     },
     "contact_section": {

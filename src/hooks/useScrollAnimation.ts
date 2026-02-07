@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export function useScrollAnimation() {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,19 +41,11 @@ export function useScrollAnimation() {
 
 export function useScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const { scrollYProgress } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setScrollProgress(latest * 100);
+  });
 
   return scrollProgress;
 }

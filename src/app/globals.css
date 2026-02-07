@@ -256,10 +256,12 @@ html.contrast-high-white *:focus-visible {
 
 .animate-float {
   animation: float 20s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-float-delayed {
   animation: float-delayed 25s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Accessibility Overrides */
@@ -352,6 +354,7 @@ html.contrast-high-white *:focus-visible {
 
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
+  will-change: box-shadow;
 }
 
 @keyframes bounce-slow {
@@ -379,8 +382,10 @@ html.contrast-high-white *:focus-visible {
 
 .animate-bounce-slow {
   animation: bounce-slow 3s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-ping-slow {
   animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  will-change: transform, opacity;
 }

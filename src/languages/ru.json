@@ -116,15 +116,16 @@
       "whatsapp_aria": "Открыть WhatsApp для связи по номеру 054-818-5506",
       "instagram_label": "Instagram",
       "instagram_aria": "Открыть нашу страницу в Instagram",
-      "location_label": "Местоположение клиники",
-      "location_aria": "Открыть местоположение клиники в Google Maps"
+      "location_label": "Связаться с нами",
+      "location_aria": "Перейти к контактной форме"
     },
     "side_contact": {
       "button_label": "Связаться с нами",
       "title": "Как вы хотите связаться с нами?",
       "whatsapp": "WhatsApp",
       "phone": "Позвонить",
-      "location": "Местоположение",
+      "contact": "Контактная форма",
+      "contact_value": "Оставьте сообщение",
       "close": "Закрыть"
     },
     "contact_section": {

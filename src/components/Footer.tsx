@@ -22,9 +22,9 @@ export function Footer() {
         offset={["start end", "end end"]}
       />
       <div className="container relative z-10 mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-3 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-12 mb-12">
           {/* Clinic Info */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 col-span-3 lg:col-span-1 text-center lg:text-start items-center lg:items-start">
             <div className="flex items-center gap-2">
               <Sparkles className="h-6 w-6 text-[#d4a5b8]" aria-hidden="true" />
               <span className="text-xl font-bold">{footer.clinic_name}</span>

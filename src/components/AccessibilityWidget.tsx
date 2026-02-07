@@ -58,12 +58,18 @@ export function AccessibilityWidget() {
   // Reading Guide Logic (Must be BEFORE the 'if (!mounted)' return)
   useEffect(() => {
     if (!isReadingGuide) return;
+    let rafId: number;
     const moveGuide = (e: MouseEvent) => {
-      const guide = document.getElementById("a11y-reading-guide");
-      if (guide) guide.style.top = `${e.clientY}px`;
+      rafId = requestAnimationFrame(() => {
+        const guide = document.getElementById("a11y-reading-guide");
+        if (guide) guide.style.top = `${e.clientY}px`;
+      });
     };
     window.addEventListener("mousemove", moveGuide);
-    return () => window.removeEventListener("mousemove", moveGuide);
+    return () => {
+      window.removeEventListener("mousemove", moveGuide);
+      cancelAnimationFrame(rafId);
+    };
   }, [isReadingGuide]);
 
   // 3. Conditional Return (Must be AFTER all hooks)

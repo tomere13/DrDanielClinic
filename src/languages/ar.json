@@ -116,15 +116,16 @@
       "whatsapp_aria": "افتح واتساب للتواصل معنا على 054-818-5506",
       "instagram_label": "إنستغرام",
       "instagram_aria": "افتح صفحتنا على إنستغرام",
-      "location_label": "موقع العيادة",
-      "location_aria": "افتح موقع العيادة في خرائط جوجل"
+      "location_label": "اتصل بنا",
+      "location_aria": "انتقل إلى نموذج الاتصال"
     },
     "side_contact": {
       "button_label": "اتصل بنا",
       "title": "كيف تود التواصل معنا؟",
       "whatsapp": "واتساب",
       "phone": "اتصال",
-      "location": "الموقع",
+      "contact": "نموذج الاتصال",
+      "contact_value": "اترك رسالة",
       "close": "إغلاق"
     },
     "contact_section": {

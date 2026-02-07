@@ -2,7 +2,14 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import { useAccessibility } from "@/context/AccessibilityContext";
-import { Phone, X, MessageCircle, MapPin, ArrowUpRight } from "lucide-react";
+import {
+  Phone,
+  X,
+  MessageCircle,
+  MessageSquare,
+  ArrowUpRight,
+} from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -21,10 +28,24 @@ interface ContactItemProps {
 
 export function SideContact() {
   const { language, dir } = useLanguage();
-  const { animationsEnabled } = useAccessibility(); // 2. Now we will actually use this
+  const { animationsEnabled } = useAccessibility();
+  const router = useRouter();
+  const pathname = usePathname();
   const { side_contact, contact_section } = language.site_content;
   const tContact = contact_section.contact_methods;
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleContactFormClick = () => {
+    if (pathname === "/") {
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      router.push("/#contact");
+    }
+    setIsOpen(false);
+  };
 
   const isRtl = dir === "rtl";
   const rotationClass = isRtl ? "rotate-90" : "-rotate-90";
@@ -41,7 +62,7 @@ export function SideContact() {
   return (
     <div
       className={cn(
-        "fixed top-1/2 z-50 -translate-y-1/2 flex items-center isolate",
+        "fixed top-1/2 z-50 -translate-y-1/2 hidden md:flex items-center isolate",
         isRtl ? "left-4" : "right-4"
       )}
     >
@@ -63,14 +84,13 @@ export function SideContact() {
             onClick={() => setIsOpen(true)}
             transition={animationsEnabled ? {} : { duration: 0 }}
             className={cn(
-              "group relative flex flex-col items-center justify-center gap-16 overflow-hidden rounded-full bg-gray-900 shadow-2xl dark:bg-white",
+              "group relative flex flex-col items-center justify-center overflow-hidden rounded-full bg-gray-900 shadow-2xl dark:bg-white",
               "transition-colors duration-500 ease-out hover:bg-black dark:hover:bg-gray-100",
-              "w-12 py-8 min-h-[200px]"
+              "w-12 h-12 md:w-12 md:h-auto md:py-8 md:min-h-[200px] md:gap-16"
             )}
           >
-            {/* Top Indicator */}
-            <span className="relative flex h-3 w-3 shrink-0">
-              {/* Conditionally apply the ping animation class */}
+            {/* Top Indicator - Hidden on mobile */}
+            <span className="relative hidden md:flex h-3 w-3 shrink-0">
               <span
                 className={cn(
                   "absolute inline-flex h-full w-full rounded-full bg-[#b7748d] opacity-75",
@@ -80,10 +100,10 @@ export function SideContact() {
               <span className="relative inline-flex h-3 w-3 rounded-full bg-[#b7748d]"></span>
             </span>
 
-            {/* LABEL */}
+            {/* LABEL - Hidden on mobile */}
             <div
               className={cn(
-                "flex items-center justify-center my-2",
+                "hidden md:flex items-center justify-center my-2",
                 rotationClass
               )}
             >
@@ -95,7 +115,7 @@ export function SideContact() {
             {/* Bottom Icon */}
             <div className="relative z-10 shrink-0">
               <Phone
-                size={18}
+                size={20}
                 className={cn(
                   "text-white transition-transform duration-500 ease-out dark:text-gray-900",
                   animationsEnabled ? "group-hover:rotate-12" : ""
@@ -124,19 +144,19 @@ export function SideContact() {
                 : { opacity: 0 }
             }
             transition={transitionSpring}
-            className="relative w-[22rem] rounded-[2.5rem] border border-white/20 bg-white/90 p-6 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.15)] backdrop-blur-xl dark:border-white/10 dark:bg-gray-950/90"
+            className="relative w-[calc(100vw-2rem)] max-w-[22rem] rounded-[2rem] md:rounded-[2.5rem] border border-white/20 bg-white/90 p-5 md:p-6 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.15)] backdrop-blur-xl dark:border-white/10 dark:bg-gray-950/90"
           >
             {/* Header */}
             <div className="mb-6 flex items-center justify-between pl-2 pr-2">
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white">
                   {side_contact.title}
                 </h3>
-                <div className="mt-2 h-1 w-10 rounded-full bg-[#b7748d]" />
+                <div className="mt-1 md:mt-2 h-1 w-10 rounded-full bg-[#b7748d]" />
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="group flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
+                className="group flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
                 <X
                   size={20}
@@ -175,10 +195,10 @@ export function SideContact() {
               />
               <ContactItem
                 animationsEnabled={animationsEnabled}
-                icon={<MapPin size={22} />}
-                label={side_contact.location}
-                value={language.site_content.footer.columns.contact.location}
-                onClick={() => window.open("https://maps.google.com", "_blank")}
+                icon={<MessageSquare size={22} />}
+                label={side_contact.contact}
+                value={side_contact.contact_value}
+                onClick={handleContactFormClick}
                 colorClass="text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400"
               />
             </div>
