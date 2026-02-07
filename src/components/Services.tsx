@@ -36,7 +36,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative bg-gray-50 px-6 py-20 dark:bg-gray-900 overflow-hidden"
+      className="relative bg-white px-6 py-20 dark:bg-gray-900 overflow-hidden"
       aria-labelledby="services-heading"
       dir={dir}
     >

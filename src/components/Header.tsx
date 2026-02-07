@@ -105,7 +105,7 @@ export function Header() {
         aria-label="Main navigation"
         dir={dir}
       >
-        {/* Mobile Menu Button - Start side */}
+        {/* Mobile Menu Button - Start side (Right in RTL, Left in LTR) */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={cn(
@@ -213,9 +213,11 @@ export function Header() {
             )}
           </div>
         </Link>
-        {/* Language Switcher & Theme Toggle - End side (desktop) */}
-        <div className="hidden md:flex items-center gap-2">
-          <ThemeToggle />
+        {/* Language Switcher & Theme Toggle - End side (Left in RTL, Right in LTR) */}
+        <div className="flex items-center gap-2">
+          <div className="hidden md:block">
+            <ThemeToggle />
+          </div>
           <LanguageSwitcher />
         </div>
       </nav>
@@ -268,15 +270,14 @@ export function Header() {
                 </button>
               </li>
               <li className="px-4 py-2 border-t border-gray-100 mt-2 dark:border-gray-800">
-                <div className="flex justify-between items-center bg-gray-50 rounded-lg p-2 dark:bg-gray-800 dark:border-gray-700">
-                  <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    {header.setting_preferences || "Settings"}
-                  </span>
-                  <div className="flex items-center gap-3">
+                <li className="px-4 py-2 border-t border-gray-100 mt-2 dark:border-gray-800">
+                  <div className="flex justify-between items-center bg-gray-50 rounded-lg p-3 dark:bg-gray-800 dark:border-gray-700">
+                    <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      {header.setting_preferences || "Settings"}
+                    </span>
                     <ThemeToggle />
-                    <LanguageSwitcher />
                   </div>
-                </div>
+                </li>
               </li>
             </ul>
           </motion.div>
