@@ -8,6 +8,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useParams } from "next/navigation";
 
+import { SocialShare } from "@/components/SocialShare";
+
 export default function ArticlePage() {
   const params = useParams();
   const { language, languageCode, dir } = useLanguage();
@@ -97,8 +99,11 @@ export default function ArticlePage() {
               )}
             </div>
 
+            {/* Social Share */}
+            <SocialShare title={article.title} className="mt-12" />
+
             {/* Footer / CTA usually here */}
-            <div className="mt-12 border-t border-gray-200 pt-8 flex justify-between items-center dark:border-gray-800">
+            <div className="mt-8 border-t border-gray-200 pt-8 flex justify-between items-center dark:border-gray-800">
               <Link
                 href="/articles"
                 className="font-medium text-[#b7748d] hover:text-[#9e5f76] transition-colors"

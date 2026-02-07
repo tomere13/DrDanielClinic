@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
     // Use the actual project directory (where `next dev` is invoked).
     root: path.resolve(process.cwd()),
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.drdaniel-clinic.com" }],
+        destination: "https://drdaniel-clinic.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
