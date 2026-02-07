@@ -37,7 +37,7 @@ export function Services() {
     <section
       id="services"
       ref={ref}
-      className="bg-gray-50 px-6 py-20"
+      className="bg-gray-50 px-6 py-20 dark:bg-gray-900"
       aria-labelledby="services-heading"
       dir={dir}
     >
@@ -65,7 +65,7 @@ export function Services() {
                   y: -8,
                   boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                 }}
-                className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all text-start"
+                className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all text-start dark:bg-gray-800 dark:border-gray-700"
               >
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
@@ -79,7 +79,7 @@ export function Services() {
                 <h3 className="mb-3 text-xl font-semibold text-[#b7748d] text-start">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 text-start">
+                <p className="text-gray-600 text-start dark:text-gray-300">
                   {service.description}
                 </p>
               </motion.article>

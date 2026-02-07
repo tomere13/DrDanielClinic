@@ -4,7 +4,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Cookie } from "lucide-react";
+import { Cookie } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function CookieConsent() {
@@ -43,7 +43,7 @@ export function CookieConsent() {
           <div className="mx-auto max-w-5xl rounded-2xl bg-white p-6 shadow-2xl ring-1 ring-gray-900/5 sm:flex sm:items-center sm:gap-8 sm:p-8 border border-gray-100 dark:bg-gray-900 dark:border-gray-800">
             {/* Icon & Text */}
             <div className="flex items-start gap-4 sm:items-center">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#b7748d]/10 text-[#b7748d]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#b7748d]/10 text-[#b7748d] dark:bg-[#b7748d]/20">
                 <Cookie className="h-5 w-5" />
               </div>
               <div className="flex-1">

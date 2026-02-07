@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(true);
@@ -72,7 +73,7 @@ export function Header() {
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed left-0 right-0 top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm shadow-sm"
+      className="fixed left-0 right-0 top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm shadow-sm dark:bg-gray-950/95 dark:border-gray-800"
     >
       <nav
         className="container relative mx-auto flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4"
@@ -83,7 +84,7 @@ export function Header() {
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={cn(
-            "flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 md:hidden",
+            "flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 md:hidden dark:text-gray-200 dark:hover:bg-gray-800",
             "focus-visible:outline-2 focus-visible:outline-[#b7748d]"
           )}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -98,7 +99,7 @@ export function Header() {
             <button
               onClick={() => scrollToSection("about")}
               className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
+                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d] dark:text-gray-200 dark:hover:text-[#b7748d]",
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
@@ -109,7 +110,7 @@ export function Header() {
             <button
               onClick={() => scrollToSection("services")}
               className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
+                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d] dark:text-gray-200 dark:hover:text-[#b7748d]",
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
@@ -121,7 +122,7 @@ export function Header() {
             <Link
               href="/articles"
               className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
+                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d] dark:text-gray-200 dark:hover:text-[#b7748d]",
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
@@ -132,7 +133,7 @@ export function Header() {
             <button
               onClick={() => scrollToSection("contact")}
               className={cn(
-                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d]",
+                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d] dark:text-gray-200 dark:hover:text-[#b7748d]",
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
               )}
             >
@@ -146,19 +147,31 @@ export function Header() {
           href="/"
           className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 focus-visible:outline-2 focus-visible:outline-[#b7748d] md:static md:translate-x-0"
         >
-          <Image
-            src="/logo.png"
-            alt="Dr. Daniel Clinic Logo"
-            width={1100}
-            height={400}
-            className="h-10 w-auto sm:h-18"
-            quality={100}
-            priority
-          />
+          <div className="relative flex items-center h-10 w-auto sm:h-18">
+            <Image
+              src="/logo.png"
+              alt="Dr. Daniel Clinic Logo"
+              width={1100}
+              height={400}
+              className="h-full w-auto object-contain dark:hidden"
+              quality={100}
+              priority
+            />
+            <Image
+              src="/logo.png"
+              alt="Dr. Daniel Clinic Logo"
+              width={1100}
+              height={400}
+              className="h-full w-auto object-contain hidden dark:block brightness-0 invert"
+              quality={100}
+              priority
+            />
+          </div>
         </Link>
 
-        {/* Language Switcher - End side (desktop) */}
-        <div className="hidden md:block">
+        {/* Language Switcher & Theme Toggle - End side (desktop) */}
+        <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           <LanguageSwitcher />
         </div>
       </nav>
@@ -171,13 +184,13 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-gray-200 bg-white md:hidden"
+            className="border-t border-gray-200 bg-white md:hidden dark:bg-gray-950 dark:border-gray-800"
           >
             <ul className="flex flex-col px-4 py-4 gap-2" dir={dir}>
               <li>
                 <button
                   onClick={() => scrollToSection("about")}
-                  className={`w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 ${dir === "rtl" ? "text-right" : "text-left"}`}
+                  className={`w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 dark:text-gray-200 dark:hover:bg-gray-800 ${dir === "rtl" ? "text-right" : "text-left"}`}
                   type="button"
                 >
                   {header.about}
@@ -186,7 +199,7 @@ export function Header() {
               <li>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className={`w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 ${dir === "rtl" ? "text-right" : "text-left"}`}
+                  className={`w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 dark:text-gray-200 dark:hover:bg-gray-800 ${dir === "rtl" ? "text-right" : "text-left"}`}
                   type="button"
                 >
                   {header.services}
@@ -196,7 +209,7 @@ export function Header() {
                 <Link
                   href="/articles"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 ${dir === "rtl" ? "text-right" : "text-left"}`}
+                  className={`block w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 dark:text-gray-200 dark:hover:bg-gray-800 ${dir === "rtl" ? "text-right" : "text-left"}`}
                 >
                   {header.articles}
                 </Link>
@@ -204,17 +217,21 @@ export function Header() {
               <li>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className={`w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 ${dir === "rtl" ? "text-right" : "text-left"}`}
+                  className={`w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 dark:text-gray-200 dark:hover:bg-gray-800 ${dir === "rtl" ? "text-right" : "text-left"}`}
                   type="button"
                 >
                   {header.contact}
                 </button>
               </li>
-              <li className="px-4 py-2 border-t border-gray-100 mt-2">
-                <div className="flex justify-start">
-                  {" "}
-                  {/* Align start regardless of direction for now, or maybe center */}
-                  <LanguageSwitcher />
+              <li className="px-4 py-2 border-t border-gray-100 mt-2 dark:border-gray-800">
+                <div className="flex justify-between items-center bg-gray-50 rounded-lg p-2 dark:bg-gray-800 dark:border-gray-700">
+                  <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    {header.setting_preferences || "Settings"}
+                  </span>
+                  <div className="flex items-center gap-3">
+                    <ThemeToggle />
+                    <LanguageSwitcher />
+                  </div>
                 </div>
               </li>
             </ul>

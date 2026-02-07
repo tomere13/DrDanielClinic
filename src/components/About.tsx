@@ -32,7 +32,7 @@ export function About() {
     <section
       id="about"
       ref={ref}
-      className="bg-white px-6 py-20"
+      className="bg-white px-6 py-20 dark:bg-gray-950"
       aria-labelledby="about-heading"
     >
       <div className="container mx-auto max-w-6xl">
@@ -52,10 +52,10 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-12 text-center"
         >
-          <p className="mx-auto mb-6 max-w-3xl text-lg leading-relaxed text-gray-700">
+          <p className="mx-auto mb-6 max-w-3xl text-lg leading-relaxed text-gray-700 dark:text-gray-300">
             {about_section.paragraph1}
           </p>
-          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700">
+          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700 dark:text-gray-300">
             {about_section.paragraph2}
           </p>
         </motion.div>
@@ -81,7 +81,9 @@ export function About() {
                 <h3 className="mb-2 text-xl font-semibold text-[#b7748d]">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {feature.description}
+                </p>
               </motion.div>
             );
           })}

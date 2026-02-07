@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FileText, ArrowLeft, ArrowRight } from "lucide-react";
 
 export function Articles() {
-  const { language, languageCode, dir } = useLanguage();
+  const { language, dir } = useLanguage();
   const { articles } = language;
   const { site_content } = language;
 
@@ -14,7 +14,11 @@ export function Articles() {
   const recentArticles = articles.slice(0, 3);
 
   return (
-    <section id="articles" className="py-24 bg-white" dir={dir}>
+    <section
+      id="articles"
+      className="py-24 bg-white dark:bg-gray-950"
+      dir={dir}
+    >
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,7 +27,7 @@ export function Articles() {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl dark:text-gray-100">
             {site_content.header.articles}
           </h2>
           <div className="mx-auto h-1 w-20 bg-[#b7748d]"></div>
@@ -38,19 +42,19 @@ export function Articles() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="group flex flex-col overflow-hidden rounded-xl bg-slate-50 shadow-sm hover:shadow-md transition-shadow duration-300 border border-slate-100"
+              className="group flex flex-col overflow-hidden rounded-xl bg-slate-50 shadow-sm hover:shadow-md transition-shadow duration-300 border border-slate-100 dark:bg-gray-800 dark:border-gray-700"
             >
               <div className="p-6 flex flex-col flex-grow">
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#b7748d]/10 text-[#b7748d] group-hover:bg-[#b7748d] group-hover:text-white transition-colors">
                   <FileText size={24} />
                 </div>
-                <h3 className="mb-2 text-xl font-bold text-gray-900 group-hover:text-[#b7748d] transition-colors line-clamp-2">
+                <h3 className="mb-2 text-xl font-bold text-gray-900 group-hover:text-[#b7748d] transition-colors line-clamp-2 dark:text-gray-100">
                   {article.title}
                 </h3>
-                <p className="mb-4 text-sm font-medium text-gray-500 line-clamp-2">
+                <p className="mb-4 text-sm font-medium text-gray-500 line-clamp-2 dark:text-gray-400">
                   {article.subtitle}
                 </p>
-                <p className="mb-6 flex-grow text-gray-600 line-clamp-3 leading-relaxed text-sm">
+                <p className="mb-6 flex-grow text-gray-600 line-clamp-3 leading-relaxed text-sm dark:text-gray-300">
                   {article.content}
                 </p>
 

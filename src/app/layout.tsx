@@ -3,6 +3,7 @@ import { Assistant } from "next/font/google";
 import "./globals.css";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const assistant = Assistant({
   variable: "--font-assistant",
@@ -96,10 +97,12 @@ export default function RootLayout({
     <html lang="he">
       <body className={`${assistant.variable} font-sans antialiased`}>
         <LanguageProvider>
-          <AccessibilityProvider>
-            {children}
-            <CookieConsent />
-          </AccessibilityProvider>
+          <ThemeProvider>
+            <AccessibilityProvider>
+              {children}
+              <CookieConsent />
+            </AccessibilityProvider>
+          </ThemeProvider>
         </LanguageProvider>
       </body>
     </html>

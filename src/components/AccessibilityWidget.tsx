@@ -54,19 +54,19 @@ export function AccessibilityWidget() {
           dir={dir}
           className={cn(
             "fixed bottom-20 left-4 z-50 w-[calc(100vw-2rem)] max-w-sm rounded-lg bg-white p-4 shadow-2xl sm:bottom-24 sm:left-6 sm:w-80 sm:p-6",
-            "border border-gray-200"
+            "border border-gray-200 dark:bg-gray-900 dark:border-gray-800"
           )}
         >
           <h2
             id="a11y-menu-title"
-            className="mb-4 text-xl font-bold text-gray-900"
+            className="mb-4 text-xl font-bold text-gray-900 dark:text-white"
           >
             {accessibility_widget.title}
           </h2>
 
           {/* גודל טקסט */}
           <section className="mb-6">
-            <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
+            <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
               <Type size={18} aria-hidden="true" />
               {accessibility_widget.text_size_title}
             </h3>
@@ -80,8 +80,8 @@ export function AccessibilityWidget() {
                 className={cn(
                   "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors",
                   fontSize === "normal"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
                 )}
                 aria-pressed={fontSize === "normal"}
               >
@@ -92,8 +92,8 @@ export function AccessibilityWidget() {
                 className={cn(
                   "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors",
                   fontSize === "large"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
                 )}
                 aria-pressed={fontSize === "large"}
               >
@@ -104,8 +104,8 @@ export function AccessibilityWidget() {
                 className={cn(
                   "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors",
                   fontSize === "extra-large"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
                 )}
                 aria-pressed={fontSize === "extra-large"}
               >
@@ -116,7 +116,7 @@ export function AccessibilityWidget() {
 
           {/* ניגודיות */}
           <section className="mb-6">
-            <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
+            <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
               <Contrast size={18} aria-hidden="true" />
               {accessibility_widget.contrast_title}
             </h3>
@@ -126,8 +126,8 @@ export function AccessibilityWidget() {
                 className={cn(
                   "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
                   contrastMode === "normal"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700",
                   dir === "ltr" && "text-left"
                 )}
                 aria-pressed={contrastMode === "normal"}
@@ -139,8 +139,8 @@ export function AccessibilityWidget() {
                 className={cn(
                   "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
                   contrastMode === "high-contrast-yellow"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700",
                   dir === "ltr" && "text-left"
                 )}
                 aria-pressed={contrastMode === "high-contrast-yellow"}
@@ -152,8 +152,8 @@ export function AccessibilityWidget() {
                 className={cn(
                   "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
                   contrastMode === "high-contrast-white"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700",
                   dir === "ltr" && "text-left"
                 )}
                 aria-pressed={contrastMode === "high-contrast-white"}
@@ -165,7 +165,7 @@ export function AccessibilityWidget() {
 
           {/* הפחתת תנועה */}
           <section>
-            <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
+            <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
               <Move size={18} aria-hidden="true" />
               {accessibility_widget.motion_title}
             </h3>
@@ -174,8 +174,8 @@ export function AccessibilityWidget() {
               className={cn(
                 "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
                 reduceMotion
-                  ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669]"
-                  : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+                  ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
+                  : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700",
                 dir === "ltr" && "text-left"
               )}
               role="switch"

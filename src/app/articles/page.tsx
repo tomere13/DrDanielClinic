@@ -8,12 +8,15 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export default function ArticlesPage() {
-  const { language, languageCode, dir } = useLanguage();
+  const { language, dir } = useLanguage();
   const { articles } = language;
   const { site_content } = language;
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50" dir={dir}>
+    <div
+      className="flex min-h-screen flex-col bg-slate-50 dark:bg-black"
+      dir={dir}
+    >
       <Header />
 
       <main className="flex-grow pt-40 pb-16">
@@ -24,7 +27,7 @@ export default function ArticlesPage() {
             transition={{ duration: 0.5 }}
             className="mb-12 text-center"
           >
-            <h1 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+            <h1 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
               {site_content.header.articles}
             </h1>
             <div className="mx-auto h-1 w-20 bg-[#b7748d]"></div>
@@ -38,19 +41,19 @@ export default function ArticlesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="group flex flex-col overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-xl border border-gray-100"
+                className="group flex flex-col overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-xl border border-gray-100 dark:bg-gray-900 dark:border-gray-800"
               >
                 <div className="p-6 flex flex-col flex-grow">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#b7748d]/10 text-[#b7748d] group-hover:bg-[#b7748d] group-hover:text-white transition-colors">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#b7748d]/10 text-[#b7748d] group-hover:bg-[#b7748d] group-hover:text-white transition-colors dark:bg-[#b7748d]/20">
                     <FileText size={24} />
                   </div>
-                  <h2 className="mb-2 text-xl font-bold text-gray-900 group-hover:text-[#b7748d] transition-colors">
+                  <h2 className="mb-2 text-xl font-bold text-gray-900 group-hover:text-[#b7748d] transition-colors dark:text-gray-100">
                     {article.title}
                   </h2>
-                  <h3 className="mb-4 text-sm font-medium text-gray-500">
+                  <h3 className="mb-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                     {article.subtitle}
                   </h3>
-                  <p className="mb-6 flex-grow text-gray-600 line-clamp-3 leading-relaxed">
+                  <p className="mb-6 flex-grow text-gray-600 line-clamp-3 leading-relaxed dark:text-gray-300">
                     {article.content}
                   </p>
 

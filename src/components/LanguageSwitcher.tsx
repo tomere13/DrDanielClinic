@@ -39,7 +39,7 @@ export function LanguageSwitcher() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] transition-colors",
+          "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] transition-colors dark:text-gray-200 dark:hover:bg-gray-800",
           "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]"
         )}
         aria-label="Select language"
@@ -64,7 +64,7 @@ export function LanguageSwitcher() {
             exit={{ opacity: 0, y: 5, scale: 0.95 }}
             transition={{ duration: 0.1 }}
             className={cn(
-              "absolute top-full mt-1 min-w-[140px] rounded-lg border border-gray-200 bg-white p-1 shadow-lg",
+              "absolute top-full mt-1 min-w-[140px] rounded-lg border border-gray-200 bg-white p-1 shadow-lg dark:bg-gray-900 dark:border-gray-800",
               dir === "rtl" ? "left-0" : "right-0"
             )}
             style={{ zIndex: 50 }}
@@ -80,7 +80,7 @@ export function LanguageSwitcher() {
                   "flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
                   languageCode === lang.code
                     ? "bg-[#b7748d]/10 text-[#b7748d] font-medium"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-[#b7748d]",
+                    : "text-gray-700 hover:bg-gray-50 hover:text-[#b7748d] dark:text-gray-200 dark:hover:bg-gray-800",
                   lang.dir === "rtl"
                     ? "text-right flex-row-reverse justify-end"
                     : "text-left"

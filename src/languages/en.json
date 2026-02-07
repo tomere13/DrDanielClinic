@@ -55,6 +55,7 @@
       "services": "Treatments",
       "articles": "Articles",
       "contact": "Contact",
+      "setting_preferences": "Display Settings",
       "clinic_name": "Dr. Daniel Clinic"
     },
     "hero": {

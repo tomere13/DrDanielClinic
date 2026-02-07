@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -11,11 +13,9 @@
   --font-sans: var(--font-assistant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 html,
@@ -162,6 +162,7 @@ html.contrast-high-white *:focus-visible {
   100% {
     transform: translateX(0%);
   }
+
   50% {
     transform: translateX(100%);
   }
@@ -172,9 +173,11 @@ html.contrast-high-white *:focus-visible {
   100% {
     transform: translateY(0px) translateX(0px);
   }
+
   33% {
     transform: translateY(-20px) translateX(10px);
   }
+
   66% {
     transform: translateY(10px) translateX(-10px);
   }
@@ -185,9 +188,11 @@ html.contrast-high-white *:focus-visible {
   100% {
     transform: translateY(0px) translateX(0px);
   }
+
   33% {
     transform: translateY(15px) translateX(-15px);
   }
+
   66% {
     transform: translateY(-10px) translateX(15px);
   }
@@ -198,6 +203,7 @@ html.contrast-high-white *:focus-visible {
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
@@ -210,6 +216,7 @@ html.contrast-high-white *:focus-visible {
       0 10px 25px rgba(37, 99, 235, 0.3),
       0 0 0 0 rgba(37, 99, 235, 0.4);
   }
+
   50% {
     box-shadow:
       0 15px 35px rgba(37, 99, 235, 0.4),
@@ -242,6 +249,7 @@ html.contrast-high-white *:focus-visible {
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5px);
   }
@@ -252,6 +260,7 @@ html.contrast-high-white *:focus-visible {
     transform: scale(1);
     opacity: 0.3;
   }
+
   100% {
     transform: scale(1.5);
     opacity: 0;

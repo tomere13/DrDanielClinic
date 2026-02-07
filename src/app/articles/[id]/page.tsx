@@ -3,11 +3,10 @@
 import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Calendar, Share2, ArrowUp } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { useParams, notFound } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 export default function ArticlePage() {
   const params = useParams();
@@ -25,11 +24,16 @@ export default function ArticlePage() {
 
   if (!article) {
     return (
-      <div className="flex min-h-screen flex-col bg-slate-50" dir={dir}>
+      <div
+        className="flex min-h-screen flex-col bg-slate-50 dark:bg-black"
+        dir={dir}
+      >
         <Header />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Article Not Found</h1>
+            <h1 className="text-2xl font-bold mb-4 dark:text-gray-100">
+              Article Not Found
+            </h1>
             <Link href="/articles" className="text-[#b7748d] hover:underline">
               Back to Articles
             </Link>
@@ -41,7 +45,10 @@ export default function ArticlePage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50" dir={dir}>
+    <div
+      className="flex min-h-screen flex-col bg-slate-50 dark:bg-black"
+      dir={dir}
+    >
       <Header />
 
       <main className="flex-grow pt-40 pb-16">
@@ -50,7 +57,7 @@ export default function ArticlePage() {
           <div className="mb-8 mt-4">
             <Link
               href="/articles"
-              className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-[#b7748d] transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-[#b7748d] transition-colors dark:text-gray-400 dark:hover:text-[#b7748d]"
             >
               {dir === "rtl" ? (
                 <ArrowRight size={16} />
@@ -69,17 +76,17 @@ export default function ArticlePage() {
             transition={{ duration: 0.5 }}
           >
             {/* Header */}
-            <header className="mb-8 border-b border-gray-200 pb-8">
-              <h1 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl leading-tight">
+            <header className="mb-8 border-b border-gray-200 pb-8 dark:border-gray-800">
+              <h1 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl leading-tight dark:text-gray-100">
                 {article.title}
               </h1>
-              <p className="text-xl text-gray-600 font-medium">
+              <p className="text-xl text-gray-600 font-medium dark:text-gray-400">
                 {article.subtitle}
               </p>
             </header>
 
             {/* Content */}
-            <div className="prose prose-lg prose-slate max-w-none text-gray-800 leading-relaxed">
+            <div className="prose prose-lg prose-slate max-w-none text-gray-800 leading-relaxed dark:prose-invert dark:text-gray-300">
               {article.content.split("\n").map((paragraph, idx) =>
                 paragraph.trim() ? (
                   <p key={idx} className="mb-4">
@@ -92,7 +99,7 @@ export default function ArticlePage() {
             </div>
 
             {/* Footer / CTA usually here */}
-            <div className="mt-12 border-t border-gray-200 pt-8 flex justify-between items-center">
+            <div className="mt-12 border-t border-gray-200 pt-8 flex justify-between items-center dark:border-gray-800">
               <Link
                 href="/articles"
                 className="font-medium text-[#b7748d] hover:text-[#9e5f76] transition-colors"
