@@ -73,7 +73,7 @@ export function Header() {
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed left-0 right-0 top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm shadow-sm dark:bg-gray-950/95 dark:border-gray-800"
+      className="fixed left-0 right-0 top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm shadow-sm dark:bg-slate-900/95 dark:border-gray-800"
     >
       <nav
         className="container relative mx-auto flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4"
@@ -184,7 +184,7 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-gray-200 bg-white md:hidden dark:bg-gray-950 dark:border-gray-800"
+            className="border-t border-gray-200 bg-white md:hidden dark:bg-slate-900 dark:border-gray-800"
           >
             <ul className="flex flex-col px-4 py-4 gap-2" dir={dir}>
               <li>

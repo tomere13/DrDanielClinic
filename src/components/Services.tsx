@@ -71,7 +71,7 @@ export function Services() {
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                   className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#b7748d]/20 transition-colors group-hover:bg-[#b7748d]/30 ${
-                    dir === "rtl" ? "mr-auto" : "ml-auto"
+                    dir === "rtl" ? "ml-auto" : "mr-auto"
                   }`}
                 >
                   <Icon className="h-6 w-6 text-[#b7748d]" aria-hidden="true" />

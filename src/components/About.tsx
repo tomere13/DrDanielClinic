@@ -81,7 +81,7 @@ export function About() {
                 <h3 className="mb-2 text-xl font-semibold text-[#b7748d]">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-lg text-gray-600 dark:text-gray-400">
                   {feature.description}
                 </p>
               </motion.div>

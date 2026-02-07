@@ -1,6 +1,6 @@
 "use client";
 
-import { useAccessibility } from "@/contexts/AccessibilityContext";
+import { useAccessibility } from "@/context/AccessibilityContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { Accessibility, X, Type, Contrast, Move } from "lucide-react";
 import { useState } from "react";

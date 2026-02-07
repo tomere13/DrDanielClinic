@@ -54,7 +54,7 @@ export function Articles() {
                 <p className="mb-4 text-sm font-medium text-gray-500 line-clamp-2 dark:text-gray-400">
                   {article.subtitle}
                 </p>
-                <p className="mb-6 flex-grow text-gray-600 line-clamp-3 leading-relaxed text-sm dark:text-gray-300">
+                <p className="mb-6 flex-grow text-gray-600 line-clamp-2 leading-relaxed text-sm dark:text-gray-300">
                   {article.content}
                 </p>
 

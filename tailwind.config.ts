@@ -9,7 +9,11 @@ const config: Config = {
     "./src/context/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-assistant)", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };

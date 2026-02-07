@@ -83,7 +83,7 @@ export function LanguageSwitcher() {
                     : "text-gray-700 hover:bg-gray-50 hover:text-[#b7748d] dark:text-gray-200 dark:hover:bg-gray-800",
                   lang.dir === "rtl"
                     ? "text-right flex-row-reverse justify-end"
-                    : "text-left"
+                    : "text-right justify-end"
                 )}
                 dir={lang.dir}
               >

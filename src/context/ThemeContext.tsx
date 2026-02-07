@@ -12,35 +12,26 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme") as Theme | null;
+      return savedTheme || "light";
+    }
+    return "light";
+  });
 
   useEffect(() => {
-    // Check for saved theme or system preference
-    const savedTheme = localStorage.getItem("theme") as Theme | null;
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    if (savedTheme && savedTheme !== "light") {
-      // eslint-disable-next-line
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    } else if (!savedTheme && systemPrefersDark) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-
-    if (newTheme === "dark") {
+    // Persist and apply theme
+    localStorage.setItem("theme", theme);
+    if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   return (

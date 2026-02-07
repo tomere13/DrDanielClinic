@@ -12,6 +12,7 @@ interface AccessibilityContextType {
   setContrastMode: (mode: ContrastMode) => void;
   reduceMotion: boolean;
   setReduceMotion: (reduce: boolean) => void;
+  animationsEnabled: boolean;
 }
 
 const AccessibilityContext = createContext<
@@ -91,6 +92,7 @@ export function AccessibilityProvider({
         setContrastMode,
         reduceMotion,
         setReduceMotion,
+        animationsEnabled: !reduceMotion,
       }}
     >
       {children}

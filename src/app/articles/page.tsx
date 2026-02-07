@@ -14,7 +14,7 @@ export default function ArticlesPage() {
 
   return (
     <div
-      className="flex min-h-screen flex-col bg-slate-50 dark:bg-black"
+      className="flex min-h-screen flex-col bg-slate-50 dark:bg-slate-900"
       dir={dir}
     >
       <Header />

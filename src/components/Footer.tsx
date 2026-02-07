@@ -10,7 +10,10 @@ export function Footer() {
   const { footer } = language.site_content;
 
   return (
-    <footer className="bg-[#3b2330] px-6 py-12 text-white" dir={dir}>
+    <footer
+      className="border-t border-[#6b4259] dark:border-gray-800 bg-[#3b2330] dark:bg-slate-900 px-6 py-12 text-white"
+      dir={dir}
+    >
       <div className="container mx-auto max-w-6xl">
         <div className="mb-8 flex items-center justify-center gap-2">
           <Sparkles className="h-8 w-8 text-[#d4a5b8]" aria-hidden="true" />

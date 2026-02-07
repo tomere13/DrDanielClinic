@@ -25,7 +25,7 @@ export default function ArticlePage() {
   if (!article) {
     return (
       <div
-        className="flex min-h-screen flex-col bg-slate-50 dark:bg-black"
+        className="flex min-h-screen flex-col bg-slate-50 dark:bg-slate-900"
         dir={dir}
       >
         <Header />
@@ -46,7 +46,7 @@ export default function ArticlePage() {
 
   return (
     <div
-      className="flex min-h-screen flex-col bg-slate-50 dark:bg-black"
+      className="flex min-h-screen flex-col bg-slate-50 dark:bg-slate-900"
       dir={dir}
     >
       <Header />
@@ -64,9 +64,8 @@ export default function ArticlePage() {
               ) : (
                 <ArrowLeft size={16} />
               )}
-              {languageCode === "en" || languageCode === "ru"
-                ? "Back to Articles"
-                : "חזרה למאמרים"}
+              {language.site_content.articles_section?.back_to_articles ||
+                (languageCode === "he" ? "חזרה למאמרים" : "Back to Articles")}
             </Link>
           </div>
 
@@ -104,9 +103,10 @@ export default function ArticlePage() {
                 href="/articles"
                 className="font-medium text-[#b7748d] hover:text-[#9e5f76] transition-colors"
               >
-                {languageCode === "en" || languageCode === "ru"
-                  ? "Read more articles"
-                  : "קרא מאמרים נוספים"}
+                {language.site_content.articles_section?.read_more_articles ||
+                  (languageCode === "he"
+                    ? "קרא מאמרים נוספים"
+                    : "Read more articles")}
               </Link>
             </div>
           </motion.div>

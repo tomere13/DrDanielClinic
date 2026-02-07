@@ -121,7 +121,9 @@ export function ContactForm() {
               <h3 className="mb-4 text-xl font-semibold text-[#b7748d]">
                 {tContact.title}
               </h3>
-              <p className="mb-6 text-gray-600">{tContact.description}</p>
+              <p className="mb-6 text-gray-600 dark:text-gray-300">
+                {tContact.description}
+              </p>
             </div>
 
             <div className="flex items-start gap-3">
@@ -171,7 +173,7 @@ export function ContactForm() {
                 >
                   {tContact.whatsapp.number}
                 </a>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                   {tContact.whatsapp.note}
                 </p>
               </div>
@@ -239,7 +241,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="name"
-                className="mb-1 block text-sm font-medium text-gray-700"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
               >
                 {tForm.name_label}{" "}
                 <span className="text-red-600" aria-label="Required">
@@ -274,7 +276,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="phone"
-                className="mb-1 block text-sm font-medium text-gray-700"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
               >
                 {tForm.phone_label}{" "}
                 <span className="text-red-600" aria-label="Required">
@@ -311,7 +313,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="email"
-                className="mb-1 block text-sm font-medium text-gray-700"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
               >
                 {tForm.email_label}{" "}
                 <span className="text-red-600" aria-label="Required">
@@ -347,7 +349,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="message"
-                className="mb-1 block text-sm font-medium text-gray-700"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
               >
                 {tForm.message_label}{" "}
                 <span className="text-red-600" aria-label="Required">

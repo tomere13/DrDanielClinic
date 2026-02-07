@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Assistant } from "next/font/google";
 import "./globals.css";
-import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
+import { AccessibilityProvider } from "@/context/AccessibilityContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 
