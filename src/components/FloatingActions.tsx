@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { MessageSquare, Instagram } from "lucide-react";
+import { MapPin, Instagram } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -17,14 +17,11 @@ export function FloatingActions() {
   };
 
   const openLocation = () => {
-    if (pathname === "/") {
-      const contactSection = document.getElementById("contact");
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      router.push("/#contact");
-    }
+    window.open(
+      "https://www.google.com/maps/search/?api=1&query=ז׳קלין+כהנוב+7+באר+שבע",
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   const openInstagram = () => {
@@ -122,10 +119,10 @@ export function FloatingActions() {
           "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-red-500",
           "loc-float-btn"
         )}
-        aria-label={floating_actions?.location_aria || "Contact Us"}
-        title={floating_actions?.location_label || "Contact Us"}
+        aria-label={floating_actions?.location_aria || "Open clinic location"}
+        title={floating_actions?.location_label || "Clinic Location"}
       >
-        <MessageSquare size={20} className="sm:h-6 sm:w-6" />
+        <MapPin size={20} className="sm:h-6 sm:w-6" />
         {/* Tooltip - Hidden on mobile */}
         <span
           className={cn(
@@ -133,7 +130,7 @@ export function FloatingActions() {
             "group-hover:opacity-100"
           )}
         >
-          {floating_actions?.location_label || "Contact Us"}
+          {floating_actions?.location_label || "Clinic Location"}
         </span>
       </motion.button>
     </div>

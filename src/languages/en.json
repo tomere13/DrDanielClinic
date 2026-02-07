@@ -116,8 +116,8 @@
       "whatsapp_aria": "Open WhatsApp to contact us at +972-54-818-5506",
       "instagram_label": "Instagram",
       "instagram_aria": "Open our Instagram page",
-      "location_label": "Contact Us",
-      "location_aria": "Scroll to contact form"
+      "location_label": "Clinic Location",
+      "location_aria": "Open clinic location in Google Maps"
     },
     "side_contact": {
       "button_label": "Contact Us",
