@@ -270,14 +270,12 @@ export function Header() {
                 </button>
               </li>
               <li className="px-4 py-2 border-t border-gray-100 mt-2 dark:border-gray-800">
-                <li className="px-4 py-2 border-t border-gray-100 mt-2 dark:border-gray-800">
-                  <div className="flex justify-between items-center bg-gray-50 rounded-lg p-3 dark:bg-gray-800 dark:border-gray-700">
-                    <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      {header.setting_preferences || "Settings"}
-                    </span>
-                    <ThemeToggle />
-                  </div>
-                </li>
+                <div className="flex justify-between items-center bg-gray-50 rounded-lg p-3 dark:bg-gray-800 dark:border-gray-700">
+                  <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    {header.setting_preferences || "Settings"}
+                  </span>
+                  <ThemeToggle />
+                </div>
               </li>
             </ul>
           </motion.div>

@@ -57,12 +57,14 @@ export function Hero() {
           }}
         >
           <Image
-            src="/hero2.jpg"
+            src="/hero2.webp"
             alt="Botox aesthetic treatment"
             fill
-            priority
-            quality={100}
-            className="object-cover object-center"
+            priority // Keeps priority loading
+            fetchPriority="high" // NEW: Tells the browser to download this before anything else
+            quality={85} // Reduced from 100: 85 is the "sweet spot" for file size vs quality
+            className="object-cover object-center opacity-90" // Slightly reduced opacity to let background light through
+            sizes="100vw"
           />
         </motion.div>
 
