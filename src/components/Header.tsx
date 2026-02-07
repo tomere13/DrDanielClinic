@@ -3,9 +3,10 @@
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
@@ -15,9 +16,54 @@ export function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { contrastMode } = useAccessibility(); // <--- Add this
+  const { contrastMode } = useAccessibility();
   const { language, dir } = useLanguage();
   const { header } = language.site_content;
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const scrollToSection = useCallback(
+    (id: string) => {
+      setIsMobileMenuOpen(false); // Close mobile menu first
+
+      if (pathname !== "/") {
+        router.push(`/#${id}`);
+        return;
+      }
+
+      // Small delay to let menu close animation complete
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          // Get header height to offset scroll position
+          const header = document.querySelector("header");
+          const headerHeight = header?.offsetHeight || 80;
+          const elementPosition =
+            element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    },
+    [pathname, router]
+  );
+
+  useEffect(() => {
+    // If we have a hash in the URL and we're on the home page, scroll to it
+    if (
+      pathname === "/" &&
+      typeof window !== "undefined" &&
+      window.location.hash
+    ) {
+      const hash = window.location.hash.substring(1);
+      // Wait a bit for the page to render
+      setTimeout(() => scrollToSection(hash), 500);
+    }
+  }, [pathname, scrollToSection]);
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -46,28 +92,6 @@ export function Header() {
     window.addEventListener("scroll", controlNavbar);
     return () => window.removeEventListener("scroll", controlNavbar);
   }, [lastScrollY, isMobileMenuOpen]);
-
-  const scrollToSection = (id: string) => {
-    setIsMobileMenuOpen(false); // Close mobile menu first
-
-    // Small delay to let menu close animation complete
-    setTimeout(() => {
-      const element = document.getElementById(id);
-      if (element) {
-        // Get header height to offset scroll position
-        const header = document.querySelector("header");
-        const headerHeight = header?.offsetHeight || 80;
-        const elementPosition =
-          element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerHeight;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    }, 100);
-  };
 
   return (
     <motion.header

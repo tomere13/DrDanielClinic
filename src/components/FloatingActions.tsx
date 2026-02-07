@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { MapPin } from "lucide-react";
+import { MapPin, Instagram } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -16,6 +16,14 @@ export function FloatingActions() {
   const openLocation = () => {
     window.open(
       "https://www.google.com/maps/search/?api=1&query=ז׳קלין+כהנוב+7+באר+שבע",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
+  const openInstagram = () => {
+    window.open(
+      "https://www.instagram.com/dr.daniel.vershkov/",
       "_blank",
       "noopener,noreferrer"
     );
@@ -61,6 +69,36 @@ export function FloatingActions() {
         </span>
         {/* Pulse ring */}
         <span className="absolute inset-0 animate-ping-slow rounded-full bg-[#25D366] opacity-20" />
+      </motion.button>
+
+      {/* Instagram Button */}
+      <motion.button
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={openInstagram}
+        className={cn(
+          "group relative flex h-12 w-12 items-center justify-center rounded-full sm:h-14 sm:w-14",
+          "bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white shadow-lg transition-all",
+          "hover:shadow-xl hover:shadow-pink-500/50",
+          "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-pink-500",
+          "insta-float-btn"
+        )}
+        aria-label={floating_actions?.instagram_aria || "Open Instagram"}
+        title={floating_actions?.instagram_label || "Instagram"}
+      >
+        <Instagram size={20} className="sm:h-6 sm:w-6" />
+        {/* Tooltip - Hidden on mobile */}
+        <span
+          className={cn(
+            "absolute right-16 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-lg bg-gray-900 px-3 py-2 text-sm text-white opacity-0 shadow-lg transition-opacity sm:block",
+            "group-hover:opacity-100"
+          )}
+        >
+          {floating_actions?.instagram_label || "Instagram"}
+        </span>
       </motion.button>
 
       {/* Location Button */}

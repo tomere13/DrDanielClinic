@@ -61,12 +61,12 @@
     "hero": {
       "title": "Dr. Daniel Clinic",
       "subtitle": "Expert Botox & Aesthetic Treatments",
-      "description": "Professional aesthetic treatments with maximum precision, personal attention, and natural-looking results. Your beauty goals deserve real expertise.",
+      "description": "At Dr. Daniel Clinic, we are experts in Botox and aesthetic treatments, providing professional care with maximum precision and natural-looking results. Your beauty goals deserve real expertise.",
       "button": "Book Appointment"
     },
     "about_section": {
       "heading": "About Dr. Daniel Clinic",
-      "paragraph1": "As a doctor practicing aesthetic medicine with extensive experience in cosmetic treatments, Dr. Daniel Vershkov brings a unique combination of medical expertise, artistic vision, and commitment to natural-looking results.",
+      "paragraph1": "As a doctor specializing in aesthetic medicine with extensive experience in cosmetic treatments, Dr. Daniel Vershkov brings a unique combination of medical expertise, artistic vision, and commitment to natural-looking results at Dr. Daniel Clinic.",
       "paragraph2": "With proven experience of satisfied patients and beautiful results, Dr. Daniel tailors personal treatment plans according to your unique facial features, ensuring safe and effective aesthetic treatments.",
       "features": [
         {
@@ -114,6 +114,8 @@
     "floating_actions": {
       "whatsapp_label": "WhatsApp: +972-54-818-5506",
       "whatsapp_aria": "Open WhatsApp to contact us at +972-54-818-5506",
+      "instagram_label": "Instagram",
+      "instagram_aria": "Open our Instagram page",
       "location_label": "Clinic Location",
       "location_aria": "Open clinic location in Google Maps"
     },

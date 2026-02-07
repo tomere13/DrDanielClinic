@@ -2,8 +2,11 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
-import { ScrollReveal, ScrollRevealItem } from "./ScrollReveal";
+import { ScrollReveal } from "./ScrollReveal";
 import { LuxuryBloom } from "./LuxuryBloom";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Article {
   id: string | number;
@@ -14,7 +17,19 @@ interface Article {
 export function Articles() {
   const { language, dir } = useLanguage();
   const { articles_section } = language.site_content;
-  const articles = language.articles as Article[];
+  const articles = (language.articles || []) as Article[];
+
+  const [index, setIndex] = useState(0);
+
+  const nextArticle = () => {
+    setIndex((prev) => (prev + 1) % articles.length);
+  };
+
+  const prevArticle = () => {
+    setIndex((prev) => (prev - 1 + articles.length) % articles.length);
+  };
+
+  if (!articles.length) return null;
 
   return (
     <section
@@ -29,56 +44,88 @@ export function Articles() {
           </h2>
         </ScrollReveal>
 
-        <ScrollReveal
-          animation="fade"
-          staggerChildren={0.1}
-          className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2"
-        >
-          {articles?.slice(0, 2).map((article: Article) => (
-            <ScrollRevealItem key={article.id} animation="slide-up">
-              <Link
-                href={`/articles/${article.id}`}
-                className="group block h-full"
+        <div className="relative mx-auto max-w-4xl">
+          {/* Navigation Buttons */}
+          <div className="absolute -left-4 top-1/2 z-20 -translate-y-1/2 md:-left-12">
+            <button
+              onClick={nextArticle}
+              className="group flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:bg-[#b7748d] hover:text-white dark:bg-slate-800/90 dark:text-white dark:hover:bg-[#b7748d]"
+              aria-label="Previous article"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+          </div>
+
+          <div className="absolute -right-4 top-1/2 z-20 -translate-y-1/2 md:-right-12">
+            <button
+              onClick={prevArticle}
+              className="group flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:bg-[#b7748d] hover:text-white dark:bg-slate-800/90 dark:text-white dark:hover:bg-[#b7748d]"
+              aria-label="Next article"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          </div>
+
+          <div className="overflow-hidden px-4">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={articles[index]?.id}
+                initial={{ opacity: 0, x: dir === "rtl" ? -30 : 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: dir === "rtl" ? 30 : -30 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="w-full"
               >
-                <article className="flex h-full flex-col rounded-lg border border-gray-100 bg-gray-50 p-6 shadow-sm transition-all hover:border-[#b7748d]/30 hover:shadow-md dark:border-gray-800 dark:bg-gray-800/50">
-                  <h3 className="mb-3 text-xl font-bold text-gray-900 transition-colors group-hover:text-[#b7748d] dark:text-white">
-                    {article.title}
-                  </h3>
-                  <p className="flex-grow text-gray-600 dark:text-gray-300">
-                    {article.subtitle}
-                  </p>
-                  <div className="mt-6 flex items-center font-medium text-[#b7748d]">
-                    <span className="group-hover:underline">
-                      {articles_section.read_article}
-                    </span>
-                    <svg
-                      className={`ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 ${dir === "rtl" ? "rotate-180" : ""}`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                <Link
+                  href={`/articles/${articles[index]?.id}`}
+                  className="group block"
+                >
+                  <article className="flex min-h-[280px] flex-col rounded-3xl border border-[#b7748d]/10 bg-gray-50 p-8 shadow-sm transition-all hover:border-[#b7748d]/30 hover:shadow-2xl dark:border-gray-800 dark:bg-gray-800/50 lg:p-12">
+                    <h3 className="mb-6 text-3xl font-bold text-gray-900 transition-colors group-hover:text-[#b7748d] dark:text-white lg:text-4xl text-start">
+                      {articles[index]?.title}
+                    </h3>
+                    <p className="flex-grow text-xl leading-relaxed text-gray-600 dark:text-gray-300 text-start">
+                      {articles[index]?.subtitle}
+                    </p>
+                    <div className="mt-10 flex items-center font-bold text-[#b7748d]">
+                      <span className="text-lg group-hover:underline">
+                        {articles_section.read_article}
+                      </span>
+                      <ChevronRight
+                        className={`ml-2 h-6 w-6 transition-transform group-hover:translate-x-2 ${dir === "rtl" ? "rotate-180" : ""}`}
                       />
-                    </svg>
-                  </div>
-                </article>
-              </Link>
-            </ScrollRevealItem>
-          ))}
-        </ScrollReveal>
+                    </div>
+                  </article>
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="mt-10 flex justify-center gap-3">
+            {articles.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`h-2.5 transition-all duration-300 rounded-full ${
+                  index === i
+                    ? "w-10 bg-[#b7748d]"
+                    : "w-2.5 bg-gray-300 hover:bg-[#b7748d]/50 dark:bg-gray-700"
+                }`}
+                aria-label={`Go to article ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
 
         <ScrollReveal
           animation="slide-up"
           delay={0.4}
-          className="mt-12 text-center"
+          className="mt-16 text-center"
         >
           <Link
             href="/articles"
-            className="inline-flex items-center rounded-full bg-[#b7748d] px-8 py-3 font-semibold text-white transition-all hover:bg-[#a0647a] hover:shadow-lg"
+            className="inline-flex items-center rounded-full bg-[#b7748d] px-10 py-4 text-lg font-bold text-white transition-all hover:bg-[#a0647a] hover:shadow-xl active:scale-95"
           >
             {articles_section.view_all}
           </Link>
