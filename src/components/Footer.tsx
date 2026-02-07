@@ -3,6 +3,7 @@
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+import { LuxuryBloom } from "./LuxuryBloom";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,10 +12,16 @@ export function Footer() {
 
   return (
     <footer
-      className="border-t border-[#6b4259] dark:border-gray-800 bg-[#3b2330] dark:bg-slate-900 px-6 py-12 text-white"
+      className="relative border-t border-[#6b4259] dark:border-gray-800 bg-[#3b2330] dark:bg-slate-900 px-6 py-12 text-white overflow-hidden transition-colors duration-500"
       dir={dir}
     >
-      <div className="container mx-auto max-w-6xl">
+      <LuxuryBloom
+        color="#b7748d"
+        opacity={[0, 0.1]}
+        scale={[0.8, 1.2]}
+        offset={["start end", "end end"]}
+      />
+      <div className="container relative z-10 mx-auto max-w-6xl">
         <div className="mb-8 flex items-center justify-center gap-2">
           <Sparkles className="h-8 w-8 text-[#d4a5b8]" aria-hidden="true" />
           <span className="text-xl font-bold">{footer.clinic_name}</span>

@@ -2,12 +2,12 @@
 
 import { Scale, Award, Users } from "lucide-react";
 import { motion } from "framer-motion";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useLanguage } from "@/context/LanguageContext";
+import { ScrollReveal, ScrollRevealItem } from "./ScrollReveal";
+import { LuxuryBloom } from "./LuxuryBloom";
 
 export function About() {
-  const { ref, isVisible } = useScrollAnimation();
-  const { language } = useLanguage();
+  const { language, dir } = useLanguage();
   const { about_section } = language.site_content;
 
   const features = [
@@ -31,44 +31,45 @@ export function About() {
   return (
     <section
       id="about"
-      ref={ref}
-      className="bg-white px-6 py-20 dark:bg-gray-950"
+      className="relative overflow-hidden bg-white px-6 py-20 dark:bg-gray-950 transition-colors duration-500"
       aria-labelledby="about-heading"
+      dir={dir}
     >
-      <div className="container mx-auto max-w-6xl">
-        <motion.h2
-          id="about-heading"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-4xl font-bold text-[#b7748d]"
-        >
-          {about_section.heading}
-        </motion.h2>
+      <LuxuryBloom color="#b7748d" opacity={[0, 0.2]} scale={[0.5, 1.4]} />
+      <div className="container relative z-10 mx-auto max-w-6xl">
+        <ScrollReveal animation="slide-up" threshold={0.2}>
+          <h2
+            id="about-heading"
+            className="mb-12 text-center text-4xl font-bold text-[#b7748d]"
+          >
+            {about_section.heading}
+          </h2>
+        </ScrollReveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12 text-center"
-        >
-          <p className="mx-auto mb-6 max-w-3xl text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            {about_section.paragraph1}
-          </p>
-          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            {about_section.paragraph2}
-          </p>
-        </motion.div>
+        <ScrollReveal animation="slide-up" delay={0.2} threshold={0.2}>
+          <div className="mb-12 text-center">
+            <p className="mx-auto mb-6 max-w-3xl text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              {about_section.paragraph1}
+            </p>
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              {about_section.paragraph2}
+            </p>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <ScrollReveal
+          animation="fade"
+          staggerChildren={0.2}
+          threshold={0.1}
+          className="grid gap-8 md:grid-cols-3"
+        >
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <motion.div
+              <ScrollRevealItem
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                animation="slide-up"
+                distance={30}
                 className="flex flex-col items-center text-center"
               >
                 <motion.div
@@ -84,10 +85,10 @@ export function About() {
                 <p className="text-lg text-gray-600 dark:text-gray-400">
                   {feature.description}
                 </p>
-              </motion.div>
+              </ScrollRevealItem>
             );
           })}
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

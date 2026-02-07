@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { Phone, Mail, MessageSquare, MapPin } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { ScrollReveal } from "./ScrollReveal";
+import { LuxuryBloom } from "./LuxuryBloom";
 
 export function ContactForm() {
   const { language, dir } = useLanguage();
@@ -99,24 +101,31 @@ export function ContactForm() {
   return (
     <section
       id="contact"
-      className="bg-white px-6 py-20 dark:bg-gray-900"
+      className="relative overflow-hidden bg-white px-6 py-20 dark:bg-gray-900 transition-colors duration-500"
       aria-labelledby="contact-heading"
       dir={dir}
     >
-      <div className="container mx-auto max-w-4xl">
-        <h2
-          id="contact-heading"
-          className="mb-4 text-center text-4xl font-bold text-[#b7748d]"
-        >
-          {contact_section.heading}
-        </h2>
-        <p className="mb-12 text-center text-lg text-gray-600 dark:text-gray-300">
-          {contact_section.subheading}
-        </p>
+      <LuxuryBloom color="#b7748d" opacity={[0, 0.2]} scale={[0.8, 1.3]} />
+      <div className="container relative z-10 mx-auto max-w-4xl">
+        <ScrollReveal animation="slide-up">
+          <h2
+            id="contact-heading"
+            className="mb-4 text-center text-4xl font-bold text-[#b7748d]"
+          >
+            {contact_section.heading}
+          </h2>
+          <p className="mb-12 text-center text-lg text-gray-600 dark:text-gray-300">
+            {contact_section.subheading}
+          </p>
+        </ScrollReveal>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-12 md:grid-cols-2">
           {/* Contact Details */}
-          <div className="space-y-6">
+          <ScrollReveal
+            animation={dir === "rtl" ? "slide-left" : "slide-right"}
+            distance={50}
+            className="space-y-6"
+          >
             <div>
               <h3 className="mb-4 text-xl font-semibold text-[#b7748d]">
                 {tContact.title}
@@ -220,196 +229,203 @@ export function ContactForm() {
                 </p>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Form */}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="space-y-4"
-            noValidate
+          <ScrollReveal
+            animation={dir === "rtl" ? "slide-right" : "slide-left"}
+            distance={50}
           >
-            <input
-              type="text"
-              name="website"
-              value={honeypot}
-              onChange={(e) => setHoneypot(e.target.value)}
-              style={{ display: "none" }}
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-            />
-            <div>
-              <label
-                htmlFor="name"
-                className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
-              >
-                {tForm.name_label}{" "}
-                <span className="text-red-600" aria-label="Required">
-                  *
-                </span>
-              </label>
-              <input
-                id="name"
-                type="text"
-                {...register("name")}
-                className={cn(
-                  "w-full rounded-md border px-4 py-2 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-white",
-                  errors.name
-                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
-                  "focus:outline-none focus:ring-2"
-                )}
-                aria-invalid={errors.name ? "true" : "false"}
-                aria-describedby={errors.name ? "name-error" : undefined}
-              />
-              {errors.name && (
-                <p
-                  id="name-error"
-                  className="mt-1 text-sm text-red-600"
-                  role="alert"
-                >
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="phone"
-                className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
-              >
-                {tForm.phone_label}{" "}
-                <span className="text-red-600" aria-label="Required">
-                  *
-                </span>
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                {...register("phone")}
-                className={cn(
-                  "w-full rounded-md border px-4 py-2 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-white",
-                  dir === "rtl" ? "text-right" : "text-left",
-                  errors.phone
-                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
-                  "focus:outline-none focus:ring-2"
-                )}
-                dir="ltr"
-                aria-invalid={errors.phone ? "true" : "false"}
-                aria-describedby={errors.phone ? "phone-error" : undefined}
-              />
-              {errors.phone && (
-                <p
-                  id="phone-error"
-                  className="mt-1 text-sm text-red-600"
-                  role="alert"
-                >
-                  {errors.phone.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
-              >
-                {tForm.email_label}{" "}
-                <span className="text-red-600" aria-label="Required">
-                  *
-                </span>
-              </label>
-              <input
-                id="email"
-                type="email"
-                {...register("email")}
-                className={cn(
-                  "w-full rounded-md border px-4 py-2 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-white",
-                  errors.email
-                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
-                  "focus:outline-none focus:ring-2"
-                )}
-                dir="ltr"
-                aria-invalid={errors.email ? "true" : "false"}
-                aria-describedby={errors.email ? "email-error" : undefined}
-              />
-              {errors.email && (
-                <p
-                  id="email-error"
-                  className="mt-1 text-sm text-red-600"
-                  role="alert"
-                >
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="message"
-                className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
-              >
-                {tForm.message_label}{" "}
-                <span className="text-red-600" aria-label="Required">
-                  *
-                </span>
-              </label>
-              <textarea
-                id="message"
-                rows={4}
-                {...register("message")}
-                className={cn(
-                  "w-full rounded-md border px-4 py-2 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-white",
-                  errors.message
-                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
-                  "focus:outline-none focus:ring-2"
-                )}
-                aria-invalid={errors.message ? "true" : "false"}
-                aria-describedby={errors.message ? "message-error" : undefined}
-              />
-              {errors.message && (
-                <p
-                  id="message-error"
-                  className="mt-1 text-sm text-red-600"
-                  role="alert"
-                >
-                  {errors.message.message}
-                </p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={cn(
-                "w-full rounded-md bg-[#b7748d] px-6 py-3 font-semibold text-white",
-                "transition-colors hover:bg-[#a0647a]",
-                "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]",
-                "disabled:cursor-not-allowed disabled:opacity-50"
-              )}
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="space-y-4"
+              noValidate
             >
-              {isSubmitting ? tForm.submitting_button : tForm.submit_button}
-            </button>
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+              <div>
+                <label
+                  htmlFor="name"
+                  className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
+                >
+                  {tForm.name_label}{" "}
+                  <span className="text-red-600" aria-label="Required">
+                    *
+                  </span>
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  {...register("name")}
+                  className={cn(
+                    "w-full rounded-md border px-4 py-2 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-white",
+                    errors.name
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
+                    "focus:outline-none focus:ring-2"
+                  )}
+                  aria-invalid={errors.name ? "true" : "false"}
+                  aria-describedby={errors.name ? "name-error" : undefined}
+                />
+                {errors.name && (
+                  <p
+                    id="name-error"
+                    className="mt-1 text-sm text-red-600"
+                    role="alert"
+                  >
+                    {errors.name.message}
+                  </p>
+                )}
+              </div>
 
-            {submitStatus === "success" && (
-              <p className="text-center text-sm text-green-600" role="status">
-                {tForm.success_message}
-              </p>
-            )}
+              <div>
+                <label
+                  htmlFor="phone"
+                  className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
+                >
+                  {tForm.phone_label}{" "}
+                  <span className="text-red-600" aria-label="Required">
+                    *
+                  </span>
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  {...register("phone")}
+                  className={cn(
+                    "w-full rounded-md border px-4 py-2 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-white",
+                    dir === "rtl" ? "text-right" : "text-left",
+                    errors.phone
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
+                    "focus:outline-none focus:ring-2"
+                  )}
+                  dir="ltr"
+                  aria-invalid={errors.phone ? "true" : "false"}
+                  aria-describedby={errors.phone ? "phone-error" : undefined}
+                />
+                {errors.phone && (
+                  <p
+                    id="phone-error"
+                    className="mt-1 text-sm text-red-600"
+                    role="alert"
+                  >
+                    {errors.phone.message}
+                  </p>
+                )}
+              </div>
 
-            {submitStatus === "error" && (
-              <p className="text-center text-sm text-red-600" role="alert">
-                {tForm.error_message}
-              </p>
-            )}
-          </form>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
+                >
+                  {tForm.email_label}{" "}
+                  <span className="text-red-600" aria-label="Required">
+                    *
+                  </span>
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  {...register("email")}
+                  className={cn(
+                    "w-full rounded-md border px-4 py-2 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-white",
+                    errors.email
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
+                    "focus:outline-none focus:ring-2"
+                  )}
+                  dir="ltr"
+                  aria-invalid={errors.email ? "true" : "false"}
+                  aria-describedby={errors.email ? "email-error" : undefined}
+                />
+                {errors.email && (
+                  <p
+                    id="email-error"
+                    className="mt-1 text-sm text-red-600"
+                    role="alert"
+                  >
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="mb-1 block text-sm font-medium text-gray-700 dark:text-white"
+                >
+                  {tForm.message_label}{" "}
+                  <span className="text-red-600" aria-label="Required">
+                    *
+                  </span>
+                </label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  {...register("message")}
+                  className={cn(
+                    "w-full rounded-md border px-4 py-2 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-white",
+                    errors.message
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : "border-gray-300 focus:border-[#b7748d] focus:ring-[#b7748d]",
+                    "focus:outline-none focus:ring-2"
+                  )}
+                  aria-invalid={errors.message ? "true" : "false"}
+                  aria-describedby={
+                    errors.message ? "message-error" : undefined
+                  }
+                />
+                {errors.message && (
+                  <p
+                    id="message-error"
+                    className="mt-1 text-sm text-red-600"
+                    role="alert"
+                  >
+                    {errors.message.message}
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={cn(
+                  "w-full rounded-md bg-[#b7748d] px-6 py-3 font-semibold text-white",
+                  "transition-colors hover:bg-[#a0647a]",
+                  "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]",
+                  "disabled:cursor-not-allowed disabled:opacity-50"
+                )}
+              >
+                {isSubmitting ? tForm.submitting_button : tForm.submit_button}
+              </button>
+
+              {submitStatus === "success" && (
+                <p className="text-center text-sm text-green-600" role="status">
+                  {tForm.success_message}
+                </p>
+              )}
+
+              {submitStatus === "error" && (
+                <p className="text-center text-sm text-red-600" role="alert">
+                  {tForm.error_message}
+                </p>
+              )}
+            </form>
+          </ScrollReveal>
         </div>
 
         {/* Location */}
-        <div className="mt-16">
+        <ScrollReveal animation="slide-up" threshold={0.1} className="mt-16">
           <h3 className="mb-6 text-center text-2xl font-semibold text-gray-900 dark:text-white">
             {tLocation.heading}
           </h3>
@@ -479,7 +495,7 @@ export function ContactForm() {
               />
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
