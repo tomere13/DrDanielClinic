@@ -9,6 +9,7 @@ import {
   Share2,
   Mail,
   SendHorizontal,
+  Check,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -86,13 +87,13 @@ export function SocialShare({ title, url, className }: SocialShareProps) {
     }
   };
 
-  const copyToClipboard = async () => {
+  const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(currentUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error("Failed to copy: ", err);
+      console.error("Failed to copy link:", err);
     }
   };
 
@@ -155,7 +156,7 @@ export function SocialShare({ title, url, className }: SocialShareProps) {
         ))}
 
         <button
-          onClick={copyToClipboard}
+          onClick={handleCopyLink}
           className={cn(
             "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105 active:scale-95 shadow-sm",
             copied
@@ -172,7 +173,7 @@ export function SocialShare({ title, url, className }: SocialShareProps) {
                 exit={{ scale: 0 }}
                 className="flex items-center gap-2"
               >
-                <Link2 size={18} />
+                <Check size={18} />
                 <span>{t.copied}</span>
               </motion.div>
             ) : (
