@@ -31,12 +31,12 @@ export function SideContact() {
 
   // Helper to strip animations if disabled
   const transitionSpring = animationsEnabled
-    ? { type: "spring", damping: 25, stiffness: 300 }
-    : { duration: 0 };
+    ? ({ type: "spring", damping: 25, stiffness: 300 } as const)
+    : ({ duration: 0 } as const);
 
   const transitionHover = animationsEnabled
-    ? { duration: 0.4, ease: "easeOut" }
-    : { duration: 0 };
+    ? ({ duration: 0.4, ease: "easeOut" } as const)
+    : ({ duration: 0 } as const);
 
   return (
     <div
