@@ -166,7 +166,7 @@
         "parking_info_title": "מידע על חניה",
         "parking_info_description": "חניה חינם זמינה במקום",
         "public_transport_title": "תחבורה ציבורית",
-        "public_transport_description": "נגיש באמצעות קווי אוטובוס למרכז באר שבע"
+        "public_transport_description": "נגיש באמצעות קווי אוטובוס"
       }
     },
     "cookie_consent": {
@@ -363,18 +363,25 @@
       "toggle_open_label": "פתח תפריט נגישות",
       "toggle_close_label": "סגור תפריט נגישות",
       "title": "אפשרויות נגישות",
+      "reset": "איפוס",
+      "skip_to_content": "דלג לתוכן המרכזי",
       "text_size_title": "גודל טקסט",
       "text_size_options_label": "אפשרויות גודל טקסט",
       "text_size_normal": "רגיל",
       "text_size_large": "גדול",
       "text_size_huge": "ענק",
+      "visual_tools_title": "כלים חזותיים",
+      "highlight_links": "הדגשת קישורים",
+      "stop_animations": "עצירת אנימציות",
+      "monochrome": "גווני אפור",
+      "big_cursor": "סמן גדול",
+      "text_spacing": "מרווח טקסט",
+      "dyslexia_font": "גופן קריא",
+      "reading_guide": "פס קריאה",
       "contrast_title": "ניגודיות",
       "contrast_normal": "ניגודיות רגילה",
       "contrast_high_yellow": "ניגודיות גבוהה (צהוב על שחור)",
-      "contrast_high_white": "ניגודיות גבוהה (לבן על שחור)",
-      "motion_title": "העדפות תנועה",
-      "motion_reduce": "הפחתת תנועה",
-      "motion_reduce_active": "הפחתת תנועה: פעיל"
+      "contrast_high_white": "ניגודיות גבוהה (לבן על שחור)"
     }
   }
 }

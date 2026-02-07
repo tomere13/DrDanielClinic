@@ -1,200 +1,285 @@
 "use client";
 
-import { useAccessibility } from "@/context/AccessibilityContext";
+import { useAccessibility, ContrastMode } from "@/context/AccessibilityContext";
 import { useLanguage } from "@/context/LanguageContext";
-import { Accessibility, X, Type, Contrast, Move } from "lucide-react";
-import { useState } from "react";
+import {
+  Accessibility,
+  X,
+  Type,
+  Contrast,
+  Check,
+  RotateCcw,
+  MousePointer2,
+  Eye,
+  PlayCircle,
+  Link as LinkIcon,
+  AlignLeft,
+  Highlighter,
+} from "lucide-react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { cn } from "@/lib/utils";
 
 export function AccessibilityWidget() {
+  // 1. All Hooks must be declared at the top level
   const [isOpen, setIsOpen] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+
   const {
     fontSize,
     setFontSize,
     contrastMode,
     setContrastMode,
-    reduceMotion,
-    setReduceMotion,
+    isMonochrome,
+    setIsMonochrome,
+    isStopAnimations,
+    setIsStopAnimations,
+    isHighlightLinks,
+    setIsHighlightLinks,
+    isBigCursor,
+    setIsBigCursor,
+    isTextSpacing,
+    setIsTextSpacing,
+    isDyslexicFont,
+    setIsDyslexicFont,
+    isReadingGuide,
+    setIsReadingGuide,
+    resetAll,
   } = useAccessibility();
 
   const { language, dir } = useLanguage();
-  const { accessibility_widget } = language.site_content;
+  const t = language.site_content.accessibility_widget;
+
+  // 2. Effects
+
+  // Reading Guide Logic (Must be BEFORE the 'if (!mounted)' return)
+  useEffect(() => {
+    if (!isReadingGuide) return;
+    const moveGuide = (e: MouseEvent) => {
+      const guide = document.getElementById("a11y-reading-guide");
+      if (guide) guide.style.top = `${e.clientY}px`;
+    };
+    window.addEventListener("mousemove", moveGuide);
+    return () => window.removeEventListener("mousemove", moveGuide);
+  }, [isReadingGuide]);
+
+  // 3. Conditional Return (Must be AFTER all hooks)
+  if (!mounted) return null;
+
+  // 4. Component Logic
+  const tools = [
+    {
+      id: "links",
+      label: t.highlight_links || "Highlight Links",
+      icon: <LinkIcon size={18} />,
+      active: isHighlightLinks,
+      toggle: setIsHighlightLinks,
+    },
+    {
+      id: "anim",
+      label: t.stop_animations || "Stop Animations",
+      icon: <PlayCircle size={18} />,
+      active: isStopAnimations,
+      toggle: setIsStopAnimations,
+    },
+    {
+      id: "mono",
+      label: t.monochrome || "Monochrome",
+      icon: <Eye size={18} />,
+      active: isMonochrome,
+      toggle: setIsMonochrome,
+    },
+    {
+      id: "cursor",
+      label: t.big_cursor || "Big Cursor",
+      icon: <MousePointer2 size={18} />,
+      active: isBigCursor,
+      toggle: setIsBigCursor,
+    },
+    {
+      id: "spacing",
+      label: t.text_spacing || "Text Spacing",
+      icon: <AlignLeft size={18} />,
+      active: isTextSpacing,
+      toggle: setIsTextSpacing,
+    },
+    {
+      id: "dyslexic",
+      label: t.dyslexia_font || "Dyslexia Font",
+      icon: <Type size={18} />,
+      active: isDyslexicFont,
+      toggle: setIsDyslexicFont,
+    },
+    {
+      id: "guide",
+      label: t.reading_guide || "Reading Guide",
+      icon: <Highlighter size={18} />,
+      active: isReadingGuide,
+      toggle: setIsReadingGuide,
+    },
+  ];
 
   return (
     <>
-      {/* כפתור צף - ממוקם בצד שמאל (left-4) */}
+      {/* 1. Skip to Content (Law Requirement) */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#b7748d] focus:p-4 focus:text-white focus:rounded-lg focus:shadow-xl"
+      >
+        {t.skip_to_content || "Skip to Content"}
+      </a>
+
+      {/* 2. Monochrome Overlay */}
+      {isMonochrome && (
+        <div
+          className="pointer-events-none fixed inset-0 z-[9990] bg-white/0 backdrop-grayscale"
+          aria-hidden="true"
+        />
+      )}
+
+      {/* 3. Reading Guide */}
+      {isReadingGuide && (
+        <div
+          id="a11y-reading-guide"
+          className="pointer-events-none fixed left-0 z-[9999] h-2 w-full bg-[#b7748d]/40 shadow-[0_0_15px_rgba(183,116,141,0.5)] transition-all duration-75 ease-out"
+        />
+      )}
+
+      {/* 4. Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "fixed bottom-4 left-4 z-50 flex h-12 w-12 items-center justify-center rounded-full sm:bottom-6 sm:left-6 sm:h-14 sm:w-14",
-          "bg-[#b7748d] text-white shadow-lg transition-all hover:bg-[#a0647a]",
-          "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[#b7748d]"
+          "fixed bottom-5 left-5 z-[10000] flex h-14 w-14 items-center justify-center rounded-full shadow-2xl transition-all duration-300 ease-out hover:scale-110 active:scale-95",
+          "bg-gradient-to-br from-[#b7748d] to-[#8f5269] text-white",
+          "border-2 border-white/20 ring-4 ring-black/5 hover:shadow-[#b7748d]/40",
+          isOpen && "rotate-90"
         )}
-        aria-label={
-          isOpen
-            ? accessibility_widget.toggle_close_label
-            : accessibility_widget.toggle_open_label
-        }
+        aria-label={isOpen ? t.toggle_close_label : t.toggle_open_label}
         aria-expanded={isOpen}
-        aria-controls="accessibility-menu"
       >
-        {isOpen ? (
-          <X size={20} className="sm:h-6 sm:w-6" />
-        ) : (
-          <Accessibility size={20} className="sm:h-6 sm:w-6" />
-        )}
+        {isOpen ? <X size={24} /> : <Accessibility size={26} />}
       </button>
 
-      {/* תפריט נגישות - נפתח מעל הכפתור בצד שמאל */}
-      {isOpen && (
-        <div
-          id="accessibility-menu"
-          role="dialog"
-          aria-labelledby="a11y-menu-title"
-          dir={dir}
-          className={cn(
-            "fixed bottom-20 left-4 z-50 w-[calc(100vw-2rem)] max-w-sm rounded-lg bg-white p-4 shadow-2xl sm:bottom-24 sm:left-6 sm:w-80 sm:p-6",
-            "border border-gray-200 dark:bg-gray-900 dark:border-gray-800"
-          )}
-        >
-          <h2
-            id="a11y-menu-title"
-            className="mb-4 text-xl font-bold text-gray-900 dark:text-white"
-          >
-            {accessibility_widget.title}
+      {/* 5. Menu */}
+      <div
+        id="accessibility-menu"
+        dir={dir}
+        className={cn(
+          "fixed bottom-24 left-5 z-[10000] w-[calc(100vw-2.5rem)] max-w-[360px] origin-bottom-left overflow-hidden rounded-2xl shadow-2xl transition-all duration-300 ease-in-out",
+          "border border-white/20 backdrop-blur-xl bg-white/90 dark:bg-gray-900/90 dark:border-white/10",
+          isOpen
+            ? "scale-100 opacity-100 translate-y-0"
+            : "pointer-events-none scale-95 opacity-0 translate-y-4"
+        )}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-gray-100 p-5 pb-4 dark:border-gray-800">
+          <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+            <Accessibility size={20} className="text-[#b7748d]" />
+            {t.title}
           </h2>
+          <button
+            onClick={resetAll}
+            className="flex items-center gap-1 text-xs font-medium text-gray-500 hover:text-[#b7748d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b7748d] rounded px-1"
+          >
+            <RotateCcw size={14} />
+            {t.reset || "Reset"}
+          </button>
+        </div>
 
-          {/* גודל טקסט */}
-          <section className="mb-6">
-            <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
-              <Type size={18} aria-hidden="true" />
-              {accessibility_widget.text_size_title}
-            </h3>
-            <div
-              className="flex gap-2"
-              role="group"
-              aria-label={accessibility_widget.text_size_options_label}
-            >
-              <button
-                onClick={() => setFontSize("normal")}
-                className={cn(
-                  "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors",
-                  fontSize === "normal"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
-                )}
-                aria-pressed={fontSize === "normal"}
-              >
-                {accessibility_widget.text_size_normal}
-              </button>
-              <button
-                onClick={() => setFontSize("large")}
-                className={cn(
-                  "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors",
-                  fontSize === "large"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
-                )}
-                aria-pressed={fontSize === "large"}
-              >
-                {accessibility_widget.text_size_large}
-              </button>
-              <button
-                onClick={() => setFontSize("extra-large")}
-                className={cn(
-                  "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors",
-                  fontSize === "extra-large"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
-                )}
-                aria-pressed={fontSize === "extra-large"}
-              >
-                {accessibility_widget.text_size_huge}
-              </button>
-            </div>
-          </section>
-
-          {/* ניגודיות */}
-          <section className="mb-6">
-            <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
-              <Contrast size={18} aria-hidden="true" />
-              {accessibility_widget.contrast_title}
-            </h3>
-            <div className="space-y-2">
-              <button
-                onClick={() => setContrastMode("normal")}
-                className={cn(
-                  "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
-                  contrastMode === "normal"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700",
-                  dir === "ltr" && "text-left"
-                )}
-                aria-pressed={contrastMode === "normal"}
-              >
-                {accessibility_widget.contrast_normal}
-              </button>
-              <button
-                onClick={() => setContrastMode("high-contrast-yellow")}
-                className={cn(
-                  "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
-                  contrastMode === "high-contrast-yellow"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700",
-                  dir === "ltr" && "text-left"
-                )}
-                aria-pressed={contrastMode === "high-contrast-yellow"}
-              >
-                {accessibility_widget.contrast_high_yellow}
-              </button>
-              <button
-                onClick={() => setContrastMode("high-contrast-white")}
-                className={cn(
-                  "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
-                  contrastMode === "high-contrast-white"
-                    ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700",
-                  dir === "ltr" && "text-left"
-                )}
-                aria-pressed={contrastMode === "high-contrast-white"}
-              >
-                {accessibility_widget.contrast_high_white}
-              </button>
-            </div>
-          </section>
-
-          {/* הפחתת תנועה */}
+        {/* Content */}
+        <div className="max-h-[60vh] overflow-y-auto space-y-6 p-5 custom-scrollbar">
+          {/* Text Size */}
           <section>
-            <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
-              <Move size={18} aria-hidden="true" />
-              {accessibility_widget.motion_title}
+            <h3 className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+              <Type size={14} /> {t.text_size_title}
             </h3>
-            <button
-              onClick={() => setReduceMotion(!reduceMotion)}
-              className={cn(
-                "w-full rounded-md border px-3 py-2 text-right text-sm font-medium transition-colors",
-                reduceMotion
-                  ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:bg-[#b7748d]/20 dark:text-[#d4a5b8]"
-                  : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700",
-                dir === "ltr" && "text-left"
-              )}
-              role="switch"
-              aria-checked={reduceMotion}
-            >
-              {reduceMotion
-                ? accessibility_widget.motion_reduce_active
-                : accessibility_widget.motion_reduce}
-            </button>
+            <div className="flex rounded-xl bg-gray-100 p-1 dark:bg-gray-800">
+              {(["normal", "large", "extra-large"] as const).map((size) => (
+                <button
+                  key={size}
+                  onClick={() => setFontSize(size)}
+                  className={cn(
+                    "flex-1 rounded-lg py-2 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b7748d]",
+                    fontSize === size
+                      ? "bg-white text-[#b7748d] shadow-sm dark:bg-gray-700"
+                      : "text-gray-500 dark:text-gray-400"
+                  )}
+                >
+                  {size === "normal"
+                    ? t.text_size_normal || "A"
+                    : size === "large"
+                      ? t.text_size_large || "A+"
+                      : t.text_size_huge || "A++"}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          {/* Tools Grid */}
+          <section>
+            <h3 className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+              <Eye size={14} /> {t.visual_tools_title || "Tools"}
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              {tools.map((tool) => (
+                <button
+                  key={tool.id}
+                  onClick={() => tool.toggle(!tool.active)}
+                  className={cn(
+                    "flex flex-col items-center justify-center gap-2 rounded-xl border p-3 text-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b7748d]",
+                    tool.active
+                      ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] ring-1 ring-[#b7748d] dark:text-[#d4a5b8]"
+                      : "border-gray-100 bg-white text-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300"
+                  )}
+                >
+                  {tool.icon}
+                  <span className="text-[11px] font-bold leading-tight">
+                    {tool.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          {/* Contrast */}
+          <section>
+            <h3 className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+              <Contrast size={14} /> {t.contrast_title}
+            </h3>
+            <div className="grid gap-2">
+              {[
+                { id: "normal", label: t.contrast_normal },
+                { id: "high-contrast-yellow", label: t.contrast_high_yellow },
+                { id: "high-contrast-white", label: t.contrast_high_white },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setContrastMode(item.id as ContrastMode)}
+                  className={cn(
+                    "flex w-full items-center justify-between rounded-xl border px-4 py-3 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b7748d]",
+                    contrastMode === item.id
+                      ? "border-[#b7748d] bg-[#b7748d]/10 text-[#8b5669] dark:text-[#d4a5b8]"
+                      : "border-gray-100 bg-white text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300"
+                  )}
+                >
+                  <span>{item.label}</span>
+                  {contrastMode === item.id && <Check size={16} />}
+                </button>
+              ))}
+            </div>
           </section>
         </div>
-      )}
+      </div>
 
-      {/* רקע שקוף לסגירת התפריט */}
+      {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40"
+          className="fixed inset-0 z-[9999] bg-black/10 backdrop-blur-[2px]"
           onClick={() => setIsOpen(false)}
-          aria-hidden="true"
         />
       )}
     </>

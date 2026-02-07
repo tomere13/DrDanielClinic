@@ -35,7 +35,8 @@ export function FloatingActions() {
           "group relative flex h-12 w-12 items-center justify-center rounded-full sm:h-14 sm:w-14",
           "bg-[#25D366] text-white shadow-lg transition-all hover:bg-[#128C7E]",
           "hover:shadow-xl hover:shadow-green-500/50 animate-bounce-slow",
-          "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-green-500"
+          "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-green-500",
+          "wa-float-btn"
         )}
         aria-label={floating_actions?.whatsapp_aria || "Open WhatsApp"}
         title={floating_actions?.whatsapp_label || "WhatsApp Us"}
@@ -74,7 +75,8 @@ export function FloatingActions() {
           "group relative flex h-12 w-12 items-center justify-center rounded-full sm:h-14 sm:w-14",
           "bg-red-500 text-white shadow-lg transition-all hover:bg-red-600",
           "hover:shadow-xl hover:shadow-red-500/50",
-          "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+          "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-red-500",
+          "loc-float-btn"
         )}
         aria-label={floating_actions?.location_aria || "Open clinic location"}
         title={floating_actions?.location_label || "Clinic Location"}

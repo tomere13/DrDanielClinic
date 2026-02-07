@@ -166,7 +166,7 @@
         "parking_info_title": "معلومات عن وقوف السيارات",
         "parking_info_description": "مواقف مجانية للسيارات متوفرة في الموقع",
         "public_transport_title": "مواصلات عامة",
-        "public_transport_description": "يمكن الوصول إليه عبر خطوط الحافلات إلى وسط بئر السبع"
+        "public_transport_description": "يمكن الوصول إليه عبر خطوط الحافلات"
       }
     },
     "cookie_consent": {
@@ -363,18 +363,25 @@
       "toggle_open_label": "افتح قائمة الوصول",
       "toggle_close_label": "أغلق قائمة الوصول",
       "title": "خيارات الوصول",
+      "reset": "إعادة تعيين",
+      "skip_to_content": "القفز إلى المحتوى",
       "text_size_title": "حجم النص",
       "text_size_options_label": "خيارات حجم النص",
       "text_size_normal": "عادي",
       "text_size_large": "كبير",
       "text_size_huge": "ضخم",
+      "visual_tools_title": "أدوات بصرية",
+      "highlight_links": "تمييز الروابط",
+      "stop_animations": "إيقاف الرسوم المتحركة",
+      "monochrome": "أبيض وأسود",
+      "big_cursor": "مؤشر كبير",
+      "text_spacing": "تباعد النص",
+      "dyslexia_font": "خط عسر القراءة",
+      "reading_guide": "دليل القراءة",
       "contrast_title": "التباين",
       "contrast_normal": "تباين عادي",
       "contrast_high_yellow": "تباين عالٍ (أصفر على أسود)",
-      "contrast_high_white": "تباين عالٍ (أبيض على أسود)",
-      "motion_title": "تفضيلات الحركة",
-      "motion_reduce": "تقليل الحركة",
-      "motion_reduce_active": "تقليل الحركة: مفعل"
+      "contrast_high_white": "تباين عالٍ (أبيض على أسود)"
     }
   }
 }

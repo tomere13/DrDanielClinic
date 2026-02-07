@@ -166,7 +166,7 @@
         "parking_info_title": "Parking Info",
         "parking_info_description": "Free parking available on site",
         "public_transport_title": "Public Transport",
-        "public_transport_description": "Accessible via bus lines to Be'er Sheva center"
+        "public_transport_description": "Accessible via bus lines"
       }
     },
     "cookie_consent": {
@@ -363,18 +363,25 @@
       "toggle_open_label": "Open Accessibility Menu",
       "toggle_close_label": "Close Accessibility Menu",
       "title": "Accessibility Options",
+      "reset": "Reset",
+      "skip_to_content": "Skip to Content",
       "text_size_title": "Text Size",
       "text_size_options_label": "Text Size Options",
       "text_size_normal": "Normal",
       "text_size_large": "Large",
       "text_size_huge": "Huge",
+      "visual_tools_title": "Visual Tools",
+      "highlight_links": "Highlight Links",
+      "stop_animations": "Stop Animations",
+      "monochrome": "Monochrome",
+      "big_cursor": "Big Cursor",
+      "text_spacing": "Text Spacing",
+      "dyslexia_font": "Dyslexia Font",
+      "reading_guide": "Reading Guide",
       "contrast_title": "Contrast",
       "contrast_normal": "Normal Contrast",
       "contrast_high_yellow": "High Contrast (Yellow on Black)",
-      "contrast_high_white": "High Contrast (White on Black)",
-      "motion_title": "Motion Preferences",
-      "motion_reduce": "Reduce Motion",
-      "motion_reduce_active": "Reduce Motion: Active"
+      "contrast_high_white": "High Contrast (White on Black)"
     }
   }
 }

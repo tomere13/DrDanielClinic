@@ -9,12 +9,13 @@ import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
+import { useAccessibility } from "@/context/AccessibilityContext";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const { contrastMode } = useAccessibility(); // <--- Add this
   const { language, dir } = useLanguage();
   const { header } = language.site_content;
 
@@ -148,27 +149,46 @@ export function Header() {
           className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 focus-visible:outline-2 focus-visible:outline-[#b7748d] md:static md:translate-x-0"
         >
           <div className="relative flex items-center h-10 w-auto sm:h-18">
+            {/* IMAGE 1: Handles Light Mode, Yellow Mode, and White Mode */}
             <Image
               src="/logo.png"
               alt="Dr. Daniel Clinic Logo"
               width={1100}
               height={400}
-              className="h-full w-auto object-contain dark:hidden"
               quality={100}
               priority
+              className={cn(
+                "h-full w-auto object-contain transition-all duration-200",
+                // CRITICAL FIX: If mode is normal, hide this image in dark mode
+                // so the second image can take over.
+                contrastMode === "normal" && "dark:hidden"
+              )}
+              style={{
+                filter:
+                  contrastMode === "high-contrast-yellow"
+                    ? "brightness(0) saturate(100%) invert(86%) sepia(90%) saturate(6000%) hue-rotate(5deg) brightness(105%) contrast(102%)"
+                    : contrastMode === "high-contrast-white"
+                      ? "brightness(0) invert(1)"
+                      : undefined,
+              }}
             />
-            <Image
-              src="/logo.png"
-              alt="Dr. Daniel Clinic Logo"
-              width={1100}
-              height={400}
-              className="h-full w-auto object-contain hidden dark:block brightness-0 invert"
-              quality={100}
-              priority
-            />
+
+            {/* IMAGE 2: Handles Standard System Dark Mode ONLY */}
+            {/* Only render this if we are in normal mode */}
+            {contrastMode === "normal" && (
+              <Image
+                src="/logo.png"
+                alt="Dr. Daniel Clinic Logo"
+                width={1100}
+                height={400}
+                // This image is hidden by default and only shows in dark mode
+                className="h-full w-auto object-contain hidden dark:block brightness-0 invert"
+                quality={100}
+                priority
+              />
+            )}
           </div>
         </Link>
-
         {/* Language Switcher & Theme Toggle - End side (desktop) */}
         <div className="hidden md:flex items-center gap-2">
           <ThemeToggle />

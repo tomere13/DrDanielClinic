@@ -166,7 +166,7 @@
         "parking_info_title": "Информация о парковке",
         "parking_info_description": "Бесплатная парковка на территории",
         "public_transport_title": "Общественный транспорт",
-        "public_transport_description": "Доступно автобусными маршрутами до центра Беэр-Шевы"
+        "public_transport_description": "Доступно автобусными маршрутами"
       }
     },
     "cookie_consent": {
@@ -363,18 +363,25 @@
       "toggle_open_label": "Открыть меню доступности",
       "toggle_close_label": "Закрыть меню доступности",
       "title": "Опции доступности",
+      "reset": "Сброс",
+      "skip_to_content": "Перейти к содержанию",
       "text_size_title": "Размер текста",
       "text_size_options_label": "Опции размера текста",
       "text_size_normal": "Обычный",
       "text_size_large": "Большой",
       "text_size_huge": "Огромный",
+      "visual_tools_title": "Визуальные инструменты",
+      "highlight_links": "Выделить ссылки",
+      "stop_animations": "Остановить анимацию",
+      "monochrome": "Монохромный",
+      "big_cursor": "Большой курсор",
+      "text_spacing": "Интервал текста",
+      "dyslexia_font": "Шрифт для дислексиков",
+      "reading_guide": "Направляющая для чтения",
       "contrast_title": "Контраст",
       "contrast_normal": "Обычный контраст",
       "contrast_high_yellow": "Высокий контраст (Желтый на черном)",
-      "contrast_high_white": "Высокий контраст (Белый на черном)",
-      "motion_title": "Настройки движения",
-      "motion_reduce": "Уменьшить движение",
-      "motion_reduce_active": "Уменьшить движение: Активно"
+      "contrast_high_white": "Высокий контраст (Белый на черном)"
     }
   }
 }

@@ -111,11 +111,37 @@ html.contrast-high-white select {
 }
 
 /* Keep accessibility widget button visible and recognizable */
-html.contrast-high-yellow button[aria-label*="accessibility"],
-html.contrast-high-white button[aria-label*="accessibility"] {
-  background-color: #2563eb !important;
+.a11y-widget-trigger,
+.a11y-widget-menu,
+.a11y-widget-menu * {
+  z-index: 10000 !important;
+}
+
+html.contrast-high-yellow .a11y-widget-trigger,
+html.contrast-high-white .a11y-widget-trigger {
+  background: #2563eb !important;
   color: #ffffff !important;
-  border-color: #2563eb !important;
+  border: 2px solid #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html.contrast-high-yellow .a11y-widget-menu,
+html.contrast-high-white .a11y-widget-menu {
+  background: #000000 !important;
+  border: 2px solid #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html.contrast-high-yellow .a11y-widget-menu *,
+html.contrast-high-white .a11y-widget-menu * {
+  background-color: transparent !important;
+}
+
+html.contrast-high-yellow .a11y-widget-menu button,
+html.contrast-high-white .a11y-widget-menu button {
+  border: 1px solid currentColor !important;
 }
 
 /* Images - make them slightly visible */
@@ -234,6 +260,90 @@ html.contrast-high-white *:focus-visible {
 
 .animate-float-delayed {
   animation: float-delayed 25s ease-in-out infinite;
+}
+
+/* Accessibility Overrides */
+
+/* Text Sizes */
+.text-large {
+  font-size: 1.15rem !important;
+}
+
+.text-extra-large {
+  font-size: 1.3rem !important;
+}
+
+/* Contrast Modes */
+.high-contrast-yellow {
+  background-color: #000 !important;
+  color: #ff0 !important;
+}
+
+.high-contrast-yellow * {
+  background-color: #000 !important;
+  color: #ff0 !important;
+  border-color: #ff0 !important;
+}
+
+.high-contrast-white {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.high-contrast-white * {
+  background-color: #fff !important;
+  color: #000 !important;
+  border-color: #000 !important;
+}
+
+/* Functional Overrides (IS 5568) */
+.stop-animations * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Update your globals.css */
+
+/* Fix: Apply filter ONLY to the main content wrapper */
+#main-content.monochrome {
+  filter: grayscale(100%) !important;
+}
+
+/* Ensure High Contrast works properly */
+.high-contrast-yellow {
+  background-color: #000 !important;
+  color: #ff0 !important;
+}
+
+.high-contrast-yellow * {
+  background-color: #000 !important;
+  color: #ff0 !important;
+  border-color: #ff0 !important;
+}
+
+.highlight-links a {
+  outline: 3px solid #facc15 !important;
+  background-color: #000 !important;
+  color: #fff !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+}
+
+.text-spacing * {
+  line-height: 1.8 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+
+.dyslexic-font * {
+  font-family: "Arial", sans-serif !important;
+  /* Replaces complex fonts with clean ones */
+}
+
+.big-cursor {
+  cursor:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>'),
+    auto !important;
 }
 
 .animate-blink {
