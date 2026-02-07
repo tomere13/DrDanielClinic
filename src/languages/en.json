@@ -181,7 +181,29 @@
       "tagline1": "Aesthetic Medicine | Certified Doctor in Medical Aesthetics",
       "tagline2": "Botox treatments, fillers, face sculpting, and advanced medical aesthetics in Be'er Sheva.",
       "accessibility_statement": "Accessibility Statement",
-      "copyright": "Dr. Daniel Clinic. All rights reserved."
+      "copyright": "Dr. Daniel Clinic. All rights reserved.",
+      "columns": {
+        "quick_links": {
+          "title": "Quick Links",
+          "about": "About Us",
+          "services": "Treatments",
+          "articles": "Articles",
+          "contact": "Contact Us"
+        },
+        "services": {
+          "title": "Our Treatments",
+          "botox": "Botox Injections",
+          "fillers": "Fillers",
+          "sculpting": "Face Sculpting",
+          "advanced": "Advanced Treatments"
+        },
+        "contact": {
+          "title": "Contact Info",
+          "phone": "Phone: 054-818-5506",
+          "whatsapp": "WhatsApp: 054-818-5506",
+          "location": "Be'er Sheva"
+        }
+      }
     },
     "accessibility_page": {
       "title": "Accessibility Statement | Dr. Daniel Clinic",
