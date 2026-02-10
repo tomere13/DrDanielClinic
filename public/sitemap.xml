@@ -3,16 +3,94 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://drdaniel-clinic.com/</loc>
-    <lastmod>2026-01-16</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/" />
   </url>
   <url>
     <loc>https://drdaniel-clinic.com/accessibility</loc>
-    <lastmod>2026-01-16</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/accessibility" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/privacy</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/privacy" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/articles</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles" />
+  </url>
+  <!-- Articles -->
+  <url>
+    <loc>https://drdaniel-clinic.com/articles/botox-full-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles/botox-full-guide" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/articles/salmon-dna</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles/salmon-dna" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/articles/skin-tags</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles/skin-tags" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/articles/skin-booster</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles/skin-booster" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/articles/face-sculpting</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles/face-sculpting" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/articles/fat-dissolving</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles/fat-dissolving" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/articles/biostimulators-plla</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles/biostimulators-plla" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/articles/biostimulators-radiesse</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles/biostimulators-radiesse" />
+  </url>
+  <url>
+    <loc>https://drdaniel-clinic.com/articles/prp-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://drdaniel-clinic.com/articles/prp-guide" />
   </url>
 </urlset>

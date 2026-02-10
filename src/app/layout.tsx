@@ -93,18 +93,21 @@ export const metadata: Metadata = {
   },
 };
 
+import { PromoPopup } from "@/components/PromoPopup";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="he">
+    <html lang="he" suppressHydrationWarning>
       <body className={`${assistant.variable} font-sans antialiased`}>
         <LanguageProvider>
           <ThemeProvider>
             <AccessibilityProvider>
               {children}
+              <PromoPopup />
               <CookieConsent />
               <FloatingActions />
               <SideContact />

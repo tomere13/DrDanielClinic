@@ -121,6 +121,17 @@ export function Header() {
         {/* Desktop Navigation - Start side */}
         <ul className="hidden gap-4 md:flex md:gap-8 items-center">
           <li>
+            <Link
+              href="/"
+              className={cn(
+                "text-sm font-medium text-gray-700 transition-colors hover:text-[#b7748d] dark:text-gray-200 dark:hover:text-[#b7748d]",
+                "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b7748d]"
+              )}
+            >
+              {header.home}
+            </Link>
+          </li>
+          <li>
             <button
               onClick={() => scrollToSection("about")}
               className={cn(
@@ -233,6 +244,15 @@ export function Header() {
             className="border-t border-gray-200 bg-white md:hidden dark:bg-slate-900 dark:border-gray-800"
           >
             <ul className="flex flex-col px-4 py-4 gap-2" dir={dir}>
+              <li>
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block w-full rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[#b7748d] active:bg-[#b7748d]/10 dark:text-gray-200 dark:hover:bg-gray-800 ${dir === "rtl" ? "text-right" : "text-left"}`}
+                >
+                  {header.home}
+                </Link>
+              </li>
               <li>
                 <button
                   onClick={() => scrollToSection("about")}

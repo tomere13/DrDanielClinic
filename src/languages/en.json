@@ -47,10 +47,17 @@
       "title": "Calcium Hydroxylapatite (Radiesse)",
       "subtitle": "The dual-layer sculpting that wakes up the skin",
       "content": "If you are looking for a result you can see from the very first moment, but also want to enjoy improvement in skin quality over time – this is the treatment for you. Calcium Hydroxylapatite is a unique biostimulator providing a powerful solution for face sculpting, lifting, and firming.\n\nWhy is Calcium Hydroxylapatite a winning choice?\n• Double Action: Unlike other materials, calcium gives immediate volume and sculpting to sunken areas, and at the same time stimulates the body to produce new collagen and elastin.\n• Contour emphasis: This is the perfect 'sculpting' material. It is ideal for designing a sharp jawline, lifting cheekbones, and filling deep wrinkles, thanks to its ability to stay exactly where it was injected.\n• Firm and flexible look: The treatment not only fills, it improves the elasticity of the skin. The result is thicker, stronger, and less 'sagging' skin.\n• Proven safety: The material is composed of minerals naturally found in the human body, making it safe to use, with no need for allergy tests.\n\nSelected applications with Calcium Hydroxylapatite:\nBeyond face sculpting, this material has revolutionized other areas difficult to treat with other methods:\n1. Hand rejuvenation: Filling lost volume and hiding prominent veins and tendons for young-looking hands.\n2. Jawline and chin design: Creating a sculpted and defined look without surgery.\n3. Loose neck treatment: In a diluted technique, the material acts as an 'iron' for fine wrinkles in the neck.\n\nDo you see a result immediately?\nYes! This is one of the prominent advantages. Part of the result is visible immediately upon completion of the treatment thanks to the filling effect, and the improvement continues to improve in the months after with the building of new collagen.\n\nHow long does the treatment last?\nThe results are usually maintained between a year and a year and a half. The lifespan of the treatment depends on lifestyle and personal metabolism rate, but it is considered very durable compared to regular hyaluronic acid.\n\nWhat is the difference between this and Sculptra?\nCalcium also provides a solution for volume and sculpting (similar to fillers), while Sculptra focuses purely on volume restoration and texture over time without an immediate filling effect."
+    },
+    {
+      "id": "prp-guide",
+      "title": "Turning Back Time: The Complete Guide to Skin and Hair Rejuvenation using the PRP Method",
+      "subtitle": "A revolutionary treatment using your body's natural healing mechanisms",
+      "content": "PRP treatment, or \"Platelet-Rich Plasma,\" is a revolutionary method that uses our body's natural healing mechanisms. Instead of introducing synthetic substances, we distill the \"growth factors\" found in your blood and return them in high concentration to areas in need of renewal – whether it's facial skin (for a glowing and firm appearance) or the scalp (to strengthen the hair fiber).\n\nHow does it work? (Step-by-Step Process)\nThe process is simple, safe, and relatively fast. Here is what awaits you at the clinic:\n1. Simple Blood Collection: Just like a standard lab blood test, a small amount of blood is taken from the arm.\n2. Centrifugation Stage: The test tube enters a special device that rotates at high speed. The goal? To separate the plasma and platelets from other blood components.\n3. Distilling the \"Liquid Gold\": At the end of the process, a concentrated layer of platelet-rich plasma is obtained (appearing as a golden liquid).\n4. Injection: The doctor injects the PRP using a delicate technique (micro-injections) into the treated area.\n\nThe Results Everyone Wants: What Really Happens After PRP?\n1. On the Face: \"The Natural Filter Effect\"\nClients testify that the most noticeable result is not just a specific change, but the overall \"vibe\" of the face:\n• The Glow: The skin looks less tired and more \"alive\" and shiny.\n• Texture Improvement: The skin feels smoother to the touch (less roughness or open pores).\n• Light Firming: A feeling that the skin is less loose thanks to new collagen production.\n• Blurring Post-Acne Scars: One of the most beloved benefits for young people – a significant improvement in the appearance of spots and scars.\n\n2. On the Hair: \"Self-Confidence Returning to the Comb\"\nHere, results are a matter of time and patience, but clients love it when it happens:\n• Stopping Shedding: The first and most reassuring result is that less hair remains on the brush or in the shower.\n• Hair Thickening: Existing hairs become thicker and stronger, giving a fuller appearance to the scalp.\n• Regrowth: In thinning areas, new and healthy \"down\" begins to appear.\n\n3. Around the Eyes: \"A Fresh Look\"\n• Dark Circle Reduction: Improved blood flow in the eye area helps slightly lighten the \"dark circles\" that make us look permanently tired."
     }
   ],
   "site_content": {
     "header": {
+      "home": "Home",
       "about": "About",
       "services": "Treatments",
       "articles": "Articles",
@@ -60,13 +67,13 @@
     },
     "hero": {
       "title": "Dr. Daniel Clinic",
-      "subtitle": "Expert Botox & Aesthetic Treatments",
-      "description": "At Dr. Daniel Clinic, we are experts in Botox and aesthetic treatments, providing professional care with maximum precision and natural-looking results. Your beauty goals deserve real expertise.",
+      "subtitle": "Botox & Aesthetic Treatments",
+      "description": "Professional care with maximum precision and natural-looking results. Providing personalized treatments tailored to your aesthetic goals.",
       "button": "Book Appointment"
     },
     "about_section": {
       "heading": "About Dr. Daniel Clinic",
-      "paragraph1": "As a doctor specializing in aesthetic medicine with extensive experience in cosmetic treatments, Dr. Daniel Vershkov brings a unique combination of medical expertise, artistic vision, and commitment to natural-looking results at Dr. Daniel Clinic.",
+      "paragraph1": "Specializing in Botox and aesthetic treatments. As a doctor specializing in aesthetic medicine with extensive experience in cosmetic treatments, Dr. Daniel Vershkov brings a unique combination of medical expertise, artistic vision, and commitment to natural-looking results.",
       "paragraph2": "With proven experience of satisfied patients and beautiful results, Dr. Daniel tailors personal treatment plans according to your unique facial features, ensuring safe and effective aesthetic treatments.",
       "features": [
         {
@@ -84,7 +91,7 @@
       ]
     },
     "services_section": {
-      "heading": "Our Treatments",
+      "heading": "Botox & Aesthetic Treatments",
       "services": [
         {
           "title": "Botox Injections",
@@ -415,6 +422,26 @@
       "contrast_normal": "Normal Contrast",
       "contrast_high_yellow": "High Contrast (Yellow on Black)",
       "contrast_high_white": "High Contrast (White on Black)"
+    }
+  },
+  "promo": {
+    "valentine": {
+      "title": "Valentine's Special! ❤️",
+      "description": "Love is in the air... and so are the discounts! 10% off gift cards for beauty and aesthetic treatments. The perfect gift for yourself or your loved ones.",
+      "cta_whatsapp": "Get Offer on WhatsApp",
+      "dismiss": "Not Now"
+    },
+    "newYear": {
+      "title": "Happy New Year! ✨",
+      "description": "Start the year with a fresh, glowing look. Special offers on facial sculpting and Botox treatments for January only.",
+      "cta_whatsapp": "More Details on WhatsApp",
+      "dismiss": "Close"
+    },
+    "generic": {
+      "title": "Special Offer for You 🎁",
+      "description": "Glad you chose us! To celebrate your visit, we are offering a complimentary initial consultation.",
+      "cta_whatsapp": "Schedule Consultation",
+      "dismiss": "Maybe Later"
     }
   }
 }
