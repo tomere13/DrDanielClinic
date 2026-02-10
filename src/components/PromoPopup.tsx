@@ -72,7 +72,7 @@ export function PromoPopup() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 50, scale: 0.9 }}
           transition={{ duration: 0.4, type: "spring" }}
-          className="fixed bottom-4 right-4 left-4 md:left-auto md:bottom-8 md:right-8 z-50 max-w-md w-full md:w-[400px]"
+          className="fixed bottom-4 right-4 left-4 md:left-auto md:bottom-8 md:right-8 z-50 max-w-lg md:max-w-md w-auto md:w-[400px]"
           dir={dir}
         >
           <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-[#b7748d]/20 overflow-hidden">
@@ -84,36 +84,38 @@ export function PromoPopup() {
             {/* Close button */}
             <button
               onClick={handleDismiss}
-              className="absolute top-3 right-3 p-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-slate-700 dark:text-gray-500 transition-colors"
+              className="absolute top-2 right-2 md:top-3 md:right-3 p-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-slate-700 dark:text-gray-500 transition-colors z-10"
               aria-label="Close promotion"
             >
-              <X size={18} />
+              <X size={16} className="md:w-[18px] md:h-[18px]" />
             </button>
 
-            <div className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-3 bg-gray-50 dark:bg-slate-700 rounded-xl">
-                  {getIcon()}
+            <div className="p-4 md:p-6">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="flex-shrink-0 p-2 md:p-3 bg-gray-50 dark:bg-slate-700 rounded-xl">
+                  <div className="w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                    {getIcon()}
+                  </div>
                 </div>
 
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-1 md:mb-2 leading-tight">
                     {currentPromo.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">
                     {currentPromo.description}
                   </p>
 
-                  <div className="flex flex-col sm:flex-row gap-3 mt-2">
+                  <div className="flex flex-col xs:flex-row gap-2 md:gap-3 mt-1 md:mt-2">
                     <button
                       onClick={handleWhatsApp}
-                      className="flex-1 px-4 py-2.5 bg-[#b7748d] hover:bg-[#a05d76] text-white text-sm font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg active:scale-95 transform duration-100 text-center"
+                      className="flex-1 px-3 md:px-4 py-2 md:py-2.5 bg-[#b7748d] hover:bg-[#a05d76] text-white text-xs md:text-sm font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg active:scale-95 transform duration-100 text-center"
                     >
                       {currentPromo.cta_whatsapp}
                     </button>
                     <button
                       onClick={handleDismiss}
-                      className="flex-shrink-0 px-4 py-2.5 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                      className="flex-shrink-0 px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
                     >
                       {currentPromo.dismiss}
                     </button>
